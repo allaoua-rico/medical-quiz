@@ -1,15 +1,15 @@
 import { ScrollView } from "react-native";
 import { HomeStackParamList, HomeStackScreenProps } from "../types";
-import { Image } from "react-native";
 import UndrawExterne from "../images/undraw_hello.svg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View } from "../components/Themed";
-import ChapterButton from "../components/ChapterButton";
+import { Text } from "../components/Themed";
 import ChapterList from "../components/ChapterList";
 import Modules from "../components/Modules";
 import FullLengthButton from "../components/FullLengthButton";
 import HomeRoot from "../components/HomeRoot";
+import ResidanatQCM from "../components/ResidanatQCM";
+import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -17,22 +17,9 @@ export default function Home() {
   return (
     <Stack.Navigator
       initialRouteName="HomeRoot"
-      // screenOptions={{
-      //   header: (props) =>
-      //     true ? (
-      //       <Image
-      //         source={require("../images/header.png")}
-      //         className="w-full bg-transparent h-80 "
-      //       />
-      //     ) : undefined,
-      //   // contentStyle: { backgroundColor: "#87c9f6" },
-      // }}
+      screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen
-        name="HomeRoot"
-        component={HomeRoot}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="HomeRoot" component={HomeRoot} />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen
           name="Residanat"
@@ -73,7 +60,7 @@ export default function Home() {
 
 function Residanat({ navigation }: HomeStackScreenProps<"Residanat">) {
   return (
-    <SafeAreaView className="min-h-full  bg-white">
+    <HomeWrapperImg>
       <ScrollView className="w-full mx-auto px-8">
         {[
           {
@@ -102,49 +89,7 @@ function Residanat({ navigation }: HomeStackScreenProps<"Residanat">) {
           />
         ))}
       </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-function ResidanatQCM({ navigation }: HomeStackScreenProps<"ResidanatQCM">) {
-  return (
-    <SafeAreaView className="min-h-full bg-white">
-      <ScrollView className="w-full mx-auto px-8">
-        {[
-          {
-            title: "Biologie",
-            description: "",
-            Icon: <UndrawExterne width={200} height={200} />,
-            color: "#93BFCF",
-            link: "Biologie",
-          },
-          {
-            title: "Medical",
-            description: "",
-            Icon: <UndrawExterne width={200} height={200} />,
-            color: "#6D9886",
-            link: "Medical",
-          },
-          {
-            title: "Chirurgie",
-            description: "",
-            Icon: <UndrawExterne width={200} height={200} />,
-            color: "#6D9886",
-            link: "Chirurgie",
-          },
-        ].map(({ title, description, Icon, color, link }) => (
-          <ChapterButton
-            key={title}
-            navigation={navigation}
-            title={title}
-            description={description}
-            Icon={Icon}
-            bgColor={color}
-            link={link}
-          />
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+    </HomeWrapperImg>
   );
 }
 

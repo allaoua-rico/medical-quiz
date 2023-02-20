@@ -1,30 +1,25 @@
-import { Text, View } from "./Themed";
 import yearsModules, { YearModule } from "../data";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
 export default function ModuleButton({
-  key,
   module,
   navigation,
   navToView,
 }: {
-  key: string;
   module: YearModule;
   navigation: any;
   navToView: string;
 }) {
   return (
-    <View className="my-4" key={key}>
+    <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">
         <View
           style={{ borderRadius: 10 }}
-          className="rounded-lg overflow-hidden"
+          className="rounded-lg overflow-hidden bg-white"
         >
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(navToView, { module })
-            }
+            onPress={() => navigation.navigate(navToView, { module })}
           >
             <View className="p-4 flex flex-row justify-between">
               <View className="flex flex-row items-center">

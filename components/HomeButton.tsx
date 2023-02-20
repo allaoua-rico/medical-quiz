@@ -3,6 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { LightenDarkenColor } from "../utils/functions";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 export default function HomeButton({
   title,
@@ -11,7 +12,6 @@ export default function HomeButton({
   link,
   bgColor,
   navigation,
-  key,
 }: {
   title: string;
   description: string;
@@ -19,10 +19,9 @@ export default function HomeButton({
   link: string;
   bgColor: string;
   navigation: any;
-  key: any;
 }) {
   return (
-    <View className="my-8" >
+    <View className="my-8">
       <TouchableOpacity onPress={() => navigation.navigate(link)}>
         <LinearGradient
           colors={[bgColor, LightenDarkenColor(bgColor, 30)]}
@@ -34,6 +33,8 @@ export default function HomeButton({
           <Text className="text-white text-3xl font-medium">{title}</Text>
           <Text className="text-white text-lg font-semibold mt-4">
             {description}
+            {`  `}
+            <Entypo name="arrow-with-circle-right" size={24} color="white" />
           </Text>
           <View className="bg-transparent absolute right-1 -bottom-7">
             {Icon}

@@ -1,7 +1,6 @@
-import { Text, View } from "./Themed";
 import { LinearGradient } from "expo-linear-gradient";
 import { LightenDarkenColor } from "../utils/functions";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 export default function FullLengthButton({
   title,
@@ -33,7 +32,7 @@ export default function FullLengthButton({
           style={{ elevation: 5 }}
         >
           <View className="bg-transparent absolute right-0 top-0">{Icon}</View>
-          <View className="bg-transparent ">
+          <View className="bg-transparent">
             <Text className="text-gray-700 text-xs">{description}</Text>
             <Text className="text-gray-700 text-lg font-medium">{title}</Text>
           </View>

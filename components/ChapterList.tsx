@@ -1,9 +1,9 @@
-import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeStackScreenProps } from "../types";
 import { ScrollView } from "react-native";
 import yearsModules from "../data";
 import { useEffect } from "react";
 import ModuleButton from "./ModuleButton";
+import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function ChapterList({
   route,
@@ -15,7 +15,7 @@ export default function ChapterList({
     navigation.setOptions({ title });
   }, [title]);
   return (
-    <SafeAreaView className="min-h-full bg-gray-50">
+    <HomeWrapperImg>
       <ScrollView className="w-full min-h-full mx-auto px-8">
         {modules?.map((module, i) => (
           <ModuleButton
@@ -26,7 +26,7 @@ export default function ChapterList({
           />
         ))}
       </ScrollView>
-    </SafeAreaView>
+    </HomeWrapperImg>
   );
 }
 
