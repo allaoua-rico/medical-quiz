@@ -1,11 +1,10 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
-
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { YearModule } from "./data";
 
 declare global {
   namespace ReactNavigation {
@@ -19,17 +18,39 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Home: undefined;
+  Fav: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
+
+//////////    Home   /////////
+
+export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =
+  NativeStackScreenProps<HomeStackParamList, Screen>;
+
+export type HomeStackParamList = {
+  HomeRoot: NavigatorScreenParams<RootTabParamList> | undefined;
+  Externe: undefined;
+  Residanat: undefined;
+  Cours: undefined;
+  ResidanatQCM: undefined;
+  ChapterList: {
+    title: string;
+  };
+  Modules: {
+    module: YearModule;
+  };
+};
+
+export type ChapterListParamList = {
+  title: string;
+};
