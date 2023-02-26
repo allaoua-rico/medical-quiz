@@ -10,6 +10,7 @@ import FullLengthButton from "../components/FullLengthButton";
 import HomeRoot from "../components/HomeRoot";
 import ResidanatQCM from "../components/ResidanatQCM";
 import HomeWrapperImg from "../components/layout/HomeWrapperImg";
+import Courses from "../components/Courses";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -20,7 +21,7 @@ export default function Home() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="HomeRoot" component={HomeRoot} />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Group >
         <Stack.Screen
           name="Residanat"
           component={Residanat}
@@ -37,7 +38,7 @@ export default function Home() {
           options={{ title: "Cours" }}
         />
       </Stack.Group>
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Group >
         <Stack.Screen
           name="ResidanatQCM"
           component={ResidanatQCM}
@@ -54,6 +55,13 @@ export default function Home() {
         component={Modules}
         options={{ title: "Modules" }}
       />
+      {/* <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen
+          name="Courses"
+          component={Courses}
+          options={{ title: "Courses" }}
+        />
+      </Stack.Group> */}
     </Stack.Navigator>
   );
 }

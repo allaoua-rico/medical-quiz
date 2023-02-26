@@ -24,7 +24,7 @@ export default function ModuleButton({
             <View className="p-4 flex flex-row justify-between">
               <View className="flex flex-row items-center">
                 <View className="bg-gray-100 w-12 h-12 mr-4 rounded-full" />
-                <View className="bg-white shadow-2xl ">
+                <View className="bg-white shadow-2xl">
                   <Text className="text-gray-700 text-lg font-extrabold">
                     {module.title}
                   </Text>

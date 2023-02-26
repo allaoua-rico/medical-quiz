@@ -4,7 +4,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { YearModule } from "./data";
+import { YearModule, Course } from "./data";
 
 declare global {
   namespace ReactNavigation {
@@ -16,6 +16,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  Courses: { course: Course };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -49,6 +50,7 @@ export type HomeStackParamList = {
   Modules: {
     module: YearModule;
   };
+  // Courses: { course: Course };
 };
 
 export type ChapterListParamList = {
