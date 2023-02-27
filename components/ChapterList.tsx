@@ -16,7 +16,7 @@ export default function ChapterList({
   }, [title]);
   return (
     <HomeWrapperImg>
-      <ScrollView className="w-full min-h-full mx-auto px-8">
+      <ScrollView className="w-full min-h-full mx-auto px-4">
         {modules?.map((module, i) => (
           <ModuleButton
             key={`${module?.title}_${i}`}

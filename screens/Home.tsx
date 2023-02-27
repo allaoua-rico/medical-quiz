@@ -10,7 +10,6 @@ import FullLengthButton from "../components/FullLengthButton";
 import HomeRoot from "../components/HomeRoot";
 import ResidanatQCM from "../components/ResidanatQCM";
 import HomeWrapperImg from "../components/layout/HomeWrapperImg";
-import Courses from "../components/Courses";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 

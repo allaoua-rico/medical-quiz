@@ -16,7 +16,7 @@ export default function Modules({
   }, [module]);
   return (
     <HomeWrapperImg>
-      <ScrollView className="w-full mx-auto px-8">
+      <ScrollView className="w-full mx-auto px-4">
         {module.courses?.map((course, i) => (
           <CourseButton
             key={`${module?.title}_${i}`}
@@ -49,19 +49,21 @@ function CourseButton({
           <TouchableOpacity
             onPress={() => navigation.navigate(navToView, { course })}
           >
-            <View className="p-4 flex flex-row justify-between max-w-max">
+            <View className="px-3 py-4 flex flex-row justify-between items-center max-w-max">
               <View className="flex flex-row items-center">
-                <View className="bg-gray-100 w-12 h-12 mr-4 rounded-full" />
-                <View className="bg-white shadow-2xl flex">
-                  <Text className="text-gray-700 text-lg font-extrabold max-w-[200px]">
-                    {course.title}
-                  </Text>
-                  <Text className="text-gray-500 font-semibold text-base">
+                <View className="bg-gray-100 rounded-full w-12 h-12" />
+                <View className="shadow-2xl flex-wrap flex-1 ml-4 mr-[3px]">
+                  <View className="flex flex-row">
+                    <Text className="text-gray-700 text-lg font-extrabold flex-wrap flex-1">
+                      {course.title}
+                    </Text>
+                  </View>
+                  <Text className="text-gray-500 font-semibold text-base flex-wrap flex-1">
                     questions:
                   </Text>
                 </View>
+                <View className="bg-orange-200 rounded-full w-12 h-12" />
               </View>
-              <View className="bg-orange-200 rounded-full w-12 h-12 flex justify-center items-center" />
             </View>
           </TouchableOpacity>
         </View>
