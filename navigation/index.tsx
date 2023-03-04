@@ -14,8 +14,14 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import { usePersistedNavigationState } from "./hooks";
+import { PERSISTENCE_KEY, usePersistedNavigationState } from "./hooks";
 import Courses from "../components/courses/Courses";
+import Login from "../screens/Login";
+import { Spinner } from "native-base";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useAuth from "../hooks/useAuth";
+import supabase from "../utils/supabase";
 
 export default function Navigation({
   colorScheme,
@@ -24,10 +30,23 @@ export default function Navigation({
 }) {
   const { isReady, initialState } = usePersistedNavigationState();
   if (!isReady) {
-    return null;
+    return (
+      <SafeAreaView className="flex-grow">
+        <Spinner
+          accessibilityLabel="checking for token"
+          color="black"
+          size="lg"
+          className="my-auto"
+        />
+      </SafeAreaView>
+    );
   }
   return (
     <NavigationContainer
+      initialState={initialState}
+      onStateChange={(state) =>
+        AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+      }
       linking={LinkingConfiguration}
       // theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
@@ -43,22 +62,45 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const { state, dispatch, authContext } = useAuth();
+  // const [user, setUser] = React.useState(null);
+
+  // supabase.auth.onAuthStateChange((event, session) => {
+  //   console.log(event, session);
+  // });
+  React.useEffect(() => {
+    // console.log("state", state);
+    // console.log("userToken", state.userToken);
+  }, [state]);
+
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
-      {/* <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>  */}
-
-      <Stack.Group
-        screenOptions={{ presentation: "modal", headerShown: false }}
-      >
-        <Stack.Screen name="Courses" component={Courses} />
-      </Stack.Group>
+      {
+      // state.userToken == null 
+      false
+      ? (
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Root"
+            component={BottomTabNavigator}
+            options={{ headerShown: false }}
+          />
+          {/* <Stack.Group screenOptions={{ presentation: "modal" }}>
+               <Stack.Screen name="Modal" component={ModalScreen} />
+              </Stack.Group>  */}
+          <Stack.Group
+            screenOptions={{ presentation: "modal", headerShown: false }}
+          >
+            <Stack.Screen name="Courses" component={Courses} />
+          </Stack.Group>
+        </>
+      )}
     </Stack.Navigator>
   );
 }

@@ -41,7 +41,7 @@ export default function Courses({
   };
 
   return (
-    <SafeAreaView className="flex-grow">
+    <SafeAreaView className="flex-grow relative">
       {loading ? (
         <Spinner
           accessibilityLabel="Loading questions"
@@ -94,6 +94,7 @@ export default function Courses({
             aq={aq}
             questions={questions}
             setQuestions={setQuestions}
+            course={route?.params?.course}
           />
         </ScrollView>
       )}

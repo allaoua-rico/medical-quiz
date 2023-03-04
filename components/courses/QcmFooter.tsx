@@ -6,6 +6,7 @@ import { Answer, Question } from "./types";
 import { Button, Modal } from "native-base";
 import supabase from "../../utils/supabase";
 import { Course } from "../../data";
+import useAlert from "../shared/Alert/useAlert";
 
 type Props = {
   activeQuestion: number;
@@ -16,68 +17,57 @@ type Props = {
   course: Course;
 };
 
-const QcmFooter = ({
-  activeQuestion,
-  setActiveQuestion,
-  aq,
-  questions,
-  setQuestions,
-  course,
-}: Props) => {
+const QcmFooter = (props: Props) => {
+  const {
+    activeQuestion,
+    setActiveQuestion,
+    aq,
+    questions,
+    setQuestions,
+    course,
+  } = props;
   const [modalVisible, setModalVisible] = useState(false);
-  const setToVerify = (question: Question) => {
-    const questionsCopy = [...questions];
-    questionsCopy.map((q) => {
-      if (q.question_id == question.question_id) q.verify = true;
-    });
-    setQuestions(questionsCopy);
-  };
-  console.log(questions.map((q) => q.answers));
+  const { setAlert } = useAlert();
 
   const sendResult = async () => {
-    // console.log(
-    //   questions.map(({ selected_answers }) => ({
-    //     selected_answers,
-    //   }))
-    // );
-    // try {
-    //   let { data: quiz_questions, error } = await supabase
-    //     .from("quiz_questions")
-    //     .upsert(
-    //       questions.map(({ question_id, selected_answers }) => ({
-    //         question_id,
-    //         selected_answers: selected_answers,
-    //       }))
-    //     );
-    //   // .ilike("Module", course.title);
-    //   console.log(quiz_questions);
-    //   console.log("error", error);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const user_answers = questions.map(
+        ({
+          question_id,
+          selected_answers,
+        }: {
+          question_id: any;
+          selected_answers: Answer[];
+        }) => {
+          return selected_answers.map(({ answer_id }) => ({
+            question_id,
+            answer_id,
+          }));
+        }
+      );
+      let { data, error } = await supabase
+        .from("user_answers")
+        .upsert(user_answers.flat(), { onConflict: "answer_id" })
+        .select();
+      if (error) throw error;
+      if (data) {
+        setModalVisible(false);
+        setAlert("Resultat enregistré!", "success");
+      }
+    } catch (error) {
+      setAlert("Resultat non enregistré!", "error");
+    }
   };
-  const verifyResults = () => {
-    let score = 0;
-    questions.map((q) => {
-      let correct = true;
-      q.answers.find((answer: Answer) => {
-        // verify if the correct answers are selected
-        const isSelected = q.selected_answers.find(
-          (selected_a: Answer) => selected_a.answer_id == answer.answer_id
-        );
-        if (!answer.Correct && isSelected) correct = false;
-        if (answer.Correct && !isSelected) correct = false;
-      });
-      console.log(correct);
-      correct && score++;
-    });
-    console.log(score);
+
+  const endTest = () => {
+    getScore(questions);
+    sendResult();
   };
   return (
     <View className="mt-auto px-2 py-4 flex flex-row">
       <Pressable
         disabled={aq?.verify}
-        onPress={() => setToVerify(aq)}
+        onPress={() => setToVerify(aq, questions, setQuestions)}
         className="p-2 bg-white rounded-lg border border-gray-100"
       >
         <Text className="font-semibold">Verifier</Text>
@@ -117,7 +107,7 @@ const QcmFooter = ({
       <SubmitModal
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
-        verifyResults={verifyResults}
+        endTest={endTest}
       />
     </View>
   );
@@ -126,7 +116,7 @@ const QcmFooter = ({
 const SubmitModal = ({
   setModalVisible,
   modalVisible,
-  verifyResults,
+  endTest,
 }: SubmitModalProps) => {
   return (
     <Modal
@@ -149,7 +139,7 @@ const SubmitModal = ({
             >
               Cancel
             </Button>
-            <Button className="px-5" onPress={verifyResults}>
+            <Button className="px-5" onPress={endTest}>
               Oui
             </Button>
           </Button.Group>
@@ -159,10 +149,39 @@ const SubmitModal = ({
   );
 };
 
+export default QcmFooter;
+
 type SubmitModalProps = {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   modalVisible: boolean;
-  verifyResults: () => void;
+  endTest: () => void;
 };
 
-export default QcmFooter;
+const setToVerify = (
+  question: Question,
+  questions: any[],
+  setQuestions: React.Dispatch<React.SetStateAction<any[]>>
+) => {
+  const questionsCopy = [...questions];
+  questionsCopy.map((q) => {
+    if (q.question_id == question.question_id) q.verify = true;
+  });
+  setQuestions(questionsCopy);
+};
+
+const getScore = (questions: any[]) => {
+  let score = 0;
+  questions.map((q) => {
+    let correct = true;
+    q.answers.find((answer: Answer) => {
+      // verify if the correct answers are selected
+      const isSelected = q.selected_answers.find(
+        (selected_a: Answer) => selected_a.answer_id == answer.answer_id
+      );
+      if (!answer.Correct && isSelected) correct = false;
+      if (answer.Correct && !isSelected) correct = false;
+    });
+    correct && score++;
+  });
+  return score;
+};

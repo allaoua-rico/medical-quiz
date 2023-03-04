@@ -5,6 +5,10 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { NativeBaseProvider } from "native-base";
 import { Provider as PaperProvider } from "react-native-paper";
+import AlertPopup from "./components/shared/Alert/AlertPopup";
+import { AlertProvider } from "./components/shared/Alert/AlertContext";
+import AuthProvider from "./auth/AuthContext";
+
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,12 +19,17 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <PaperProvider>
-          <NativeBaseProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </NativeBaseProvider>
-        </PaperProvider>
+        <AlertProvider>
+          <PaperProvider>
+            <NativeBaseProvider>
+              <AuthProvider>
+                <Navigation colorScheme={colorScheme} />
+                <StatusBar />
+                <AlertPopup />
+              </AuthProvider>
+            </NativeBaseProvider>
+          </PaperProvider>
+        </AlertProvider>
       </SafeAreaProvider>
     );
   }

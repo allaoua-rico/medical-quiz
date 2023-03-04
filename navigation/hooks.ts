@@ -2,7 +2,7 @@ import { Linking, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as React from "react";
 
-const PERSISTENCE_KEY = "NAVIGATION_STATE_V1";
+export const PERSISTENCE_KEY = "NAVIGATION_STATE_V1";
 
 export const usePersistedNavigationState: any = () => {
   // if (__DEV__) console.log("Running in dev mode");

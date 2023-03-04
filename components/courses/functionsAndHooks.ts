@@ -31,10 +31,13 @@ export const useFetchQuestions = (course: Course) => {
     async function getQuestions() {
       setLoading(true);
       try {
-        let { data: quiz_questions, error } = await supabase.from(
-          "quiz_questions"
-        ).select(`Question,question_id,
-          answers:quiz_answers (Answer,Correct,answer_id) `);
+        let { data: quiz_questions, error } = await supabase
+          .from("quiz_questions")
+          .select(
+            `Question,question_id,
+          answers:quiz_answers (Answer,Correct,answer_id) `
+          )
+          .ilike("Module", course.title);
         !error &&
           !!quiz_questions &&
           setQuestions(
