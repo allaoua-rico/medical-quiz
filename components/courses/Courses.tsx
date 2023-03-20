@@ -1,5 +1,5 @@
 import { RootStackScreenProps } from "../../types";
-import { ScrollView, Pressable, TouchableOpacity } from "react-native";
+import { ScrollView, Pressable } from "react-native";
 import { useState } from "react";
 import { Spinner, Text, View } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -39,7 +39,7 @@ export default function Courses({
     });
     setQuestions(questionsCopy);
   };
-
+  // console.log(questions);
   return (
     <SafeAreaView className="flex-grow relative">
       {loading ? (

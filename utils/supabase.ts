@@ -1,3 +1,4 @@
+import "react-native-url-polyfill/auto";
 import { createClient } from "@supabase/supabase-js";
 import { SUPABASE_KEY } from "react-native-dotenv";
 import { Database } from '../types/supabase'

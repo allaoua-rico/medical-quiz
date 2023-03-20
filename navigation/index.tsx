@@ -20,8 +20,7 @@ import Login from "../screens/Login";
 import { Spinner } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import useAuth from "../hooks/useAuth";
-import supabase from "../utils/supabase";
+import { useAuth } from "../auth/AuthProvider";
 
 export default function Navigation({
   colorScheme,
@@ -62,23 +61,16 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const { state, dispatch, authContext } = useAuth();
-  // const [user, setUser] = React.useState(null);
-
-  // supabase.auth.onAuthStateChange((event, session) => {
-  //   console.log(event, session);
-  // });
+  const { state } = useAuth();
   React.useEffect(() => {
-    // console.log("state", state);
-    // console.log("userToken", state.userToken);
+    // console.log("state.refreshToken ", state?.refreshToken);
+    // console.log("isLoading", state.isLoading);
   }, [state]);
 
   return (
     <Stack.Navigator>
-      {
-      // state.userToken == null 
-      false
-      ? (
+      {!state?.refreshToken ? (
+        // false
         <Stack.Screen
           name="Login"
           component={Login}
@@ -91,9 +83,11 @@ function RootNavigator() {
             component={BottomTabNavigator}
             options={{ headerShown: false }}
           />
-          {/* <Stack.Group screenOptions={{ presentation: "modal" }}>
-               <Stack.Screen name="Modal" component={ModalScreen} />
-              </Stack.Group>  */}
+          {/*
+              <Stack.Group screenOptions={{ presentation: "modal" }}>
+                <Stack.Screen name="Modal" component={ModalScreen} />
+              </Stack.Group>
+            */}
           <Stack.Group
             screenOptions={{ presentation: "modal", headerShown: false }}
           >

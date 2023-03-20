@@ -3,6 +3,7 @@ import { Answer, Question } from "./types";
 import { useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
 import _ from "lodash";
+import useSWR from "swr";
 
 export const isSelected = (aq: Question, answer: Answer) => {
   return aq?.selected_answers.find(
@@ -34,10 +35,10 @@ export const useFetchQuestions = (course: Course) => {
         let { data: quiz_questions, error } = await supabase
           .from("quiz_questions")
           .select(
-            `Question,question_id,
-          answers:quiz_answers (Answer,Correct,answer_id) `
+            `Question,question_id,course_id,
+             answers:quiz_answers (Answer,Correct,answer_id)`
           )
-          .ilike("Module", course.title);
+          .ilike("course", course.title);
         !error &&
           !!quiz_questions &&
           setQuestions(
@@ -55,4 +56,18 @@ export const useFetchQuestions = (course: Course) => {
     getQuestions();
   }, [course]);
   return { questions, setQuestions, loading };
+};
+
+export const useFetchUserTakes = (course: Course) => {
+  const fetcher = async (...args: any[]) => {
+    const [course_title] = args;
+    let { data, error } = await supabase
+      .from("takes")
+      .select(`*`)
+      .ilike("course_title", course_title);
+    if (error) throw error;
+    return data;
+  };
+  const { data, error, isLoading,mutate } = useSWR(course.title, fetcher);
+  return { takes: data, isLoading, error,mutate };
 };

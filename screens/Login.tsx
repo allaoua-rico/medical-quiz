@@ -1,10 +1,7 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Image } from "react-native";
-import LoginTopSvg from "../images/LoginTopSvg.svg";
 import {
-  Box,
   Button,
   FormControl,
   Icon,
@@ -18,18 +15,18 @@ import { Formik } from "formik";
 import { FormikProps } from "formik/dist/types";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as yup from "yup";
-import supabase from "../utils/supabase";
-import * as Linking from "expo-linking";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../auth/AuthProvider";
 
-const Login = (props: Props) => {
+const Login = () => {
   const { state, authContext } = useAuth();
 
   return (
     <SafeAreaView className="bg-[#0085FF] flex-grow">
       <Formik
         initialValues={initialValues}
-        onSubmit={(data) => authContext.signIn(data)}
+        onSubmit={(data) => {
+          authContext?.signIn(data);
+        }}
         validationSchema={validationSchema}
       >
         {(props) => {
@@ -43,7 +40,7 @@ const Login = (props: Props) => {
               >
                 <EmailInput {...props} />
                 <PasswordInput {...props} />
-                {state.error == "CREDENTIALS" && (
+                {state?.error == "CREDENTIALS" && (
                   <View className="flex items-center">
                     <WarningOutlineIcon
                       size="xs"
@@ -55,13 +52,13 @@ const Login = (props: Props) => {
                   </View>
                 )}
                 <Button
-                  onPress={() => {
+                  onPress={(e) => {
                     handleSubmit();
                   }}
                   colorScheme="pink"
                   className="w-4/5"
                 >
-                  {state.isLoading ? (
+                  {state?.isLoading ? (
                     <Spinner
                       accessibilityLabel="Login"
                       color="white"
@@ -158,7 +155,7 @@ export type FormValues = {
   email: string;
   password: string;
 };
-type Props = {};
+
 type InputProps = FormikProps<FormValues>;
 
 const validationSchema = yup.object({

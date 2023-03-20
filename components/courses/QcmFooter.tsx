@@ -7,6 +7,8 @@ import { Button, Modal } from "native-base";
 import supabase from "../../utils/supabase";
 import { Course } from "../../data";
 import useAlert from "../shared/Alert/useAlert";
+import * as SecureStore from "expo-secure-store";
+import { useFetchUserTakes } from "./functionsAndHooks";
 
 type Props = {
   activeQuestion: number;
@@ -26,11 +28,13 @@ const QcmFooter = (props: Props) => {
     setQuestions,
     course,
   } = props;
+  const [submitted, setSubmitted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const { mutate: mutateTakes } = useFetchUserTakes(course);
   const { setAlert } = useAlert();
-
   const sendResult = async () => {
     try {
+      setAllToVerify(questions, setQuestions);
       const user_answers = questions.map(
         ({
           question_id,
@@ -38,40 +42,61 @@ const QcmFooter = (props: Props) => {
         }: {
           question_id: any;
           selected_answers: Answer[];
-        }) => {
-          return selected_answers.map(({ answer_id }) => ({
+        }) =>
+          selected_answers.map(({ answer_id }) => ({
             question_id,
             answer_id,
-          }));
-        }
+          }))
       );
       let { data, error } = await supabase
         .from("user_answers")
         .upsert(user_answers.flat(), { onConflict: "answer_id" })
         .select();
-      if (error) throw error;
-      if (data) {
+      const access_token =
+        (await SecureStore.getItemAsync("accessToken")) || "";
+      const {
+        data: { user },
+      } = await supabase.auth.getUser(access_token);
+      let { data: takeData, error: takeError } = await supabase
+        .from("takes")
+        .upsert(
+          {
+            score: getScore(questions),
+            course_id: questions[0].course_id,
+            course_title: course.title,
+            user_id: user?.id,
+          },
+          { onConflict: "course_id" }
+        )
+        .select();
+      if (error || takeError) throw error || takeError;
+      if (data && takeData) {
         setModalVisible(false);
         setAlert("Resultat enregistré!", "success");
       }
+      mutateTakes();
+      setSubmitted(true);
+      setActiveQuestion(0)
     } catch (error) {
+      setModalVisible(false);
       setAlert("Resultat non enregistré!", "error");
     }
   };
 
   const endTest = () => {
-    getScore(questions);
     sendResult();
   };
   return (
     <View className="mt-auto px-2 py-4 flex flex-row">
-      <Pressable
-        disabled={aq?.verify}
-        onPress={() => setToVerify(aq, questions, setQuestions)}
-        className="p-2 bg-white rounded-lg border border-gray-100"
-      >
-        <Text className="font-semibold">Verifier</Text>
-      </Pressable>
+      {!submitted && (
+        <Pressable
+          disabled={aq?.verify}
+          onPress={() => setToVerify(aq, questions, setQuestions)}
+          className="p-2 bg-white rounded-lg border border-gray-100"
+        >
+          <Text className="font-semibold">Verifier</Text>
+        </Pressable>
+      )}
       <View className="flex-1 flex flex-row justify-end">
         <TouchableOpacity
           disabled={activeQuestion == 0}
@@ -84,12 +109,18 @@ const QcmFooter = (props: Props) => {
           <MaterialIcons name="keyboard-arrow-left" size={24} color="black" />
         </TouchableOpacity>
         {activeQuestion == questions.length - 1 ? (
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            className="p-2 px-5 rounded-lg border bg-blue-300 border-gray-100"
-          >
-            <Text className="font-semibold">Terminer</Text>
-          </TouchableOpacity>
+          submitted ? (
+            <View className="p-2 px-5 rounded-lg border bg-gray-300 border-gray-100">
+              <Text className="font-semibold">Fin</Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              className="p-2 px-5 rounded-lg border bg-blue-300 border-gray-100"
+            >
+              <Text className="font-semibold">Terminer</Text>
+            </TouchableOpacity>
+          )
         ) : (
           <TouchableOpacity
             disabled={activeQuestion == questions.length - 1}
@@ -151,12 +182,6 @@ const SubmitModal = ({
 
 export default QcmFooter;
 
-type SubmitModalProps = {
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  modalVisible: boolean;
-  endTest: () => void;
-};
-
 const setToVerify = (
   question: Question,
   questions: any[],
@@ -165,6 +190,17 @@ const setToVerify = (
   const questionsCopy = [...questions];
   questionsCopy.map((q) => {
     if (q.question_id == question.question_id) q.verify = true;
+  });
+  setQuestions(questionsCopy);
+};
+
+const setAllToVerify = (
+  questions: any[],
+  setQuestions: React.Dispatch<React.SetStateAction<any[]>>
+) => {
+  const questionsCopy = [...questions];
+  questionsCopy.map((q) => {
+    q.verify = true;
   });
   setQuestions(questionsCopy);
 };
@@ -184,4 +220,10 @@ const getScore = (questions: any[]) => {
     correct && score++;
   });
   return score;
+};
+
+type SubmitModalProps = {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  modalVisible: boolean;
+  endTest: () => void;
 };

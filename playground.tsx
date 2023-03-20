@@ -1,14 +1,14 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useLayoutEffect, useMemo, useReducer } from "react";
 import * as SecureStore from "expo-secure-store";
 import supabase from "../utils/supabase";
 import { FormValues } from "../screens/Login";
 
-type UserToken = string | null | undefined;
+type RefreshToken = string | null | undefined;
 
 type AuthState = {
   isLoading: boolean;
   isSignout: boolean;
-  userToken: UserToken;
+  refreshToken: RefreshToken;
   error: ErrorKind | undefined;
 };
 
@@ -29,14 +29,14 @@ enum ActionKind {
 
 interface Action {
   type: ActionKind;
-  token?: UserToken;
+  token?: RefreshToken;
   error?: ErrorKind;
 }
 
 const initialAuthState = {
   isLoading: true,
   isSignout: false,
-  userToken: undefined,
+  refreshToken: undefined,
   error: undefined,
 };
 
@@ -47,21 +47,27 @@ export default function useAuth() {
         case ActionKind.RESTORE_TOKEN:
           return {
             ...prevState,
-            userToken: action.token,
+            refreshToken: action.token,
             isLoading: false,
           };
         case ActionKind.SIGN_IN:
+          console.log({
+            ...prevState,
+            isSignout: false,
+            refreshToken: action.token,
+            isLoading: false,
+          });
           return {
             ...prevState,
             isSignout: false,
-            userToken: action.token,
+            refreshToken: action.token,
             isLoading: false,
           };
         case ActionKind.SIGN_OUT:
           return {
             ...prevState,
             isSignout: true,
-            userToken: null,
+            refreshToken: null,
           };
         case ActionKind.SET_LOADING_TRUE:
           return {
@@ -85,22 +91,34 @@ export default function useAuth() {
     initialAuthState
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      let userToken;
+      let refresh_token;
 
       try {
-        userToken = await SecureStore.getItemAsync("userToken");
+        refresh_token = (await SecureStore.getItemAsync("refreshToken")) || "";
+        console.log("refresh_token", refresh_token);
+        const { data, error } = await supabase.auth
+          .refreshSession
+          //   {
+          //   refresh_token,
+          // }
+          ();
+        console.log("refreshSession", data);
+        console.log("error", error);
+        if (error) throw new Error("Invalid Refresh Token");
+        dispatch({
+          type: ActionKind.RESTORE_TOKEN,
+          token: refresh_token,
+        });
       } catch (e) {
-        // Restoring token failed
+        dispatch({ type: ActionKind.RESTORE_TOKEN, token: null });
       }
-
       // After restoring token, we may need to validate it in production apps
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      dispatch({ type: ActionKind.RESTORE_TOKEN, token: userToken });
     };
 
     bootstrapAsync();
@@ -121,15 +139,15 @@ export default function useAuth() {
             email,
             password,
           });
-          if (error) throw Error(error?.message);
-          if (data?.session?.access_token) {
+          if (error) throw error;
+          if (data?.session) {
             await SecureStore.setItemAsync(
-              "userToken",
-              data?.session?.access_token
+              "refreshToken",
+              data?.session?.refresh_token
             );
             dispatch({
               type: ActionKind.SIGN_IN,
-              token: data?.session?.access_token,
+              token: data?.session?.refresh_token,
             });
           }
         } catch (error: any) {

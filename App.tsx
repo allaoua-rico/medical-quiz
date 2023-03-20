@@ -5,9 +5,11 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { NativeBaseProvider } from "native-base";
 import { Provider as PaperProvider } from "react-native-paper";
+import { createContext } from "react";
 import AlertPopup from "./components/shared/Alert/AlertPopup";
 import { AlertProvider } from "./components/shared/Alert/AlertContext";
-import AuthProvider from "./auth/AuthContext";
+import useAuth from "./playground";
+import AuthProvider from "./auth/AuthProvider";
 
 
 export default function App() {
