@@ -44,9 +44,9 @@ function CourseButton({
 }) {
   const { questions } = useFetchQuestions(course);
   const { takes, isLoading: loadingTake } = useFetchUserTakes(course);
-  useEffect(() => {
-    console.log("takes",takes?.[0]);
-  }, [takes]);
+  // useEffect(() => {
+  //   console.log("takes",takes?.[0]);
+  // }, [takes]);
 
   return (
     <View className="my-4">

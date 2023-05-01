@@ -57,6 +57,7 @@ const Login = () => {
                   }}
                   colorScheme="pink"
                   className="w-4/5"
+                  disabled={state?.isLoading}
                 >
                   {state?.isLoading ? (
                     <Spinner

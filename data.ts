@@ -101,7 +101,10 @@ type Years = {
 };
 
 const yearsModules: Years[] = [
-  { year: getVariableName(() => annee1), modules: annee1 },
+  { year: "annee1", modules: annee1 },
+  // this line was error:
+  // Error: The function does not contain a statement matching 'return variableName;', js engine: hermes
+  // { year: getVariableName(() => annee1), modules: annee1 },
 ];
 
 export default yearsModules;

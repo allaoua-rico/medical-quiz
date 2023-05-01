@@ -68,6 +68,6 @@ export const useFetchUserTakes = (course: Course) => {
     if (error) throw error;
     return data;
   };
-  const { data, error, isLoading,mutate } = useSWR(course.title, fetcher);
-  return { takes: data, isLoading, error,mutate };
+  const { data, error, isLoading, mutate } = useSWR(course.title, fetcher);
+  return { takes: data, isLoading, error, mutate };
 };

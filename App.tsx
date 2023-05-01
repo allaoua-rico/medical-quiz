@@ -5,18 +5,21 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { NativeBaseProvider } from "native-base";
 import { Provider as PaperProvider } from "react-native-paper";
-import { createContext } from "react";
 import AlertPopup from "./components/shared/Alert/AlertPopup";
 import { AlertProvider } from "./components/shared/Alert/AlertContext";
-import useAuth from "./playground";
 import AuthProvider from "./auth/AuthProvider";
-
+import { useFonts } from "expo-font";
+// import useAuth from "./playground";
+// import { createContext } from "react";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+  });
+  
+  if (!isLoadingComplete || !fontsLoaded) {
     return null;
   } else {
     return (
