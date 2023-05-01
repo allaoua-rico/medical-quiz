@@ -70,7 +70,10 @@ function RootNavigator() {
 
   return (
     <Stack.Navigator>
-      {!state?.refreshToken ? (
+      {
+      // !state?.refreshToken 
+      true
+      ? (
         // false
         <Stack.Screen
           name="Login"

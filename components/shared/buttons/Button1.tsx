@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 
-export default function ButtonType1({
+export default function Button1({
   title,
   onPress,
 }: {

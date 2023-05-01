@@ -5,7 +5,6 @@ const CustomTabBar = (props: any) => {
   return (
     <TabBar
       {...props}
-      scrollEnabled
       style={{
         backgroundColor: "transparent",
         elevation: 0,
@@ -17,9 +16,9 @@ const CustomTabBar = (props: any) => {
         fontSize: 18,
         textTransform: "none",
       }}
-      indicatorStyle={{ backgroundColor: "black" }}
-      contentContainerStyle={{ marginHorizontal: 25 }}
-      indicatorContainerStyle={{ marginHorizontal: 25, paddingHorizontal: 50 }}
+      indicatorStyle={{
+        backgroundColor: "black",
+      }}
     />
   );
 };

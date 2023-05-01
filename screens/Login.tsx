@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -16,6 +16,7 @@ import { FormikProps } from "formik/dist/types";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as yup from "yup";
 import { useAuth } from "../auth/AuthProvider";
+import { Text } from "../components/Themed";
 
 const Login = () => {
   const { state, authContext } = useAuth();
@@ -38,8 +39,10 @@ const Login = () => {
                 space={4}
                 className="mx-auto my-auto flex items-center space-y-4"
               >
-                <EmailInput {...props} />
-                <PasswordInput {...props} />
+                <View className="bg-white w-full items-center py-9 rounded-[20px] opacity-80">
+                  <EmailInput {...props} />
+                  <PasswordInput {...props} />
+                </View>
                 {state?.error == "CREDENTIALS" && (
                   <View className="flex items-center">
                     <WarningOutlineIcon
@@ -85,16 +88,22 @@ const EmailInput = (props: InputProps) => {
   return (
     <FormControl isRequired isInvalid={"email" in errors} w="95%" maxW="300px">
       <FormControl.Label>
-        <Text className="text-black font-semibold">Email</Text>
+        <Text className="text-[#616161] font-semibold text-base pb-2 pt-4">
+          E-mail ou numéro de téléphone
+        </Text>
       </FormControl.Label>
       <Input
+        padding={3}
+        size="lg"
         className="bg-white"
         variant="filled"
         onBlur={handleBlur("email")}
-        placeholder="Email"
+        placeholder="exemple@gmail.com"
         onChangeText={handleChange("email")}
         value={values.email}
         keyboardType="email-address"
+        borderColor="#0C4E8C"
+        borderRadius={12}
       />
       <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
         {errors.email}
@@ -114,17 +123,23 @@ const PasswordInput = (props: InputProps) => {
       maxW="300px"
     >
       <FormControl.Label>
-        <Text className="text-black font-semibold">Mot de passe</Text>
+        <Text className="text-[#616161] font-semibold text-base pb-2 pt-4">
+          Mot de passe
+        </Text>
       </FormControl.Label>
       <Input
+        padding={3}
+        size="lg"
         className="bg-white h-full"
         variant="filled"
         onBlur={handleBlur("password")}
-        placeholder="Mot de passe"
+        placeholder="entrez votre mot de passe"
         onChangeText={handleChange("password")}
         value={values.password}
         type={show ? "text" : "password"}
         secureTextEntry={!show}
+        borderColor="#0C4E8C"
+        borderRadius={12}
         InputRightElement={
           <Pressable
             className=" bg-white h-full max-h-full justify-center"
@@ -149,8 +164,8 @@ const PasswordInput = (props: InputProps) => {
 };
 
 const initialValues: FormValues = {
-  email: "allaoua.boudriou@gmail.com",
-  password: "password",
+  email: "",
+  password: "",
 };
 export type FormValues = {
   email: string;

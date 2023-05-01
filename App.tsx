@@ -17,6 +17,7 @@ export default function App() {
   const colorScheme = useColorScheme();
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "Anton-Regular": require("./assets/fonts/Anton-Regular.ttf"),
   });
   
   if (!isLoadingComplete || !fontsLoaded) {

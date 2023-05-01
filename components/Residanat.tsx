@@ -3,7 +3,7 @@ import React from "react";
 import { HomeStackScreenProps } from "../types";
 import HomeWrapperImg from "./layout/HomeWrapperImg";
 import { ScrollView } from "native-base";
-import ButtonType1 from "./ButtonType1";
+import ButtonType1 from "./shared/buttons/Button1";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Chapitres from "./residanat/Chapitres";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
@@ -34,9 +34,8 @@ export default function Residanat({
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width, height: layout.height }}
-          renderTabBar={(props) => <CustomTabBar {...props} />}
+          renderTabBar={(props) => <CustomTabBar {...props} scrollEnabled />}
         />
-        <Text>aa</Text>
         <>
           {/* {[
           {

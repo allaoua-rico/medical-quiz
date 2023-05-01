@@ -16,7 +16,7 @@ const AuthContext = createContext<MyContext>({});
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
-console.log("state",state)
+  // console.log("state", state);
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
@@ -84,7 +84,7 @@ console.log("state",state)
               type: ActionKind.SET_ERROR,
               error: ErrorKind.CREDENTIALS,
             });
-            console.log(error)
+          console.log(error);
           if (error?.message == "Network request failed")
             setAlert("Erreur serveur", "error");
         } finally {

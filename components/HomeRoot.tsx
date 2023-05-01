@@ -1,12 +1,13 @@
 import { HomeStackScreenProps } from "../types";
 import { Image, useWindowDimensions } from "react-native";
 import UndrawExterne from "../images/Group 11.svg";
-import HomeButton from "./HomeButton";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SceneMap, TabView } from "react-native-tab-view";
 import { useState } from "react";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
+import Button2 from "./shared/buttons/Button2";
+import { ScrollView } from "native-base";
 // import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function HomeRoot({
@@ -33,9 +34,8 @@ export default function HomeRoot({
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width, height: layout.height }}
           renderTabBar={(props) => (
-            <CustomTabBar {...props} />
+            <CustomTabBar {...props} tabsNum={routes.length} />
           )}
-          
         />
       </View>
     </SafeAreaView>
@@ -44,59 +44,32 @@ export default function HomeRoot({
 
 function Categories({ navigation }: { navigation: any }) {
   return (
-    <View>
-      {/* Left col */}
-      <View className="w-1/2 pr-1 bg-transparent">
-        {[
-          {
-            title: "Résidanat",
-            description: "Plus de 1000 QCMs",
-            Icon: <Image source={require("../images/doctor_svgrepo.png")} />,
-            color: "#00D1FF",
-            link: "Residanat",
-          },
-          {
-            title: "Cours",
-            description: "Lire pour mieux comprendre",
-            Icon: <Image source={require("../images/book-1_svgrepo.png")} />,
-            color: "#6100FF",
-            link: "Cours",
-          },
-        ].map(({ title, description, Icon, color, link }) => (
-          <HomeButton
-            navigation={navigation}
-            key={title}
-            title={title}
-            description={description}
-            Icon={Icon}
-            bgColor={color}
-            link={link}
-          />
-        ))}
-      </View>
-      {/* Right col */}
-      <View className="w-1/2 pl-1 flex justify-center">
-        {[
-          {
-            title: "Externe",
-            description: "Accés à l'année ",
-            Icon: <UndrawExterne />,
-            color: "#0E57C3",
-            link: "Externe",
-          },
-        ].map(({ title, description, Icon, color, link }) => (
-          <HomeButton
-            navigation={navigation}
-            key={title}
-            title={title}
-            description={description}
-            Icon={Icon}
-            bgColor={color}
-            link={link}
-          />
-        ))}
-      </View>
-    </View>
+    <ScrollView className="px-4 py-12" contentContainerStyle={{ rowGap: 24 }}>
+      {[
+        {
+          title: "RESIDANAT",
+          link: "Residanat",
+          color: "#0C4E8C",
+        },
+        {
+          title: "EXTERNAT",
+          link: "Externe",
+          color: "#1068BB",
+        },
+        {
+          title: "COURS",
+          link: "Cours",
+          color: "#1275D2",
+        },
+      ].map(({ title, color, link }) => (
+        <Button2
+          key={title}
+          title={title}
+          color={color}
+          onPress={() => navigation.navigate(link)}
+        />
+      ))}
+    </ScrollView>
   );
 }
 
