@@ -1,10 +1,11 @@
-import { View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Button,
   FormControl,
   Icon,
+  Image,
   Input,
   Pressable,
   Spinner,
@@ -22,26 +23,36 @@ const Login = () => {
   const { state, authContext } = useAuth();
 
   return (
-    <SafeAreaView className="bg-[#0085FF] flex-grow">
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(data) => {
-          authContext?.signIn(data);
-        }}
-        validationSchema={validationSchema}
-      >
-        {(props) => {
-          const { handleSubmit } = props;
-          return (
-            <>
+    <ImageBackground
+      source={require("../assets/images/login.png")}
+      className="flex-1"
+    >
+      <View className="bg-[#327BE9] opacity-50 absolute top-0 bottom-0 left-0 right-0"></View>
+      <SafeAreaView className="flex-1 justify-center space-y-[70px]">
+        <View className="items-center space-y-4">
+          <Text className="text-white text-4xl">Bienvenue à</Text>
+          <Text className="text-[#0C4E8C] text-5xl font-extrabold">MEDICS</Text>
+        </View>
+        <View>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={(data) => authContext?.signIn(data)}
+            validationSchema={validationSchema}
+          >
+            {(props) => (
               <VStack
                 width="80%"
-                space={4}
-                className="mx-auto my-auto flex items-center space-y-4"
+                space={8}
+                className="mx-auto my-auto items-center"
               >
-                <View className="bg-white w-full items-center py-9 rounded-[20px] opacity-80">
-                  <EmailInput {...props} />
-                  <PasswordInput {...props} />
+                <View className="bg-white w-full py-9 items-center rounded-[20px]">
+                  <View className="bg-primary p-4 rounded-full absolute -top-7">
+                    <Image source={require("../assets/images/person.png")} />
+                  </View>
+                  <View className="opacity-80 items-center w-full">
+                    <EmailInput {...props} />
+                    <PasswordInput {...props} />
+                  </View>
                 </View>
                 {state?.error == "CREDENTIALS" && (
                   <View className="flex items-center">
@@ -56,10 +67,10 @@ const Login = () => {
                 )}
                 <Button
                   onPress={(e) => {
-                    handleSubmit();
+                    props.handleSubmit();
                   }}
-                  colorScheme="pink"
-                  className="w-4/5"
+                  colorScheme="#0C4E8C"
+                  className="w-4/5 bg-primary"
                   disabled={state?.isLoading}
                 >
                   {state?.isLoading ? (
@@ -69,15 +80,17 @@ const Login = () => {
                       size="sm"
                     />
                   ) : (
-                    "S'identifier"
+                    <Text className="py-4 font-bold text-white text-lg">
+                      CONNEXION
+                    </Text>
                   )}
                 </Button>
               </VStack>
-            </>
-          );
-        }}
-      </Formik>
-    </SafeAreaView>
+            )}
+          </Formik>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
