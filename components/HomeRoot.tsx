@@ -8,7 +8,8 @@ import { useState } from "react";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
 import Button2 from "./shared/buttons/Button2";
 import { ScrollView } from "native-base";
-// import HomeWrapperImg from "./layout/HomeWrapperImg";
+import TopImage from "../assets/images/undraw_pic_profile_re_7g2h.svg";
+import { Text } from "./Themed";
 
 export default function HomeRoot({
   navigation,
@@ -22,11 +23,19 @@ export default function HomeRoot({
   const renderScene = SceneMap({
     Categories: () => <Categories navigation={navigation} />,
     Fav: () => <Fav navigation={navigation} />,
-    // Fav: () => <Fav navigation={navigation} />,
   });
   return (
-    <SafeAreaView>
-      <View className="flex flex-row px-2">
+    <SafeAreaView className="flex-1">
+      <View className="flex-1 px-2">
+        <View className="flex-row gap-x-2 items-center">
+          <TopImage width={114} height={114} />
+          <View style={{ flexShrink: 1 }}>
+            <Text>Bonjour, nom d'utilisateur</Text>
+            <Text>
+              Qu'est-ce que tu vas apprendre aujourd'hui?
+            </Text>
+          </View>
+        </View>
         <TabView
           navigationState={{ index, routes }}
           style={{ width: layout.width - 8, height: layout.height }}

@@ -3,7 +3,8 @@ import { ScrollView } from "react-native";
 import yearsModules from "../data";
 import { useEffect } from "react";
 import ModuleButton from "./ModuleButton";
-import HomeWrapperImg from "./layout/HomeWrapperImg";
+import { Text } from "./Themed";
+// import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function ChapterList({
   route,
@@ -11,22 +12,17 @@ export default function ChapterList({
 }: HomeStackScreenProps<"ChapterList">) {
   const { title } = route?.params;
   const modules = getChapterModules(title);
-  useEffect(() => {
-    navigation.setOptions({ title });
-  }, [title]);
   return (
-    <HomeWrapperImg>
-      <ScrollView className="w-full min-h-full mx-auto px-4">
-        {modules?.map((module, i) => (
-          <ModuleButton
-            key={`${module?.title}_${i}`}
-            module={module}
-            navigation={navigation}
-            navToView="Modules"
-          />
-        ))}
-      </ScrollView>
-    </HomeWrapperImg>
+    <ScrollView className="flex-1 px-4" contentContainerStyle={{rowGap:12}}>
+      {modules?.map((module, i) => (
+        <ModuleButton
+          key={`${module?.title}_${i}`}
+          module={module}
+          navigation={navigation}
+          navToView="Modules"
+        />
+      ))}
+    </ScrollView>
   );
 }
 

@@ -1,24 +1,24 @@
 import { View, useWindowDimensions, Text } from "react-native";
 import React from "react";
 import { HomeStackScreenProps } from "../types";
-import HomeWrapperImg from "./layout/HomeWrapperImg";
 import { ScrollView } from "native-base";
-import ButtonType1 from "./shared/buttons/Button1";
+import Button1 from "./shared/buttons/Button1";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Chapitres from "./residanat/Chapitres";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
-// import UndrawExterne from "../images/undraw_hello.svg";
+import SimulateurVector from "../assets/images/simulateur_vector.svg";
+import QuestionmarkSVG from "../assets/images/questionmark.svg";
+// import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function Residanat({
   navigation,
 }: HomeStackScreenProps<"Residanat">) {
   const renderScene = SceneMap({
     Chapitres: () => <Chapitres navigation={navigation} />,
-    Simulateur: () => <SecondRoute navigation={navigation} />,
-    Resultats: SecondRoute,
+    Simulateur: () => <Simulateur navigation={navigation} />,
+    Resultats: () => <Simulateur navigation={navigation} />,
   });
   const layout = useWindowDimensions();
-  // console.log(layout)
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "Chapitres", title: "Chapitres" },
@@ -26,18 +26,17 @@ export default function Residanat({
     { key: "Resultats", title: "Resultats" },
   ]);
   return (
-    <HomeWrapperImg>
-      <ScrollView className="min-w-full mx-auto px-3">
-        <TabView
-          navigationState={{ index, routes }}
-          style={{ width: layout.width - 12, height: layout.height }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={{ width: layout.width, height: layout.height }}
-          renderTabBar={(props) => <CustomTabBar {...props} scrollEnabled />}
-        />
-        <>
-          {/* {[
+    <ScrollView className="min-w-full mx-auto px-3">
+      <TabView
+        navigationState={{ index, routes }}
+        style={{ width: layout.width - 12, height: layout.height }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width, height: layout.height }}
+        renderTabBar={(props) => <CustomTabBar {...props} scrollEnabled />}
+      />
+      <>
+        {/* {[
           {
             title: "QCM",
             description: "",
@@ -63,18 +62,32 @@ export default function Residanat({
             link={link}
           />
         ))} */}
-        </>
-      </ScrollView>
-    </HomeWrapperImg>
+      </>
+    </ScrollView>
   );
 }
 
-const SecondRoute = (navigation: any) => (
-  <View style={{ flex: 1 }}>
-    <Text>ddd</Text>
-    <ButtonType1
-      title="Chirurgie"
-      onPress={() => navigation.navigate("link")}
-    />
+const Simulateur = (navigation: any) => (
+  <View className="items-center flex-1 px-4 ">
+    <View className="w-full pb-16 relative justify-center flex-1">
+      <Text className="max-w-xs text-3xl font-semibold text-[#616161] pt-20">
+        TESTEZ-VOUS AVEC 120 DE CHAQUE CHAPITRE
+      </Text>
+      <SimulateurVector
+        style={{ position: "absolute", left: 50, zIndex: -10 }}
+      />
+      <QuestionmarkSVG
+        preserveAspectRatio="none"
+        height={400}
+        width={327}
+        style={{ position: "absolute", right: 5, zIndex: -10 }}
+      />
+    </View>
+    <View className="flex-1">
+      <Button1
+        title="Commencer"
+        onPress={() => navigation.navigate("Simulateur")}
+      />
+    </View>
   </View>
 );

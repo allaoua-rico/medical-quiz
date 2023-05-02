@@ -71,8 +71,8 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       {
-      // !state?.refreshToken 
-      true
+      !state?.refreshToken 
+      // true
       ? (
         // false
         <Stack.Screen

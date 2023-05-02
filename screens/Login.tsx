@@ -36,7 +36,9 @@ const Login = () => {
         <View>
           <Formik
             initialValues={initialValues}
-            onSubmit={(data) => authContext?.signIn(data)}
+            onSubmit={(data) => {
+              authContext?.signIn(data);
+            }}
             validationSchema={validationSchema}
           >
             {(props) => (
@@ -74,11 +76,13 @@ const Login = () => {
                   disabled={state?.isLoading}
                 >
                   {state?.isLoading ? (
-                    <Spinner
-                      accessibilityLabel="Login"
-                      color="white"
-                      size="sm"
-                    />
+                    <View className="py-4 font-bold text-white text-lg">
+                      <Spinner
+                        accessibilityLabel="Login"
+                        color="white"
+                        size="sm"
+                      />
+                    </View>
                   ) : (
                     <Text className="py-4 font-bold text-white text-lg">
                       CONNEXION
@@ -177,8 +181,8 @@ const PasswordInput = (props: InputProps) => {
 };
 
 const initialValues: FormValues = {
-  email: "",
-  password: "",
+  email: "allaoua.boudriou@gmail.com",
+  password: "password",
 };
 export type FormValues = {
   email: string;

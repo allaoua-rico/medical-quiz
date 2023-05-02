@@ -6,9 +6,10 @@ import { Text } from "../components/Themed";
 import ChapterList from "../components/ChapterList";
 import Modules from "../components/Modules";
 import HomeRoot from "../components/HomeRoot";
-// import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 import ResidanatHeader from "../components/layout/ResidanatHeader";
 import Residanat from "../components/Residanat";
+import DefaultHeader from "../components/layout/DefaultHeader";
+// import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -17,9 +18,13 @@ export default function Home() {
   return (
     <Stack.Navigator
       initialRouteName="HomeRoot"
-      // screenOptions={{ headerShown: false }}
+      screenOptions={{ contentStyle: { backgroundColor: "#ffffff" } }}
     >
-      <Stack.Screen name="HomeRoot" component={HomeRoot} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="HomeRoot"
+        component={HomeRoot}
+        options={{ headerShown: false }}
+      />
       <Stack.Group>
         <Stack.Screen
           options={(props) => ({
@@ -51,7 +56,9 @@ export default function Home() {
       <Stack.Screen
         name="ChapterList"
         component={ChapterList}
-        options={{ title: "ChaptersList" }}
+        options={(props) => ({
+          header: () => <DefaultHeader {...props} />,
+        })}
       />
       <Stack.Screen
         name="Modules"
@@ -70,8 +77,6 @@ export default function Home() {
     </Stack.Navigator>
   );
 }
-
-
 
 function Externe() {
   return (

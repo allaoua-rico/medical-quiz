@@ -9,8 +9,6 @@ import {
   useFetchUserTakes,
 } from "./courses/functionsAndHooks";
 import { Spinner } from "native-base";
-import { useEffect } from "react";
-import { useFocusEffect } from "@react-navigation/native";
 
 export default function Modules({
   route,
