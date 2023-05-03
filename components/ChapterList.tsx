@@ -13,7 +13,7 @@ export default function ChapterList({
   const { title } = route?.params;
   const modules = getChapterModules(title);
   return (
-    <ScrollView className="flex-1 px-4" contentContainerStyle={{rowGap:12}}>
+    <ScrollView className="flex-1 px-4" contentContainerStyle={{rowGap:18}}>
       {modules?.map((module, i) => (
         <ModuleButton
           key={`${module?.title}_${i}`}

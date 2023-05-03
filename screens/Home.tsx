@@ -18,7 +18,9 @@ export default function Home() {
   return (
     <Stack.Navigator
       initialRouteName="HomeRoot"
-      screenOptions={{ contentStyle: { backgroundColor: "#ffffff" } }}
+      screenOptions={{
+        contentStyle: { backgroundColor: "#ffffff", paddingTop: 20,paddingBottom:10 },
+      }}
     >
       <Stack.Screen
         name="HomeRoot"

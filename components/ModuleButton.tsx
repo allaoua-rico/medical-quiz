@@ -15,7 +15,7 @@ export default function ModuleButton({
     <TouchableOpacity
       onPress={() => navigation.navigate(navToView, { module })}
     >
-      <View className="p-4 flex flex-row justify-between items-center border-b border-[#053F5C]">
+      <View className="px-4 py-2 flex flex-row justify-between items-center border-b border-[#053F5C]">
         <View className="flex flex-row items-center">
           <View className="bg-white shadow-2xl">
             <Text className="text-gray-700 text-lg font-extrabold">
