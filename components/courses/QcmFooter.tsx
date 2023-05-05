@@ -8,7 +8,8 @@ import supabase from "../../utils/supabase";
 import { Course } from "../../data";
 import useAlert from "../shared/Alert/useAlert";
 import * as SecureStore from "expo-secure-store";
-import { useFetchUserTakes } from "./functionsAndHooks";
+// import { useFetchUserTakes } from "./functionsAndHooks";
+import { questionVerifier } from "../../screens/Courses";
 
 type Props = {
   activeQuestion: number;
@@ -30,7 +31,7 @@ const QcmFooter = (props: Props) => {
   } = props;
   const [submitted, setSubmitted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const { mutate: mutateTakes } = useFetchUserTakes(course);
+  // const { mutate: mutateTakes } = useFetchUserTakes(course);
   const { setAlert } = useAlert();
   const sendResult = async () => {
     try {
@@ -57,32 +58,33 @@ const QcmFooter = (props: Props) => {
       const {
         data: { user },
       } = await supabase.auth.getUser(access_token);
-      let { data: takeData, error: takeError } = await supabase
-        .from("takes")
-        .upsert(
-          {
-            score: getScore(questions),
-            course_id: questions[0].course_id,
-            course_title: course.title,
-            user_id: user?.id,
-          },
-          { onConflict: "course_id" }
-        )
-        .select();
-      if (error || takeError) throw error || takeError;
-      if (data && takeData) {
-        setModalVisible(false);
-        setAlert("Resultat enregistré!", "success");
+      if (user) {
+        let { data: takeData, error: takeError } = await supabase
+          .from("takes")
+          .upsert(
+            {
+              score: getScore(questions),
+              course_id: questions[0].course_id,
+              course_title: course.title,
+              user_id: user?.id,
+            },
+            { onConflict: "course_id" }
+          )
+          .select();
+        if (error || takeError) throw error || takeError;
+        if (data && takeData) {
+          setModalVisible(false);
+          setAlert("Resultat enregistré!", "success");
+        }
+        // mutateTakes();
+        setSubmitted(true);
+        setActiveQuestion(0);
       }
-      mutateTakes();
-      setSubmitted(true);
-      setActiveQuestion(0)
     } catch (error) {
       setModalVisible(false);
       setAlert("Resultat non enregistré!", "error");
     }
   };
-
   const endTest = () => {
     sendResult();
   };
@@ -92,9 +94,10 @@ const QcmFooter = (props: Props) => {
         <Pressable
           disabled={aq?.verify}
           onPress={() => setToVerify(aq, questions, setQuestions)}
-          className="p-2 bg-white rounded-lg border border-gray-100"
+          className="p-4 bg-primary rounded-[30px]"
+          style={{ elevation: 3 }}
         >
-          <Text className="font-semibold">Verifier</Text>
+          <Text className="font-semibold text-white text-base">Valider</Text>
         </Pressable>
       )}
       <View className="flex-1 flex flex-row justify-end">
@@ -102,21 +105,23 @@ const QcmFooter = (props: Props) => {
           disabled={activeQuestion == 0}
           onPress={() => setActiveQuestion((prev) => prev - 1)}
           className={
-            "p-2 mr-2 rounded-lg border border-gray-100 " +
+            "p-4 mr-2 rounded-[30px] bg-primary " +
             (activeQuestion == 0 ? "bg-gray-300 border-white" : "bg-white")
           }
+          style={{ elevation: 3 }}
         >
-          <MaterialIcons name="keyboard-arrow-left" size={24} color="black" />
+          <MaterialIcons name="keyboard-arrow-left" size={24} color="white" />
         </TouchableOpacity>
         {activeQuestion == questions.length - 1 ? (
           submitted ? (
-            <View className="p-2 px-5 rounded-lg border bg-gray-300 border-gray-100">
+            <View className="p-2 px-5 rounded-[30px] " style={{ elevation: 3 }}>
               <Text className="font-semibold">Fin</Text>
             </View>
           ) : (
             <TouchableOpacity
               onPress={() => setModalVisible(true)}
-              className="p-2 px-5 rounded-lg border bg-blue-300 border-gray-100"
+              className="p-4 px-5 rounded-[30px] bg-blue-300"
+              style={{ elevation: 3 }}
             >
               <Text className="font-semibold">Terminer</Text>
             </TouchableOpacity>
@@ -125,13 +130,17 @@ const QcmFooter = (props: Props) => {
           <TouchableOpacity
             disabled={activeQuestion == questions.length - 1}
             onPress={() => setActiveQuestion((prev) => prev + 1)}
-            className="p-2 px-5 rounded-lg border bg-blue-300 border-gray-100"
+            className="p-4 px-5 rounded-[30px] bg-white"
+            style={{ elevation: 3 }}
           >
-            <MaterialIcons
+            <Text className="font-semibold text-primary text-base">
+              Suivante
+            </Text>
+            {/* <MaterialIcons
               name="keyboard-arrow-right"
               size={24}
-              color={activeQuestion == questions.length - 1 ? "" : "white"}
-            />
+              color={activeQuestion == questions.length - 1 ? "" : "#0C4E8C"}
+            /> */}
           </TouchableOpacity>
         )}
       </View>
@@ -208,16 +217,7 @@ const setAllToVerify = (
 const getScore = (questions: any[]) => {
   let score = 0;
   questions.map((q) => {
-    let correct = true;
-    q.answers.find((answer: Answer) => {
-      // verify if the correct answers are selected
-      const isSelected = q.selected_answers.find(
-        (selected_a: Answer) => selected_a.answer_id == answer.answer_id
-      );
-      if (!answer.Correct && isSelected) correct = false;
-      if (answer.Correct && !isSelected) correct = false;
-    });
-    correct && score++;
+    questionVerifier(q.quiz_answers, q.user_answers) && score++;
   });
   return score;
 };

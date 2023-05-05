@@ -26,6 +26,7 @@ const Login = () => {
     <ImageBackground
       source={require("../assets/images/login.png")}
       className="flex-1"
+      alt="loginImg"
     >
       <View className="bg-[#327BE9] opacity-50 absolute top-0 bottom-0 left-0 right-0"></View>
       <SafeAreaView className="flex-1 justify-center space-y-[70px]">
@@ -49,7 +50,10 @@ const Login = () => {
               >
                 <View className="bg-white w-full py-9 items-center rounded-[20px]">
                   <View className="bg-primary p-4 rounded-full absolute -top-7">
-                    <Image source={require("../assets/images/person.png")} />
+                    <Image
+                      alt="personlogo"
+                      source={require("../assets/images/person.png")}
+                    />
                   </View>
                   <View className="opacity-80 items-center w-full">
                     <EmailInput {...props} />

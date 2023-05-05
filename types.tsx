@@ -16,7 +16,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
-  Courses: { course: Course };
+  // CourseQCM: { course: Course };
   Login: undefined;
 };
 
@@ -57,7 +57,8 @@ export type HomeStackParamList = {
   Modules: {
     module: YearModule;
   };
-  // Courses: { course: Course };
+  Courses: { course: Course };
+  CourseQCM: { course: Course, questionIndex: number };
 };
 
 export type ChapterListParamList = {

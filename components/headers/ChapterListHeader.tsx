@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { HomeStackScreenProps } from "../../types";
 import BackButton from "../shared/buttons/BackButton";
 
-const DefaultHeader = ({
+const ChapterListHeader = ({
   route,
   navigation,
 }: HomeStackScreenProps<"ChapterList">) => {
@@ -18,4 +18,4 @@ const DefaultHeader = ({
   );
 };
 
-export default DefaultHeader;
+export default ChapterListHeader;

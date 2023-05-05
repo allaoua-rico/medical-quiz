@@ -16,15 +16,13 @@ export default function ModuleButton({
       onPress={() => navigation.navigate(navToView, { module })}
     >
       <View className="px-4 py-2 flex flex-row justify-between items-center border-b border-[#053F5C]">
-        <View className="flex flex-row items-center">
-          <View className="bg-white shadow-2xl">
-            <Text className="text-gray-700 text-lg font-extrabold">
-              {module.title}
-            </Text>
-            <Text className="text-gray-500 font-semibold text-base">
-              cours: {module.courses.length}
-            </Text>
-          </View>
+        <View className="bg-white shadow-2xl">
+          <Text className="text-gray-700 text-lg font-extrabold">
+            {module.title}
+          </Text>
+          <Text className="text-gray-500 font-semibold text-base">
+            cours: {module.courses.length}
+          </Text>
         </View>
         <SimpleLineIcons name="arrow-right" size={24} color="#053F5C" />
       </View>

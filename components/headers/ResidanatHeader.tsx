@@ -21,6 +21,7 @@ const ResidanatHeader = (props: Props) => {
       <BackButton navigation={navigation} />
       <Text className="text-3xl text-white">{route.name}</Text>
       <Image
+      
         alt="residanatHeaderImg"
         source={require("../../assets/images/residanatHeader.png")}
         className="bg-transparent absolute opacity-60 right-0"

@@ -1,12 +1,12 @@
 import { Course } from "../../data";
-import { Answer, Question } from "./types";
+import { Answer, Question, UserAnswer } from "./types";
 import { useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
-import _ from "lodash";
+import _, { isArray } from "lodash";
 import useSWR from "swr";
 
-export const isSelected = (aq: Question, answer: Answer) => {
-  return aq?.selected_answers.find(
+export const isSelected = (aq: UserAnswer, answer: Answer) => {
+  return aq?.user_answers.find(
     (el: Answer) => answer.answer_id == el.answer_id
   );
 };
@@ -28,6 +28,7 @@ export const addOrRemoveAns = (array: any[], item: Answer) => {
 export const useFetchQuestions = (course: Course) => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  // à faire, integrer swr
   useEffect(() => {
     async function getQuestions() {
       setLoading(true);
@@ -58,16 +59,73 @@ export const useFetchQuestions = (course: Course) => {
   return { questions, setQuestions, loading };
 };
 
-export const useFetchUserTakes = (course: Course) => {
-  const fetcher = async (...args: any[]) => {
+export const useFetchUserAnswers = (course: Course) => {
+  async function fetcher(...args: string[]) {
     const [course_title] = args;
     let { data, error } = await supabase
-      .from("takes")
-      .select(`*`)
-      .ilike("course_title", course_title);
+      .from("quiz_questions")
+      .select(
+        `Question,question_id,
+        user_answers(quiz_answers(*)),
+        quiz_answers (Answer,Correct,answer_id)`
+      )
+      .ilike("course", course_title);
     if (error) throw error;
     return data;
-  };
+  }
   const { data, error, isLoading, mutate } = useSWR(course.title, fetcher);
-  return { takes: data, isLoading, error, mutate };
+  // console.log("useFetchUserAnswersdata", data);
+  const userAnswers: UserAnswer[] =
+    data?.map(({ user_answers, quiz_answers, ...rest }) => {
+      const newUser_answers = isArray(user_answers)
+        ? user_answers.map(({ quiz_answers }) => quiz_answers)
+        : [];
+      const newUser_answers2 = newUser_answers.reduce((acc: Answer[], curr) => {
+        if (Array.isArray(curr)) {
+          // If the current element is an array, extract the desired properties from each element and add them to the accumulator array
+          return acc.concat(
+            curr.map(({ Answer, answer_id, Correct }) => ({
+              Answer,
+              answer_id,
+              Correct,
+            }))
+          );
+        } else if (curr !== null) {
+          // If the current element is an object, extract the desired properties and add them to the accumulator array
+          const { Answer, answer_id, Correct } = curr;
+          return acc.concat({ Answer, answer_id, Correct });
+        } else {
+          // If the current element is null, return the accumulator array unchanged
+          return acc;
+        }
+      }, []);
+      const newQuiz_answers: Answer[] = isArray(quiz_answers)
+        ? quiz_answers
+        : [];
+      return {
+        ...rest,
+        quiz_answers: newQuiz_answers,
+        user_answers: newUser_answers2,
+      };
+    }) ?? [];
+  return {
+    userAnswers,
+    isLoading,
+    error,
+    mutate,
+  };
 };
+
+// export const useFetchUserTakes = (course: Course) => {
+//   const fetcher = async (...args: any[]) => {
+//     const [course_title] = args;
+//     let { data, error } = await supabase
+//       .from("takes")
+//       .select(`*`)
+//       .ilike("course_title", course_title);
+//     if (error) throw error;
+//     return data;
+//   };
+//   const { data, error, isLoading, mutate } = useSWR(course.title, fetcher);
+//   return { takes: data, isLoading, error, mutate };
+// };

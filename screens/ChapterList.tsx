@@ -1,9 +1,7 @@
 import { HomeStackScreenProps } from "../types";
 import { ScrollView } from "react-native";
 import yearsModules from "../data";
-import { useEffect } from "react";
-import ModuleButton from "./ModuleButton";
-import { Text } from "./Themed";
+import ModuleButton from "../components/ModuleButton";
 // import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function ChapterList({

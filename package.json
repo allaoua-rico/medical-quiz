@@ -6,7 +6,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "update-types": "npx supabase gen types typescript --project-id \"tgimpuabfxibhxqldwvy\" > types/supabase.ts"
   },
   "jest": {
     "preset": "jest-expo"

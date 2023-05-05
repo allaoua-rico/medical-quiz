@@ -3,12 +3,16 @@ import { HomeStackParamList, HomeStackScreenProps } from "../types";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Text } from "../components/Themed";
-import ChapterList from "../components/ChapterList";
-import Modules from "../components/Modules";
+import ChapterList from "./ChapterList";
+import Modules from "./Modules";
 import HomeRoot from "../components/HomeRoot";
-import ResidanatHeader from "../components/layout/ResidanatHeader";
+import ResidanatHeader from "../components/headers/ResidanatHeader";
 import Residanat from "../components/Residanat";
-import DefaultHeader from "../components/layout/DefaultHeader";
+import ChapterListHeader from "../components/headers/ChapterListHeader";
+import ModuleHeader from "../components/headers/ModuleHeader";
+import CourseQCM from "../components/courses/CourseQCM";
+import Courses from "./Courses";
+import CourseHeader from "../components/headers/CourseHeader";
 // import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
@@ -19,7 +23,11 @@ export default function Home() {
     <Stack.Navigator
       initialRouteName="HomeRoot"
       screenOptions={{
-        contentStyle: { backgroundColor: "#ffffff", paddingTop: 20,paddingBottom:10 },
+        contentStyle: {
+          backgroundColor: "#ffffff",
+          paddingTop: 20,
+          paddingBottom: 20,
+        },
       }}
     >
       <Stack.Screen
@@ -59,23 +67,38 @@ export default function Home() {
         name="ChapterList"
         component={ChapterList}
         options={(props) => ({
-          header: () => <DefaultHeader {...props} />,
+          header: () => <ChapterListHeader {...props} />,
         })}
       />
       <Stack.Screen
         name="Modules"
         component={Modules}
-        options={{ title: "Modules" }}
+        options={(props) => ({
+          header: () => <ModuleHeader {...props} />,
+        })}
       />
-      {/* 
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Screen
+        name="Courses"
+        component={Courses}
+        options={(props) => ({
+          header: () => <CourseHeader {...props} />,
+        })}
+      />
+      <Stack.Group
+        screenOptions={{
+          presentation: "modal",
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: "#ffffff",
+          },
+        }}
+      >
         <Stack.Screen
-          name="Courses"
-          component={Courses}
-          options={{ title: "Courses" }}
+          name="CourseQCM"
+          component={CourseQCM}
+          // options={{ title: "Courses" }}
         />
-      </Stack.Group> 
-      */}
+      </Stack.Group>
     </Stack.Navigator>
   );
 }

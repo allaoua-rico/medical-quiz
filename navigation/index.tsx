@@ -15,7 +15,6 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { PERSISTENCE_KEY, usePersistedNavigationState } from "./hooks";
-import Courses from "../components/courses/Courses";
 import Login from "../screens/Login";
 import { Spinner } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -92,11 +91,11 @@ function RootNavigator() {
                 <Stack.Screen name="Modal" component={ModalScreen} />
               </Stack.Group>
             */}
-          <Stack.Group
+          {/* <Stack.Group
             screenOptions={{ presentation: "modal", headerShown: false }}
           >
             <Stack.Screen name="Courses" component={Courses} />
-          </Stack.Group>
+          </Stack.Group> */}
         </>
       )}
     </Stack.Navigator>
