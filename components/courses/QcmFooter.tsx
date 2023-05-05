@@ -101,17 +101,18 @@ const QcmFooter = (props: Props) => {
         </Pressable>
       )}
       <View className="flex-1 flex flex-row justify-end">
-        <TouchableOpacity
-          disabled={activeQuestion == 0}
-          onPress={() => setActiveQuestion((prev) => prev - 1)}
-          className={
-            "p-4 mr-2 rounded-[30px] bg-primary " +
-            (activeQuestion == 0 ? "bg-gray-300 border-white" : "bg-white")
-          }
-          style={{ elevation: 3 }}
-        >
-          <MaterialIcons name="keyboard-arrow-left" size={24} color="white" />
-        </TouchableOpacity>
+        {/* Prev button */}
+        {activeQuestion != 0 && (
+          <TouchableOpacity
+            disabled={activeQuestion == 0}
+            onPress={() => setActiveQuestion((prev) => prev - 1)}
+            className="p-4 mr-2 rounded-[30px] bg-primary"
+            style={{ elevation: 3 }}
+          >
+            <MaterialIcons name="keyboard-arrow-left" size={24} color="white" />
+          </TouchableOpacity>
+        )}
+
         {activeQuestion == questions.length - 1 ? (
           submitted ? (
             <View className="p-2 px-5 rounded-[30px] " style={{ elevation: 3 }}>
@@ -120,10 +121,10 @@ const QcmFooter = (props: Props) => {
           ) : (
             <TouchableOpacity
               onPress={() => setModalVisible(true)}
-              className="p-4 px-5 rounded-[30px] bg-blue-300"
+              className="p-4 px-5 rounded-[30px] bg-white"
               style={{ elevation: 3 }}
             >
-              <Text className="font-semibold">Terminer</Text>
+              <Text className="font-semibold text-primary text-base">Terminer</Text>
             </TouchableOpacity>
           )
         ) : (

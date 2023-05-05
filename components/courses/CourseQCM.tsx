@@ -40,6 +40,7 @@ export default function CourseQCM({
     });
     setQuestions(questionsCopy);
   };
+  // à faire : set the validated user answers to verified so that the check value is true 
   return (
     <SafeAreaView className="flex-grow relative">
       {isLoading ? (
@@ -114,7 +115,7 @@ function CustomCheckbox({
           : "bg-primary")
       }
     >
-      {status == ("right" || "neutral") ? <RightSVG /> : <WrongSVG />}
+      {status == "right" || status == "neutral" ? <RightSVG /> : <WrongSVG />}
     </View>
   ) : (
     <View className="border-[3px] rounded-full w-[30px] h-[30px] border-primary"></View>

@@ -13,6 +13,7 @@ import ModuleHeader from "../components/headers/ModuleHeader";
 import CourseQCM from "../components/courses/CourseQCM";
 import Courses from "./Courses";
 import CourseHeader from "../components/headers/CourseHeader";
+import CourseQCMHeader from "../components/headers/CourseQCMHeader";
 // import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
@@ -96,7 +97,12 @@ export default function Home() {
         <Stack.Screen
           name="CourseQCM"
           component={CourseQCM}
-          // options={{ title: "Courses" }}
+          options={(props) => ({
+            contentStyle: {
+              backgroundColor: "#ffffff",
+            },
+            header: () => <CourseQCMHeader {...props} />,
+          })}
         />
       </Stack.Group>
     </Stack.Navigator>

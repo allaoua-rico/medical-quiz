@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
 import _, { isArray } from "lodash";
 import useSWR from "swr";
+import { isEmptyArray } from "formik";
 
 export const isSelected = (aq: UserAnswer, answer: Answer) => {
   return aq?.user_answers.find(
@@ -106,6 +107,7 @@ export const useFetchUserAnswers = (course: Course) => {
         ...rest,
         quiz_answers: newQuiz_answers,
         user_answers: newUser_answers2,
+        verify: !isEmptyArray(user_answers),
       };
     }) ?? [];
   return {
