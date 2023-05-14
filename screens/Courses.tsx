@@ -13,7 +13,7 @@ export default function Courses({
   navigation,
 }: HomeStackScreenProps<"Courses">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
-  console.log("userAnswers",userAnswers)
+  // console.log("userAnswers", userAnswers?.[21]);
   return (
     <ScrollView className="flex-1 px-4" contentContainerStyle={{ flexGrow: 1 }}>
       <Text className="text-dark_text font-medium text-xl pb-3">
@@ -34,7 +34,7 @@ export default function Courses({
               questionIndex
             ) => (
               <TouchableOpacity
-                key={question_id+questionIndex}
+                key={question_id + questionIndex}
                 className="py-2 flex flex-row justify-between items-center border-b border-[#053F5C]"
                 onPress={() =>
                   navigation.navigate("CourseQCM", { course, questionIndex })

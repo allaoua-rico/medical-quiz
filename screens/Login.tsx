@@ -21,7 +21,6 @@ import { Text } from "../components/Themed";
 
 const Login = () => {
   const { state, authContext } = useAuth();
-
   return (
     <ImageBackground
       source={require("../assets/images/login.png")}

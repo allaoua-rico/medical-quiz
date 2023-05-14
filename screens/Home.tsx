@@ -14,6 +14,7 @@ import CourseQCM from "../components/courses/CourseQCM";
 import Courses from "./Courses";
 import CourseHeader from "../components/headers/CourseHeader";
 import CourseQCMHeader from "../components/headers/CourseQCMHeader";
+import ExternatHeader from "../components/headers/ExternatHeader";
 // import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
@@ -27,7 +28,7 @@ export default function Home() {
         contentStyle: {
           backgroundColor: "#ffffff",
           paddingTop: 20,
-          paddingBottom: 20,
+          // paddingBottom: 20,
         },
       }}
     >
@@ -45,9 +46,11 @@ export default function Home() {
           component={Residanat}
         />
         <Stack.Screen
-          name="Externe"
-          component={Externe}
-          options={{ title: "Externe" }}
+          name="Externat"
+          component={Externat}
+          options={(props) => ({
+            header: () => <ExternatHeader {...props} />,
+          })}
         />
         <Stack.Screen
           name="Cours"
@@ -85,7 +88,7 @@ export default function Home() {
           header: () => <CourseHeader {...props} />,
         })}
       />
-      <Stack.Group
+      {/* <Stack.Group
         screenOptions={{
           presentation: "modal",
           headerShown: false,
@@ -93,25 +96,23 @@ export default function Home() {
             backgroundColor: "#ffffff",
           },
         }}
-      >
-        <Stack.Screen
-          name="CourseQCM"
-          component={CourseQCM}
-          options={(props) => ({
-            contentStyle: {
-              backgroundColor: "#ffffff",
-            },
-            header: () => <CourseQCMHeader {...props} />,
-          })}
-        />
-      </Stack.Group>
+      > */}
+      <Stack.Screen
+        name="CourseQCM"
+        component={CourseQCM}
+        options={(props) => ({
+          headerShown: false,
+          //   header: () => <CourseQCMHeader {...props} />,
+        })}
+      />
+      {/* </Stack.Group> */}
     </Stack.Navigator>
   );
 }
 
-function Externe() {
+function Externat() {
   return (
-    <SafeAreaView className="min-h-full  bg-white">
+    <SafeAreaView className="min-h-full z-20 bg-white">
       <ScrollView className="w-full mx-auto px-8">
         <Text>Externe</Text>
       </ScrollView>

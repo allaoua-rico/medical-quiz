@@ -41,8 +41,8 @@ export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =
 
 export type HomeStackParamList = {
   HomeRoot: NavigatorScreenParams<RootTabParamList> | undefined;
-  Externe: {
-    title: string;
+  Externat: {
+    // title: string;
   };
   Residanat: {
     title: string;

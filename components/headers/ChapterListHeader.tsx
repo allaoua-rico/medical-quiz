@@ -9,8 +9,7 @@ const ChapterListHeader = ({
 }: HomeStackScreenProps<"ChapterList">) => {
   return (
     <View
-      className="pt-20 pb-16 relative rounded-b-[20px]
-  flex flex-row items-center bg-primary pl-3"
+      className="pt-20 pb-16 relative rounded-b-[20px] flex flex-row items-center bg-primary pl-3"
     >
       <BackButton navigation={navigation} />
       <Text className="text-3xl text-white">{route?.params?.title}</Text>

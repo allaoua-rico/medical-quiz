@@ -147,6 +147,26 @@ export interface Database {
           user_id?: string | null
         }
       }
+      user_favorites: {
+        Row: {
+          created_at: string | null
+          id: number
+          question_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          question_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          question_id?: string | null
+          user_id?: string | null
+        }
+      }
     }
     Views: {
       [_ in never]: never

@@ -8,20 +8,20 @@ import "react-native-url-polyfill/auto";
 import QcmFooter from "./QcmFooter";
 import {
   addOrRemoveAns,
+  answerVerifier,
   isSelected,
   useFetchUserAnswers,
 } from "./functionsAndHooks";
 import { Answer, UserAnswer } from "./types";
 import { isEmptyArray } from "formik";
-import WrongSVG from "../../assets/images/wrong.svg";
-import RightSVG from "../../assets/images/right.svg";
+import CourseQCMHeader from "../headers/CourseQCMHeader";
+import CustomCheckbox, { answerColor } from "./CustomCheckbox";
 
-export default function CourseQCM({
-  route: {
+export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
+  const { route } = props;
+  const {
     params: { course, questionIndex },
-  },
-}: HomeStackScreenProps<"CourseQCM">) {
-  // const { questions, setQuestions, loading } = useFetchQuestions(course);
+  } = route;
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
   const [questions, setQuestions] = useState<UserAnswer[]>([]);
   useEffect(() => {
@@ -30,6 +30,7 @@ export default function CourseQCM({
   }, [userAnswers]);
   const [activeQuestion, setActiveQuestion] = useState<number>(questionIndex);
   const aq = questions[activeQuestion];
+  // console.log("CourseQCMaq", course);
   const addOrRemoveAnswer = (question: UserAnswer, answer: Answer) => {
     const questionsCopy = [...questions];
     questionsCopy.map((q) => {
@@ -40,7 +41,11 @@ export default function CourseQCM({
     });
     setQuestions(questionsCopy);
   };
-  // à faire : set the validated user answers to verified so that the check value is true 
+  // console.log(
+  //   "userAnswers",
+  //   userAnswers.map(({ user_answers }) => ({ user_answers }))
+  // );
+  // à faire : set the validated user answers to verified so that the check value is true
   return (
     <SafeAreaView className="flex-grow relative">
       {isLoading ? (
@@ -52,18 +57,23 @@ export default function CourseQCM({
         />
       ) : (
         <ScrollView
-          className="w-full mx-auto px-5 pb-0 bg-gray-100"
+          className="w-full mx-auto px-5 "
           contentContainerStyle={{ flexGrow: 1 }}
         >
-          <Text className="pt-8 pb-3 text-2xl text-dark_text font-medium border-b border-b-dark_text">
+          {/* HEADER */}
+          <CourseQCMHeader {...props} aq={aq} />
+
+          {/* QUESTION  */}
+          <Text className="pb-3 pt-9 text-2xl text-dark_text font-medium border-b border-b-dark_text">
             Question {`${activeQuestion + 1}/${questions.length}`}
           </Text>
           <Text className="py-8 text-lg font-medium">{aq?.Question}</Text>
           <View className="space-y-3">
             {aq?.quiz_answers.map((answer) => (
               <Pressable
+                style={{ elevation: 3 }}
                 className={
-                  "rounded-[30px] p-5 w-full flex-row items-center border-[3px] " +
+                  "rounded-[30px] p-5 w-full flex-row items-center border-[3px] bg-white " +
                   (answerVerifier(aq, answer) == "right"
                     ? `border-[${answerColor.right}]`
                     : answerVerifier(aq, answer) == "wrong"
@@ -83,6 +93,8 @@ export default function CourseQCM({
               </Pressable>
             ))}
           </View>
+
+          {/* FOOTER */}
           <QcmFooter
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
@@ -90,50 +102,10 @@ export default function CourseQCM({
             questions={questions}
             setQuestions={setQuestions}
             course={course}
+            // updateQuestions={()=>{setQuestions(userAnswers)}}
           />
         </ScrollView>
       )}
     </SafeAreaView>
   );
 }
-
-function CustomCheckbox({
-  checked,
-  status,
-}: {
-  checked: Boolean;
-  status: "right" | "wrong" | "neutral";
-}) {
-  return checked ? (
-    <View
-      className={
-        "border-[3px] rounded-full w-[30px] h-[30px] justify-center items-center border-primary " +
-        (status == "right"
-          ? `bg-[${answerColor.right}] border-[${answerColor.right}]`
-          : status == "wrong"
-          ? `bg-[${answerColor.wrong}] border-[${answerColor.wrong}]`
-          : "bg-primary")
-      }
-    >
-      {status == "right" || status == "neutral" ? <RightSVG /> : <WrongSVG />}
-    </View>
-  ) : (
-    <View className="border-[3px] rounded-full w-[30px] h-[30px] border-primary"></View>
-  );
-}
-
-function answerVerifier(aq: UserAnswer, answer: Answer) {
-  return aq?.verify
-    ? isSelected(aq, answer) && answer.Correct
-      ? "right"
-      : (isSelected(aq, answer) && !answer.Correct) ||
-        (!isSelected(aq, answer) && answer.Correct)
-      ? "wrong"
-      : "neutral"
-    : "neutral";
-}
-
-const answerColor = {
-  right: "#00FF00",
-  wrong: "#FF0000",
-};

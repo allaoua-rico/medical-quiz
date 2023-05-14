@@ -7,9 +7,10 @@ import { SceneMap, TabView } from "react-native-tab-view";
 import { useState } from "react";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
 import Button2 from "./shared/buttons/Button2";
-import { ScrollView } from "native-base";
+import { Button, ScrollView } from "native-base";
 import TopImage from "../assets/images/undraw_pic_profile_re_7g2h.svg";
 import { Text } from "./Themed";
+import { useAuth } from "../auth/AuthProvider";
 
 export default function HomeRoot({
   navigation,
@@ -24,16 +25,22 @@ export default function HomeRoot({
     Categories: () => <Categories navigation={navigation} />,
     Fav: () => <Fav navigation={navigation} />,
   });
+  const { state, authContext } = useAuth();
+
   return (
     <SafeAreaView className="flex-1">
       <View className="flex-1 px-2">
         <View className="flex-row gap-x-2 items-center">
-          <TopImage width={114} height={114} />
+          {/* <Button
+            onPress={(e) => {
+              authContext?.signOut();
+            }}
+          > */}
+            <TopImage width={114} height={114} />
+          {/* </Button> */}
           <View style={{ flexShrink: 1 }}>
             <Text>Bonjour, nom d'utilisateur</Text>
-            <Text>
-              Qu'est-ce que tu vas apprendre aujourd'hui?
-            </Text>
+            <Text>Qu'est-ce que tu vas apprendre aujourd'hui?</Text>
           </View>
         </View>
         <TabView
@@ -62,7 +69,7 @@ function Categories({ navigation }: { navigation: any }) {
         },
         {
           title: "EXTERNAT",
-          link: "Externe",
+          link: "Externat",
           color: "#1068BB",
         },
         {

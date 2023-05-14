@@ -19,7 +19,7 @@ export default function App() {
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
     "Anton-Regular": require("./assets/fonts/Anton-Regular.ttf"),
   });
-  
+
   if (!isLoadingComplete || !fontsLoaded) {
     return null;
   } else {
@@ -29,7 +29,9 @@ export default function App() {
           <PaperProvider>
             <NativeBaseProvider>
               <AuthProvider>
-                <Navigation colorScheme={colorScheme} />
+                <Navigation
+                // colorScheme={colorScheme}
+                />
                 <StatusBar />
                 <AlertPopup />
               </AuthProvider>

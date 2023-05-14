@@ -20,24 +20,23 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      let refresh_token;
-      // let access_token;
       try {
-        refresh_token = (await SecureStore.getItemAsync("refreshToken")) || "";
+        const refresh_token = await SecureStore.getItemAsync("refreshToken");
         // access_token = (await SecureStore.getItemAsync("accessToken")) || "";
-        console.log("refresh_token", refresh_token);
+        // console.log("refresh_token", refresh_token);
+        if (!refresh_token) throw new Error("Invalid Refresh Token 1");
         const { data, error } = await supabase.auth.refreshSession({
           refresh_token,
           // access_token,
         });
-        console.log("data", data);
-        console.log("error", error);
-        if (error) throw new Error("Invalid Refresh Token");
+        // console.log("data", data);
+        if (error) throw new Error(error?.message);
         dispatch({
           type: ActionKind.RESTORE_TOKEN,
           token: refresh_token,
         });
       } catch (e) {
+        console.log(e);
         dispatch({ type: ActionKind.RESTORE_TOKEN, token: null });
       }
       // After restoring token, we may need to validate it in production apps
@@ -73,6 +72,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               "accessToken",
               data?.session?.access_token
             );
+            await SecureStore.setItemAsync("user_id", data?.session?.user?.id);
             dispatch({
               type: ActionKind.SIGN_IN,
               token: data?.session?.refresh_token,

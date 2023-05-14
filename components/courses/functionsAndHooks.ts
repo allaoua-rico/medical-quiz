@@ -5,12 +5,33 @@ import supabase from "../../utils/supabase";
 import _, { isArray } from "lodash";
 import useSWR from "swr";
 import { isEmptyArray } from "formik";
+import * as SecureStore from "expo-secure-store";
 
 export const isSelected = (aq: UserAnswer, answer: Answer) => {
   return aq?.user_answers.find(
     (el: Answer) => answer.answer_id == el.answer_id
   );
 };
+
+export function answerVerifier(aq: UserAnswer, answer: Answer) {
+  return aq?.verify
+    ? isSelected(aq, answer) && answer.Correct
+      ? "right"
+      : (isSelected(aq, answer) && !answer.Correct) ||
+        (!isSelected(aq, answer) && answer.Correct)
+      ? "wrong"
+      : "neutral"
+    : "neutral";
+}
+
+export async function getUserId(): Promise<string> {
+  // const access_token = (await SecureStore.getItemAsync("accessToken")) || "";
+  // const { data } = await supabase.auth.getUser(access_token);
+  // if (!data.user) throw new Error("vous devez vous authentifier de nouveau!");
+  const user_id = await SecureStore.getItemAsync("user_id");
+  if (!user_id) throw new Error("user_id not found");
+  return user_id;
+}
 
 export const addOrRemoveAns = (array: any[], item: Answer) => {
   const exists = array.find((item1) => _.isEqual(item1, item));
@@ -62,15 +83,20 @@ export const useFetchQuestions = (course: Course) => {
 
 export const useFetchUserAnswers = (course: Course) => {
   async function fetcher(...args: string[]) {
+    const user_id = await getUserId();
+    // console.log(user_id);
     const [course_title] = args;
     let { data, error } = await supabase
       .from("quiz_questions")
       .select(
         `Question,question_id,
         user_answers(quiz_answers(*)),
-        quiz_answers (Answer,Correct,answer_id)`
+        quiz_answers (Answer,Correct,answer_id)
+        `
       )
-      .ilike("course", course_title);
+      .ilike("course", course_title)
+      .eq("user_answers.user_id", user_id);
+
     if (error) throw error;
     return data;
   }
@@ -107,11 +133,41 @@ export const useFetchUserAnswers = (course: Course) => {
         ...rest,
         quiz_answers: newQuiz_answers,
         user_answers: newUser_answers2,
+        // les question déja épondu par le user sont déja validés
         verify: !isEmptyArray(user_answers),
       };
     }) ?? [];
   return {
     userAnswers,
+    isLoading,
+    error,
+    mutate,
+  };
+};
+
+export const useFavoritStatus = (question: UserAnswer) => {
+  async function fetcher(question_id: string) {
+    // console.log("question_id", question_id);
+    const user_id = await getUserId();
+    // console.log(user_id);
+    let { data, error } = await supabase
+      .from("user_favorites")
+      .select(`*`)
+      .eq("question_id", question_id)
+      .eq("user_id", user_id)
+      .maybeSingle();
+
+    console.log("data",data);
+    if (error) console.log("error", error);
+    return data;
+  }
+  const { data, error, isLoading, mutate } = useSWR(
+    question.question_id,
+    fetcher
+  );
+
+  return {
+    favStatus: data,
     isLoading,
     error,
     mutate,
