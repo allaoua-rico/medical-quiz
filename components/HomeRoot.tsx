@@ -19,6 +19,7 @@ export default function HomeRoot({
   const [routes] = useState([
     { key: "Categories", title: "categories" },
     { key: "Fav", title: "favoris" },
+    
   ]);
   const layout = useWindowDimensions();
   const renderScene = SceneMap({
@@ -74,7 +75,7 @@ function Categories({ navigation }: { navigation: any }) {
         },
         {
           title: "COURS",
-          link: "Cours",
+          link: "MainCours",
           color: "#1275D2",
         },
       ].map(({ title, color, link }) => (

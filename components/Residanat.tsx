@@ -10,13 +10,11 @@ import SimulateurVector from "../assets/images/simulateur_vector.svg";
 import QuestionmarkSVG from "../assets/images/questionmark.svg";
 // import HomeWrapperImg from "./layout/HomeWrapperImg";
 
-export default function Residanat({
-  navigation,
-}: HomeStackScreenProps<"Residanat">) {
+export default function Residanat(props: HomeStackScreenProps<"Residanat">) {
   const renderScene = SceneMap({
-    Chapitres: () => <Chapitres navigation={navigation} />,
-    Simulateur: () => <Simulateur navigation={navigation} />,
-    Resultats: () => <Simulateur navigation={navigation} />,
+    Chapitres: () => <Chapitres {...props} />,
+    Simulateur: () => <Simulateur {...props} />,
+    Resultats: () => <Simulateur {...props} />,
   });
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);

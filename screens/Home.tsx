@@ -1,8 +1,5 @@
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
-import { HomeStackParamList, HomeStackScreenProps } from "../types";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { HomeStackParamList } from "../types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text } from "../components/Themed";
 import ChapterList from "./ChapterList";
 import Modules from "./Modules";
 import HomeRoot from "../components/HomeRoot";
@@ -13,8 +10,11 @@ import ModuleHeader from "../components/headers/ModuleHeader";
 import CourseQCM from "../components/courses/CourseQCM";
 import Courses from "./Courses";
 import CourseHeader from "../components/headers/CourseHeader";
-import CourseQCMHeader from "../components/headers/CourseQCMHeader";
 import ExternatHeader from "../components/headers/ExternatHeader";
+import Externat from "../components/Externat";
+import CoursHeader from "../components/headers/CoursHeader";
+import MainCours from "./MainCours";
+import CoursDownload from "./CoursDownload";
 // import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
@@ -39,11 +39,11 @@ export default function Home() {
       />
       <Stack.Group>
         <Stack.Screen
+          name="Residanat"
+          component={Residanat}
           options={(props) => ({
             header: () => <ResidanatHeader {...props} />,
           })}
-          name="Residanat"
-          component={Residanat}
         />
         <Stack.Screen
           name="Externat"
@@ -53,17 +53,25 @@ export default function Home() {
           })}
         />
         <Stack.Screen
-          name="Cours"
-          component={Cours}
-          options={{ title: "Cours" }}
+          name="MainCours"
+          component={MainCours}
+          options={(props) => ({
+            header: () => <CoursHeader {...props} />,
+          })}
         />
       </Stack.Group>
-
-      {/* ResidanatQCM */}
+      <Stack.Screen
+        name="CoursDownload"
+        component={CoursDownload}
+        options={(props) => ({
+          headerShown: false,
+        })}
+      />
+      {/* ResidanatSimulator */}
       {/* <Stack.Group>
         <Stack.Screen
-          name="ResidanatQCM"
-          component={ResidanatQCM}
+          name="ResidanatSimulator"
+          component={ResidanatSimulator}
           options={{ title: "Chapitres" }}
         />
       </Stack.Group> */}
@@ -88,44 +96,13 @@ export default function Home() {
           header: () => <CourseHeader {...props} />,
         })}
       />
-      {/* <Stack.Group
-        screenOptions={{
-          presentation: "modal",
-          headerShown: false,
-          contentStyle: {
-            backgroundColor: "#ffffff",
-          },
-        }}
-      > */}
       <Stack.Screen
         name="CourseQCM"
         component={CourseQCM}
         options={(props) => ({
           headerShown: false,
-          //   header: () => <CourseQCMHeader {...props} />,
         })}
       />
-      {/* </Stack.Group> */}
     </Stack.Navigator>
-  );
-}
-
-function Externat() {
-  return (
-    <SafeAreaView className="min-h-full z-20 bg-white">
-      <ScrollView className="w-full mx-auto px-8">
-        <Text>Externe</Text>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-function Cours() {
-  return (
-    <SafeAreaView className="min-h-full  bg-white">
-      <ScrollView className="w-full mx-auto px-8">
-        <Text>Cours</Text>
-      </ScrollView>
-    </SafeAreaView>
   );
 }

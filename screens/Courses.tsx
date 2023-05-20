@@ -8,11 +8,12 @@ import { Answer } from "../components/courses/types";
 
 export default function Courses({
   route: {
-    params: { course },
+    params: { course, },
   },
   navigation,
 }: HomeStackScreenProps<"Courses">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
+  // console.log(course)
   // console.log("userAnswers", userAnswers?.[21]);
   return (
     <ScrollView className="flex-1 px-4" contentContainerStyle={{ flexGrow: 1 }}>

@@ -25,7 +25,6 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
   const [questions, setQuestions] = useState<UserAnswer[]>([]);
   useEffect(() => {
-    // console.log("CourseQCM_useEffect");
     isEmptyArray(questions) && setQuestions(userAnswers);
   }, [userAnswers]);
   const [activeQuestion, setActiveQuestion] = useState<number>(questionIndex);
@@ -46,6 +45,7 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   //   userAnswers.map(({ user_answers }) => ({ user_answers }))
   // );
   // à faire : set the validated user answers to verified so that the check value is true
+  // console.log(aq);
   return (
     <SafeAreaView className="flex-grow relative">
       {isLoading ? (
@@ -61,8 +61,9 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
           contentContainerStyle={{ flexGrow: 1 }}
         >
           {/* HEADER */}
-          <CourseQCMHeader {...props} aq={aq} />
-
+          {aq?.question_id && (
+            <CourseQCMHeader {...props} question_id={aq.question_id} />
+          )}
           {/* QUESTION  */}
           <Text className="pb-3 pt-9 text-2xl text-dark_text font-medium border-b border-b-dark_text">
             Question {`${activeQuestion + 1}/${questions.length}`}

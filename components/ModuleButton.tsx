@@ -4,17 +4,13 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 export default function ModuleButton({
   module,
-  navigation,
-  navToView,
+  onPress,
 }: {
   module: YearModule;
-  navigation: any;
-  navToView: string;
+  onPress: () => void;
 }) {
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(navToView, { module })}
-    >
+    <TouchableOpacity onPress={onPress}>
       <View className="px-4 py-2 flex flex-row justify-between items-center border-b border-[#053F5C]">
         <View className="bg-white shadow-2xl">
           <Text className="text-gray-700 text-lg font-extrabold">

@@ -145,7 +145,7 @@ export const useFetchUserAnswers = (course: Course) => {
   };
 };
 
-export const useFavoritStatus = (question: UserAnswer) => {
+export const useFavoritStatus = (question_id: string) => {
   async function fetcher(question_id: string) {
     // console.log("question_id", question_id);
     const user_id = await getUserId();
@@ -162,7 +162,7 @@ export const useFavoritStatus = (question: UserAnswer) => {
     return data;
   }
   const { data, error, isLoading, mutate } = useSWR(
-    question.question_id,
+    question_id,
     fetcher
   );
 

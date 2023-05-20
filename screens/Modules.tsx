@@ -15,7 +15,7 @@ import { getScore2 } from "../components/headers/CourseHeader";
 let colorsIndex = 0;
 export default function Modules({
   route: {
-    params: { module },
+    params: { module, navArr },
   },
   navigation,
 }: HomeStackScreenProps<"Modules">) {
@@ -29,6 +29,7 @@ export default function Modules({
             course={course}
             navigation={navigation}
             backgroundColor={buttonColors[colorsIndex]}
+            navArr={navArr}
           />
         );
       })}
@@ -40,10 +41,12 @@ function CourseButton({
   course,
   navigation,
   backgroundColor,
+  navArr,
 }: {
   course: Course;
   navigation: any;
   backgroundColor: string;
+  navArr: string[];
 }) {
   // make a simple "questions" fetcher with swr
   const { questions } = useFetchQuestions(course);
@@ -53,6 +56,7 @@ function CourseButton({
   // useEffect(() => {
   //   console.log("takes",takes?.[0]);
   // }, [takes]);
+  console.log(navArr)
   return (
     <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">
@@ -61,7 +65,7 @@ function CourseButton({
           className="rounded-lg overflow-hidden bg-white"
         >
           <TouchableOpacity
-            onPress={() => navigation.navigate("Courses", { course })}
+            onPress={() => navigation.navigate(navArr[0], { course })}
           >
             <View
               className="px-3 py-4 flex flex-row justify-between items-center max-w-max"

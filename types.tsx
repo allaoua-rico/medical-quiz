@@ -47,18 +47,22 @@ export type HomeStackParamList = {
   Residanat: {
     title: string;
   };
-  Cours: {
-    title: string;
+  MainCours: {
+    // title: string;
   };
   ResidanatQCM: undefined;
   ChapterList: {
     title: string;
+    modules: YearModule[];
+    navArr: string[];
   };
   Modules: {
     module: YearModule;
+    navArr: string[];
   };
   Courses: { course: Course };
-  CourseQCM: { course: Course, questionIndex: number };
+  CourseQCM: { course: Course; questionIndex: number };
+  CoursDownload: { course: Course };
 };
 
 export type ChapterListParamList = {

@@ -15,10 +15,12 @@ export default function ExternatHeader({
       className="overflow-hidden pt-20 pb-16 relative rounded-b-[20px] 
     flex flex-row items-center bg-primary pl-3 pr-5"
     >
-      {/* <View className="flex-row items-center border-b border-b-underlineColor pb-5 relative"> */}
       <BackButton navigation={navigation} />
       <Text className="text-3xl text-white">EXTERNAT</Text>
-      <View className="absolute" style={{ top, left: -20, overflow: "hidden" }}>
+      <View
+        className="absolute -z-10"
+        style={{ top, left: -20, overflow: "hidden" }}
+      >
         <DoctorSvg height={200} />
       </View>
     </View>
