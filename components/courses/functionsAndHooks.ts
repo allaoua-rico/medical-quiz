@@ -1,4 +1,4 @@
-import { Course } from "../../data";
+import { Course, getChapterModules } from "../../data";
 import { Answer, Question, UserAnswer } from "./types";
 import { useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
@@ -6,8 +6,12 @@ import _, { isArray } from "lodash";
 import useSWR from "swr";
 import { isEmptyArray } from "formik";
 import * as SecureStore from "expo-secure-store";
+import useSWRImmutable from "swr/immutable";
 
-export const isSelected = (aq: UserAnswer, answer: Answer) => {
+export const isSelected = (
+  aq: UserAnswer | Simulateur_question,
+  answer: Answer
+) => {
   return aq?.user_answers.find(
     (el: Answer) => answer.answer_id == el.answer_id
   );
@@ -24,6 +28,17 @@ export function answerVerifier(aq: UserAnswer, answer: Answer) {
     : "neutral";
 }
 
+// export function answerVerifierSimulateur(aq: Simulateur_question, answer: Answer) {
+//   return aq?.verify
+//     ? isSelected(aq, answer) && answer.Correct
+//       ? "right"
+//       : (isSelected(aq, answer) && !answer.Correct) ||
+//         (!isSelected(aq, answer) && answer.Correct)
+//       ? "wrong"
+//       : "neutral"
+//     : "neutral";
+// }
+
 export async function getUserId(): Promise<string> {
   // const access_token = (await SecureStore.getItemAsync("accessToken")) || "";
   // const { data } = await supabase.auth.getUser(access_token);
@@ -32,20 +47,6 @@ export async function getUserId(): Promise<string> {
   if (!user_id) throw new Error("user_id not found");
   return user_id;
 }
-
-export const addOrRemoveAns = (array: any[], item: Answer) => {
-  const exists = array.find((item1) => _.isEqual(item1, item));
-
-  if (exists) {
-    return array.filter((c) => {
-      return c !== item;
-    });
-  } else {
-    const result = array;
-    result.push(item);
-    return result;
-  }
-};
 
 export const useFetchQuestions = (course: Course) => {
   const [questions, setQuestions] = useState<any[]>([]);
@@ -157,14 +158,11 @@ export const useFavoritStatus = (question_id: string) => {
       .eq("user_id", user_id)
       .maybeSingle();
 
-    console.log("data",data);
+    console.log("data", data);
     if (error) console.log("error", error);
     return data;
   }
-  const { data, error, isLoading, mutate } = useSWR(
-    question_id,
-    fetcher
-  );
+  const { data, error, isLoading, mutate } = useSWR(question_id, fetcher);
 
   return {
     favStatus: data,
@@ -172,6 +170,59 @@ export const useFavoritStatus = (question_id: string) => {
     error,
     mutate,
   };
+};
+
+export const useFetchChapterRandomQuestions = (chapter_title: string) => {
+  const chapterCourses = getChapterModules(chapter_title)
+    .map(({ courses }) => courses)
+    .flat()
+    .map(({ title }) => title);
+  async function fetcher(coursesArray: string[]) {
+    let { data, error } = await supabase
+      .from("random_questions")
+      .select(
+        `Question,question_id,
+         quiz_answers(Answer,Correct,answer_id)`
+      )
+      .in("course", coursesArray)
+      .limit(120);
+    // console.log("error", error);
+    // console.log(
+    //   "data",
+    //   data?.map(({ Question }) => Question)
+    // );
+    if (error) throw error;
+    return data;
+  }
+  const { data, error, isLoading, mutate } = useSWRImmutable(
+    chapterCourses,
+    fetcher
+  );
+  const simulateurQuestions: Simulateur_question[] = isArray(data)
+    ? data?.map(({ quiz_answers, ...rest }) => {
+        const newQuiz_answers: Answer[] = isArray(quiz_answers)
+          ? quiz_answers
+          : [];
+        return {
+          ...rest,
+          quiz_answers: newQuiz_answers,
+          user_answers: [],
+        };
+      }) ?? []
+    : [];
+  return {
+    simulateurQuestions,
+    isLoading,
+    error,
+    mutate,
+  };
+};
+
+export type Simulateur_question = {
+  Question: any;
+  question_id: any;
+  quiz_answers: Answer[];
+  user_answers: Answer[];
 };
 
 // export const useFetchUserTakes = (course: Course) => {

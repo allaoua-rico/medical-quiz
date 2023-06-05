@@ -15,6 +15,7 @@ import Externat from "../components/Externat";
 import CoursHeader from "../components/headers/CoursHeader";
 import MainCours from "./MainCours";
 import CoursDownload from "./CoursDownload";
+import Simulateur from "./Simulateur";
 // import HomeWrapperImg from "../components/layout/HomeWrapperImg";
 // import Résidanat from "../assets/images/residanatHeader.png"
 
@@ -27,7 +28,7 @@ export default function Home() {
       screenOptions={{
         contentStyle: {
           backgroundColor: "#ffffff",
-          paddingTop: 20,
+          // paddingTop: 20,
           // paddingBottom: 20,
         },
       }}
@@ -99,6 +100,13 @@ export default function Home() {
       <Stack.Screen
         name="CourseQCM"
         component={CourseQCM}
+        options={(props) => ({
+          headerShown: false,
+        })}
+      />
+      <Stack.Screen
+        name="Simulateur"
+        component={Simulateur}
         options={(props) => ({
           headerShown: false,
         })}

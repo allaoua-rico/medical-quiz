@@ -62,6 +62,7 @@ export type HomeStackParamList = {
   };
   Courses: { course: Course };
   CourseQCM: { course: Course; questionIndex: number };
+  Simulateur: {};
   CoursDownload: { course: Course };
 };
 

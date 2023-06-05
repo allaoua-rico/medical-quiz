@@ -6,9 +6,11 @@ import RightSVG from "../../assets/images/right.svg";
 export default function CustomCheckbox({
   checked,
   status,
+  theme,
 }: {
   checked: Boolean;
   status: "right" | "wrong" | "neutral";
+  theme: "dark" | "light";
 }) {
   return checked ? (
     <View
@@ -24,7 +26,12 @@ export default function CustomCheckbox({
       {status == "right" || status == "neutral" ? <RightSVG /> : <WrongSVG />}
     </View>
   ) : (
-    <View className="border-[3px] rounded-full w-[30px] h-[30px] border-primary"></View>
+    <View
+      className={
+        "border-[3px] rounded-full w-[30px] h-[30px] " +
+        (theme == "light" ? "border-primary" : "border-[#0C81E4]")
+      }
+    ></View>
   );
 }
 

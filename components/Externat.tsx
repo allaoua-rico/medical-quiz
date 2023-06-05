@@ -9,7 +9,6 @@ import YearButton from "./shared/buttons/YearButton";
 export default function Externat({
   navigation,
 }: HomeStackScreenProps<"Externat">) {
-  let navArr = ["Courses"];
   return (
     <SafeAreaView className="min-h-full bg-white">
       <ScrollView className="w-full mx-auto px-8">
@@ -21,7 +20,7 @@ export default function Externat({
               navigation.navigate("ChapterList", {
                 title,
                 modules,
-                navArr,
+                navArr: ["Courses"],
               })
             }
           />

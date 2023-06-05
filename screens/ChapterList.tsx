@@ -8,8 +8,9 @@ export default function ChapterList({
   navigation,
 }: HomeStackScreenProps<"ChapterList">) {
   const { modules, navArr } = route.params;
+  console.log("modules", modules);
   return (
-    <ScrollView className="flex-1 px-4" contentContainerStyle={{ rowGap: 18 }}>
+    <ScrollView className="flex-1 px-4 pt-5" contentContainerStyle={{ rowGap: 18 }}>
       {modules?.map((module, i) => (
         <ModuleButton
           key={`${module?.title}_${i}`}

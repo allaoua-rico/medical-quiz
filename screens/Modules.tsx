@@ -56,7 +56,7 @@ function CourseButton({
   // useEffect(() => {
   //   console.log("takes",takes?.[0]);
   // }, [takes]);
-  console.log(navArr)
+  // console.log(navArr)
   return (
     <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">

@@ -7,7 +7,6 @@ import * as _ from "lodash";
 import "react-native-url-polyfill/auto";
 import QcmFooter from "./QcmFooter";
 import {
-  addOrRemoveAns,
   answerVerifier,
   isSelected,
   useFetchUserAnswers,
@@ -16,6 +15,7 @@ import { Answer, UserAnswer } from "./types";
 import { isEmptyArray } from "formik";
 import CourseQCMHeader from "../headers/CourseQCMHeader";
 import CustomCheckbox, { answerColor } from "./CustomCheckbox";
+import { addOrRemoveAns, addOrRemoveAnswer } from "../SimulateurFunctions";
 
 export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   const { route } = props;
@@ -25,21 +25,15 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
   const [questions, setQuestions] = useState<UserAnswer[]>([]);
   useEffect(() => {
-    isEmptyArray(questions) && setQuestions(userAnswers);
+    isEmptyArray(questions)
+    // &&
+    // !isEmptyArray(userAnswers)
+    && setQuestions(userAnswers);
   }, [userAnswers]);
   const [activeQuestion, setActiveQuestion] = useState<number>(questionIndex);
   const aq = questions[activeQuestion];
   // console.log("CourseQCMaq", course);
-  const addOrRemoveAnswer = (question: UserAnswer, answer: Answer) => {
-    const questionsCopy = [...questions];
-    questionsCopy.map((q) => {
-      //  find question in the questions clone array
-      if (q.question_id == question.question_id)
-        // add or remove the answer from the selected answers array
-        q.user_answers = addOrRemoveAns([...q.user_answers], answer);
-    });
-    setQuestions(questionsCopy);
-  };
+
   // console.log(
   //   "userAnswers",
   //   userAnswers.map(({ user_answers }) => ({ user_answers }))
@@ -82,7 +76,10 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
                     : "border-primary")
                 }
                 key={answer.answer_id}
-                onPress={() => !aq.verify && addOrRemoveAnswer(aq, answer)}
+                onPress={() =>
+                  !aq.verify &&
+                  addOrRemoveAnswer(aq, answer, questions, setQuestions)
+                }
               >
                 <Text className="text-sm font-medium flex-wrap flex-1">
                   {answer.Answer}
@@ -90,6 +87,7 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
                 <CustomCheckbox
                   checked={!!isSelected(aq, answer)}
                   status={answerVerifier(aq, answer)}
+                  theme="light"
                 />
               </Pressable>
             ))}

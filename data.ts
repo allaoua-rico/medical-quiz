@@ -101,10 +101,37 @@ export type Year = {
 };
 
 export const yearsModules: Year[] = [
-  { title: "1ère année", modules: annee1 },
+  { title: "annee1", modules: annee1 },
   // this line error was:
   // Error: The function does not contain a statement matching 'return variableName;', js engine: hermes
   // { year: getVariableName(() => annee1), modules: annee1 },
 ];
 
-yearsModules;
+// yearsModules;
+
+export const chapters: { title: string; years: string[] }[] = [
+  {
+    title: "Biologie",
+    years: ["annee1", "annee2", "annee3"],
+  },
+  {
+    title: "Medical",
+    years: ["annee4", "annee5", "annee6"],
+  },
+  {
+    title: "Chirurgie",
+    years: ["annee4", "annee5", "annee6"],
+  },
+];
+
+export function getChapterModules(title: string) {
+  const yearsInChapter = chapters.find((chap) => chap?.title === title)!.years;
+  const allYearsInChapter = yearsInChapter
+    // remove the filter line after adding all years
+    .filter((y1) => yearsModules.find((y2) => y2.title == y1))
+    //
+    .map((y1) => yearsModules.find((y2) => y2.title == y1)!);
+  const allModulesInChapter = allYearsInChapter?.map((y) => y?.modules).flat();
+
+  return allModulesInChapter;
+}

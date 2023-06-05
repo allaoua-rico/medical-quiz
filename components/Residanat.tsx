@@ -1,6 +1,6 @@
 import { View, useWindowDimensions, Text } from "react-native";
 import React from "react";
-import { HomeStackScreenProps } from "../types";
+import { HomeStackParamList, HomeStackScreenProps } from "../types";
 import { ScrollView } from "native-base";
 import Button1 from "./shared/buttons/Button1";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
@@ -8,12 +8,14 @@ import Chapitres from "./residanat/Chapitres";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
 import SimulateurVector from "../assets/images/simulateur_vector.svg";
 import QuestionmarkSVG from "../assets/images/questionmark.svg";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 // import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function Residanat(props: HomeStackScreenProps<"Residanat">) {
+  const { navigation } = props;
   const renderScene = SceneMap({
     Chapitres: () => <Chapitres {...props} />,
-    Simulateur: () => <Simulateur {...props} />,
+    Simulateur: () => <Simulateur navigation={navigation} />,
     Resultats: () => <Simulateur {...props} />,
   });
   const layout = useWindowDimensions();
@@ -65,7 +67,15 @@ export default function Residanat(props: HomeStackScreenProps<"Residanat">) {
   );
 }
 
-const Simulateur = (navigation: any) => (
+const Simulateur = ({
+  navigation,
+}: {
+  navigation: NativeStackNavigationProp<
+    HomeStackParamList,
+    "Residanat",
+    undefined
+  >;
+}) => (
   <View className="items-center flex-1 px-4 ">
     <View className="w-full pb-16 relative justify-center flex-1">
       <Text className="max-w-xs text-3xl font-semibold text-[#616161] pt-20">
@@ -84,7 +94,7 @@ const Simulateur = (navigation: any) => (
     <View className="flex-1">
       <Button1
         title="Commencer"
-        onPress={() => navigation.navigate("Simulateur")}
+        onPress={() => navigation.navigate("Simulateur", {})}
       />
     </View>
   </View>
