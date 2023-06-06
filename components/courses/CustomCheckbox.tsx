@@ -20,7 +20,9 @@ export default function CustomCheckbox({
           ? `bg-[${answerColor.right}] border-[${answerColor.right}]`
           : status == "wrong"
           ? `bg-[${answerColor.wrong}] border-[${answerColor.wrong}]`
-          : "bg-primary")
+          : theme == "light"
+          ? "bg-primary"
+          : "bg-[#0C81E4] border-[#0C81E4]")
       }
     >
       {status == "right" || status == "neutral" ? <RightSVG /> : <WrongSVG />}

@@ -158,7 +158,7 @@ export const useFavoritStatus = (question_id: string) => {
       .eq("user_id", user_id)
       .maybeSingle();
 
-    console.log("data", data);
+    // console.log("data", data);
     if (error) console.log("error", error);
     return data;
   }

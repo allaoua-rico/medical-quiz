@@ -7,6 +7,7 @@ import QuestionMarkSVG from "../../assets/images/qcm_question_mark.svg";
 import supabase from "../../utils/supabase";
 import { getUserId, useFavoritStatus } from "../courses/functionsAndHooks";
 import useAlert from "../shared/Alert/useAlert";
+import { addQuestionToFav } from "../SimulateurFunctions";
 
 interface CourseQCMHeaderProps extends HomeStackScreenProps<"CourseQCM"> {
   question_id: string;
@@ -19,25 +20,7 @@ export default function CourseQCMHeader({
   const { setAlert } = useAlert();
   // console.log("aq",aq)
   const { favStatus, mutate } = useFavoritStatus(question_id);
-  async function addQuestionToFav(question_id: string) {
-    // console.log(question_id);
-    try {
-      const user_id = await getUserId();
-      const { data } = await supabase
-        .from("user_favorites")
-        .upsert(
-          { user_id, question_id },
-          { onConflict: "user_id, question_id", ignoreDuplicates: false }
-        )
-        .select();
-      console.log("data", data);
-      mutate();
-      setAlert("Favoris ajouté!", "success");
-    } catch (error) {
-      console.log("error", error);
-      setAlert("Favoris non ajouté!", "error");
-    }
-  }
+
   return (
     <View className="bg-white flex-row justify-between">
       <TouchableOpacity style={{ padding: 3 }} onPress={navigation.goBack}>
@@ -50,7 +33,7 @@ export default function CourseQCMHeader({
         <View>
           <TouchableOpacity
             className={"rounded-full " + (favStatus ? "bg-yellow-300" : "")}
-            onPress={() => addQuestionToFav(question_id)}
+            onPress={() => addQuestionToFav(question_id, mutate, setAlert)}
           >
             <FavoritSVG />
           </TouchableOpacity>

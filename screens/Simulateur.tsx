@@ -16,6 +16,7 @@ import SimulateurHeader from "../components/headers/SimulateurHeader";
 import { isEmptyArray } from "formik";
 import { addOrRemoveAnswer } from "../components/SimulateurFunctions";
 import SimulateurFooter from "../components/simulateur/SimulateurFooter";
+import SimulateurTimer from "../components/simulateur/SimulateurTimer";
 // import { addOrRemoveAnswer } from "../components/SimulateurFunctions";
 
 export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
@@ -36,7 +37,7 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
       {isLoading ? (
         <Spinner
           accessibilityLabel="Loading questions"
-          color="black"
+          color="white"
           size="lg"
           className="my-auto"
         />
@@ -49,11 +50,14 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
           {aq?.question_id && (
             <SimulateurHeader {...props} question_id={aq.question_id} />
           )}
+          <SimulateurTimer />
           {/* QUESTION  */}
-          <Text className="pb-3 pt-9 text-2xl text-dark_text font-medium border-b border-b-dark_text">
+          <Text className="pb-3 pt-9 text-2xl text-white font-medium border-b border-b-dark_text">
             Question {`${activeQuestion + 1}/${questions.length}`}
           </Text>
-          <Text className="py-8 text-lg font-medium">{aq?.Question}</Text>
+          <Text className="py-8 text-lg font-medium text-white">
+            {aq?.Question}
+          </Text>
           <View className="space-y-3">
             {aq?.quiz_answers.map((answer) => (
               <Pressable
@@ -70,7 +74,7 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
                   addOrRemoveAnswer(aq, answer, questions, setQuestions)
                 }
               >
-                <Text className="text-sm font-medium flex-wrap flex-1">
+                <Text className="text-sm text-white font-medium flex-wrap flex-1">
                   {answer.Answer}
                 </Text>
                 <CustomCheckbox
