@@ -17,7 +17,7 @@ export default function MainCours({
             key={`${title}_${i}`}
             text={title}
             onPress={() =>
-              navigation.navigate("ChapterList", {
+              navigation.navigate("ModulesList", {
                 title,
                 modules,
                 navArr,

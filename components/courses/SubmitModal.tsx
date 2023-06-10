@@ -27,7 +27,7 @@ export default function SubmitModal({
                   colorScheme="blueGray"
                   onPress={() => setModalVisible(false)}
                 >
-                  Cancel
+                  Annuler
                 </Button>
                 <Button disabled={loading} className="px-5" onPress={endTest}>
                   {loading ? (

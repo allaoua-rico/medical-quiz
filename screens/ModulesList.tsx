@@ -3,12 +3,12 @@ import { ScrollView } from "react-native";
 import ModuleButton from "../components/ModuleButton";
 // import HomeWrapperImg from "./layout/HomeWrapperImg";
 
-export default function ChapterList({
+export default function ModulesList({
   route,
   navigation,
-}: HomeStackScreenProps<"ChapterList">) {
+}: HomeStackScreenProps<"ModulesList">) {
   const { modules, navArr } = route.params;
-  console.log("modules", modules);
+  // console.log("modules", modules);
   return (
     <ScrollView className="flex-1 px-4 pt-5" contentContainerStyle={{ rowGap: 18 }}>
       {modules?.map((module, i) => (

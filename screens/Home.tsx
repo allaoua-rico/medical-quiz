@@ -1,11 +1,11 @@
 import { HomeStackParamList } from "../types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ChapterList from "./ChapterList";
+import ModulesList from "./ModulesList";
 import Modules from "./Modules";
-import HomeRoot from "../components/HomeRoot";
+import HomeRoot from "./HomeRoot";
 import ResidanatHeader from "../components/headers/ResidanatHeader";
 import Residanat from "../components/Residanat";
-import ChapterListHeader from "../components/headers/ChapterListHeader";
+import ModulesListHeader from "../components/headers/ModulesListHeader";
 import ModuleHeader from "../components/headers/ModuleHeader";
 import CourseQCM from "../components/courses/CourseQCM";
 import Courses from "./Courses";
@@ -77,10 +77,10 @@ export default function Home() {
         />
       </Stack.Group> */}
       <Stack.Screen
-        name="ChapterList"
-        component={ChapterList}
+        name="ModulesList"
+        component={ModulesList}
         options={(props) => ({
-          header: () => <ChapterListHeader {...props} />,
+          header: () => <ModulesListHeader {...props} />,
         })}
       />
       <Stack.Screen

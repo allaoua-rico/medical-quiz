@@ -49,14 +49,18 @@ function CourseButton({
   navArr: string[];
 }) {
   // make a simple "questions" fetcher with swr
-  const { questions } = useFetchQuestions(course);
+  const { questions } = useFetchQuestions(
+    navArr.includes("CoursDownload") ? null : course
+  );
   // const { takes, isLoading: loadingTake } = useFetchUserTakes(course);
-  const { userAnswers, isLoading: isLoadingUserAnswers } =
-    useFetchUserAnswers(course);
+  const { userAnswers, isLoading: isLoadingUserAnswers } = useFetchUserAnswers(
+    navArr.includes("CoursDownload") ? null : course
+  );
   // useEffect(() => {
   //   console.log("takes",takes?.[0]);
   // }, [takes]);
-  // console.log(navArr)
+  // console.log(navArr.includes("CoursDownload"));
+  // console.log(navArr.includes("CoursDownload"));
   return (
     <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">
@@ -77,26 +81,30 @@ function CourseButton({
                     {course.title}
                   </Text>
                 </View>
-                <Text className="text-dark_text font-semibold text-base flex-wrap flex-1">
-                  questions: {questions.length || ""}
-                </Text>
-              </View>
-              <View className="bg-[#fff]/40	rounded-full w-14 h-14 flex justify-center items-center">
-                {isLoadingUserAnswers ? (
-                  <Spinner
-                    accessibilityLabel="Loading take"
-                    color="white"
-                    size="sm"
-                    className="my-auto"
-                  />
-                ) : (
-                  <Text className="text-white font-semibold text-xl">
-                    {/* {takes?.[0]?.score} */}
-                    {getScore2(userAnswers)}/{userAnswers.length}
+                {!navArr.includes("CoursDownload") && (
+                  <Text className="text-dark_text font-semibold text-base flex-wrap flex-1">
+                    questions: {questions.length}
                   </Text>
                 )}
-                {/* <Text className="text-white font-semibold text-2xl">120</Text> */}
               </View>
+              {!navArr.includes("CoursDownload") && (
+                <View className="bg-[#fff]/40	rounded-full w-14 h-14 flex justify-center items-center">
+                  {isLoadingUserAnswers ? (
+                    <Spinner
+                      accessibilityLabel="Loading take"
+                      color="white"
+                      size="sm"
+                      className="my-auto"
+                    />
+                  ) : (
+                    <Text className="text-white font-semibold text-xl">
+                      {/* {takes?.[0]?.score} */}
+                      {getScore2(userAnswers)}/{userAnswers.length}
+                    </Text>
+                  )}
+                  {/* <Text className="text-white font-semibold text-2xl">120</Text> */}
+                </View>
+              )}
             </View>
           </TouchableOpacity>
         </View>

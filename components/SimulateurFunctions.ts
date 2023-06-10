@@ -8,9 +8,9 @@ export const addOrRemoveAnswer = (
   question: UserAnswer | Simulateur_question,
   answer: Answer,
   questions: UserAnswer[] | Simulateur_question[],
-  setQuestions: React.Dispatch<
-    React.SetStateAction<UserAnswer[] | Simulateur_question[]>
-  >
+  // setQuestions: React.Dispatch<
+  //   React.SetStateAction<UserAnswer[] | Simulateur_question[]>
+  // >
 ) => {
   const questionsCopy = [...questions];
   questionsCopy.map((q) => {
@@ -19,7 +19,7 @@ export const addOrRemoveAnswer = (
       // add or remove the answer from the selected answers array
       q.user_answers = addOrRemoveAns([...q.user_answers], answer);
   });
-  setQuestions(questionsCopy);
+  return questionsCopy;
 };
 
 export const addOrRemoveAns = (array: any[], item: Answer) => {

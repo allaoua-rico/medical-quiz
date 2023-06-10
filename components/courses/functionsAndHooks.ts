@@ -17,7 +17,10 @@ export const isSelected = (
   );
 };
 
-export function answerVerifier(aq: UserAnswer, answer: Answer) {
+export function answerVerifier(
+  aq: UserAnswer | Simulateur_question,
+  answer: Answer
+) {
   return aq?.verify
     ? isSelected(aq, answer) && answer.Correct
       ? "right"
@@ -48,41 +51,48 @@ export async function getUserId(): Promise<string> {
   return user_id;
 }
 
-export const useFetchQuestions = (course: Course) => {
-  const [questions, setQuestions] = useState<any[]>([]);
+export const useFetchQuestions = (course: Course | null) => {
+  const [questions, setQuestions] = useState<
+    {
+      Question: string | null;
+      question_id: string;
+    }[]
+  >([]);
   const [loading, setLoading] = useState(false);
   // à faire, integrer swr
   useEffect(() => {
-    async function getQuestions() {
+    async function getQuestions(course: Course) {
       setLoading(true);
       try {
         let { data: quiz_questions, error } = await supabase
           .from("quiz_questions")
           .select(
-            `Question,question_id,course_id,
-             answers:quiz_answers (Answer,Correct,answer_id)`
+            // `Question,question_id,course_id,
+            //  answers:quiz_answers (Answer,Correct,answer_id)`
+            `Question,question_id`
           )
           .ilike("course", course.title);
         !error &&
           !!quiz_questions &&
           setQuestions(
-            quiz_questions.map((question) => ({
-              ...question,
-              selected_answers: [],
-              verify: false,
-            }))
+            quiz_questions
+            // quiz_questions.map((question) => ({
+            //   ...question,
+            //   selected_answers: [],
+            //   verify: false,
+            // }))
           );
       } catch (error) {
       } finally {
         setLoading(false);
       }
     }
-    getQuestions();
+    course && getQuestions(course);
   }, [course]);
   return { questions, setQuestions, loading };
 };
 
-export const useFetchUserAnswers = (course: Course) => {
+export const useFetchUserAnswers = (course: Course | null) => {
   async function fetcher(...args: string[]) {
     const user_id = await getUserId();
     // console.log(user_id);
@@ -101,7 +111,10 @@ export const useFetchUserAnswers = (course: Course) => {
     if (error) throw error;
     return data;
   }
-  const { data, error, isLoading, mutate } = useSWR(course.title, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(
+    course && course.title,
+    fetcher
+  );
   // console.log("useFetchUserAnswersdata", data);
   const userAnswers: UserAnswer[] =
     data?.map(({ user_answers, quiz_answers, ...rest }) => {
@@ -223,6 +236,8 @@ export type Simulateur_question = {
   question_id: any;
   quiz_answers: Answer[];
   user_answers: Answer[];
+  verify?: boolean;
+  score?: number;
 };
 
 // export const useFetchUserTakes = (course: Course) => {

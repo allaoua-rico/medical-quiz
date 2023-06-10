@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 type Duree = { seconds: number; minutes: number };
 
-export default function SimulateurTimer() {
+export default function SimulateurTimer({ endTest }: { endTest: () => any }) {
   const duree: Duree = {
     seconds: 4,
     minutes: 0,
@@ -27,7 +27,13 @@ export default function SimulateurTimer() {
       setIsTargetAchieved(true);
     });
   }, []);
-  return (
+  useEffect(() => {
+    isTargetAchieved && endTest();
+  }, [isTargetAchieved]);
+
+  return isTargetAchieved ? (
+    <View></View>
+  ) : (
     <View className="border-[3px] border-white rounded-[30px] mt-3 flex-row items-center">
       <LinearGradient
         colors={["#4FE7AF", "#0C81E4"]}

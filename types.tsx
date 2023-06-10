@@ -51,7 +51,7 @@ export type HomeStackParamList = {
     // title: string;
   };
   ResidanatQCM: undefined;
-  ChapterList: {
+  ModulesList: {
     title: string;
     modules: YearModule[];
     navArr: string[];
@@ -63,9 +63,10 @@ export type HomeStackParamList = {
   Courses: { course: Course };
   CourseQCM: { course: Course; questionIndex: number };
   Simulateur: {};
+  Resultats: {};
   CoursDownload: { course: Course };
 };
 
-export type ChapterListParamList = {
+export type ModulesListParamList = {
   title: string;
 };

@@ -3,10 +3,10 @@ import { Text, View } from "react-native";
 import { HomeStackScreenProps } from "../../types";
 import BackButton from "../shared/buttons/BackButton";
 
-const ChapterListHeader = ({
+const ModulesListHeader = ({
   route,
   navigation,
-}: HomeStackScreenProps<"ChapterList">) => {
+}: HomeStackScreenProps<"ModulesList">) => {
   return (
     <View className="pt-20 pb-16 relative rounded-b-[20px] flex flex-row items-center bg-primary pl-3">
       <BackButton navigation={navigation} />
@@ -15,4 +15,4 @@ const ChapterListHeader = ({
   );
 };
 
-export default ChapterListHeader;
+export default ModulesListHeader;

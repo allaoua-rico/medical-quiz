@@ -1,5 +1,11 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, {
+  useState,
+  useImperativeHandle,
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+} from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Pressable, TouchableOpacity } from "react-native";
 import supabase from "../../utils/supabase";
@@ -8,87 +14,83 @@ import useAlert from "../shared/Alert/useAlert";
 import { questionVerifier } from "../../screens/Courses";
 import SubmitModal from "../courses/SubmitModal";
 import { Question, UserAnswer } from "../courses/types";
-import { getUserId } from "../courses/functionsAndHooks";
+import { Simulateur_question, getUserId } from "../courses/functionsAndHooks";
+import { Simulateur_Chapter_Question } from "../../screens/Simulateur";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import TimeExpiredModal from "../TimeExpiredModal";
 
-const SimulateurFooter = (props: Props) => {
+const SimulateurFooter: ForwardRefRenderFunction<
+  SimulateurFooterHandle,
+  SimulateurFooterProps
+> = (props: SimulateurFooterProps, ref) => {
   const {
     activeQuestion,
     setActiveQuestion,
     aq,
-    questions,
+    chapterQuestions,
+    setActiveChapter,
+    simulateurQuestions,
+    activeChapter,
     setQuestions,
-    // course,
-    // updateQuestions,
   } = props;
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  // const { mutate: mutateUserAnswers } = useFetchUserAnswers(course);
+  const [timeExpiredModalVisible, setTimeExpiredModalVisible] = useState(false);
   const { setAlert } = useAlert();
-  const sendResult = async () => {
+  const saveResults = async () => {
     setLoading(true);
     try {
-      setAllToVerify(questions, setQuestions);
-      const user_id = await getUserId();
-      console.log("user_id", user_id);
-      if (user_id) {
-        const user_answers = questions.map(({ question_id, user_answers }) =>
-          user_answers.map(({ answer_id }) => ({
-            question_id,
-            answer_id,
-            user_id,
-          }))
-        );
-        await supabase
-          .from("user_answers")
-          .upsert(user_answers.flat(), { onConflict: "answer_id" });
-        // mutateUserAnswers();
-        setAlert("Resultat enregistré!", "success");
-        setActiveQuestion(0);
-      }
-      // if (user) {
-      //   let { data: takeData, error: takeError } = await supabase
-      //     .from("takes")
-      //     .upsert(
-      //       {
-      //         score: getScore(questions),
-      //         course_id: questions[0].course_id,
-      //         course_title: course.title,
-      //         user_id: user?.id,
-      //       },
-      //       { onConflict: "course_id" }
-      //     )
-      //     .select();
-      //   if (error || takeError) throw error || takeError;
-      //   if (data && takeData) {
-      //     setModalVisible(false);
-      //     setAlert("Resultat enregistré!", "success");
-      //   }
-      //   // mutateTakes();
-      //   setLoading(true);
-      //   setActiveQuestion(0);
-      // }
+      setAllVerifyToTrue(setQuestions);
+      const simulateurQuestionsToStore = JSON.stringify(
+        simulateurQuestions.map((chapter) => ({
+          score: getScore(chapter.chapter_questions),
+          ...chapter,
+        }))
+      );
+      await AsyncStorage.setItem(
+        "simulateurResults",
+        simulateurQuestionsToStore
+      );
+      setAlert("Resultat enregistré!", "success");
+      setActiveQuestion(0);
+      setActiveChapter(0);
     } catch (error) {
+      // console.log(error);
       setAlert("Resultat non enregistré!", "error");
     } finally {
       setLoading(false);
       setModalVisible(false);
+      setTimeExpiredModalVisible(() => false);
     }
   };
-  const endTest = () => {
-    sendResult();
-  };
+  useImperativeHandle(ref, () => ({
+    async saveResults() {
+      setTimeExpiredModalVisible(true);
+    },
+  }));
+  useEffect(() => {
+    console.log(timeExpiredModalVisible)
+    timeExpiredModalVisible && saveResults();
+  }, [timeExpiredModalVisible]);
+
   return (
-    <View className="mt-auto px-2 py-4 mb-12 flex flex-row">
+    <View className="mt-auto px-2 py-4 mb-5 flex flex-row">
       <TouchableOpacity
-        disabled={activeQuestion == 0}
+        disabled={activeQuestion == 0 && activeChapter == 0}
         onPress={() => setActiveQuestion((prev) => prev - 1)}
-        className="p-4 mr-2 rounded-[30px] bg-[#1068BB]"
+        className={
+          "p-4 mr-2 rounded-[30px] " +
+          (activeQuestion == 0 && activeChapter == 0
+            ? "bg-gray-400"
+            : "bg-[#1068BB]")
+        }
         style={{ elevation: 3 }}
       >
         <Text className="font-semibold text-white text-base">PRÉCÉDENTE</Text>
       </TouchableOpacity>
       <View className="flex-1 flex flex-row justify-end">
-        {activeQuestion == questions.length - 1 ? (
+        {activeChapter == simulateurQuestions.length - 1 &&
+        activeQuestion == chapterQuestions.length - 1 ? (
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
             className="p-4 px-5 rounded-[30px] bg-white"
@@ -100,8 +102,11 @@ const SimulateurFooter = (props: Props) => {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            disabled={activeQuestion == questions.length - 1}
-            onPress={() => setActiveQuestion((prev) => prev + 1)}
+            onPress={() =>
+              activeQuestion == chapterQuestions.length - 1
+                ? setActiveChapter((prev) => prev + 1)
+                : setActiveQuestion((prev) => prev + 1)
+            }
             className="p-4 px-5 rounded-[30px] bg-[#1068BB]"
             style={{ elevation: 3 }}
           >
@@ -112,39 +117,33 @@ const SimulateurFooter = (props: Props) => {
       <SubmitModal
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
-        endTest={endTest}
+        endTest={saveResults}
         loading={loading}
       />
+      <TimeExpiredModal modalVisible={timeExpiredModalVisible} />
     </View>
   );
 };
 
-export default SimulateurFooter;
+export default forwardRef(SimulateurFooter);
 
-const setToVerify = (
-  question: Question,
-  questions: any[],
-  setQuestions: React.Dispatch<React.SetStateAction<any[]>>
+const setAllVerifyToTrue = (
+  setQuestions: React.Dispatch<
+    React.SetStateAction<Simulateur_Chapter_Question[]>
+  >
 ) => {
-  const questionsCopy = [...questions];
-  questionsCopy.map((q) => {
-    if (q.question_id == question.question_id) q.verify = true;
-  });
-  setQuestions(questionsCopy);
+  setQuestions((prevQuestions) =>
+    prevQuestions.map((q) => ({
+      ...q,
+      chapter_questions: q.chapter_questions.map((question) => ({
+        ...question,
+        verify: true,
+      })),
+    }))
+  );
 };
 
-const setAllToVerify = (
-  questions: any[],
-  setQuestions: React.Dispatch<React.SetStateAction<any[]>>
-) => {
-  const questionsCopy = [...questions];
-  questionsCopy.map((q) => {
-    q.verify = true;
-  });
-  setQuestions(questionsCopy);
-};
-
-const getScore = (questions: any[]) => {
+const getScore = (questions: Simulateur_question[]) => {
   let score = 0;
   questions.map((q) => {
     questionVerifier(q.quiz_answers, q.user_answers) && score++;
@@ -152,12 +151,17 @@ const getScore = (questions: any[]) => {
   return score;
 };
 
-type Props = {
+export type SimulateurFooterProps = {
   activeQuestion: number;
   setActiveQuestion: React.Dispatch<React.SetStateAction<number>>;
   aq: any;
-  questions: UserAnswer[];
-  setQuestions: React.Dispatch<React.SetStateAction<any[]>>;
-  // course: Course;
-  // updateQuestions: any;
+  chapterQuestions: UserAnswer[];
+  setActiveChapter: React.Dispatch<React.SetStateAction<number>>;
+  simulateurQuestions: Simulateur_Chapter_Question[];
+  activeChapter: number;
+  setQuestions: React.Dispatch<
+    React.SetStateAction<Simulateur_Chapter_Question[]>
+  >;
 };
+
+export type SimulateurFooterHandle = { saveResults(): void };

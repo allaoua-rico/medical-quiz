@@ -1,16 +1,15 @@
 import { HomeStackScreenProps } from "../types";
-import { Image, useWindowDimensions } from "react-native";
-import UndrawExterne from "../images/Group 11.svg";
+import { useWindowDimensions } from "react-native";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SceneMap, TabView } from "react-native-tab-view";
 import { useState } from "react";
-import CustomTabBar from "./shared/Tabview/CustomTabBar";
-import Button2 from "./shared/buttons/Button2";
-import { Button, ScrollView } from "native-base";
+import CustomTabBar from "../components/shared/Tabview/CustomTabBar";
+import Button2 from "../components/shared/buttons/Button2";
+import { ScrollView } from "native-base";
 import TopImage from "../assets/images/undraw_pic_profile_re_7g2h.svg";
-import { Text } from "./Themed";
-import { useAuth } from "../auth/AuthProvider";
+import { Text } from "../components/Themed";
+// import { useAuth } from "../auth/AuthProvider";
 
 export default function HomeRoot({
   navigation,
@@ -19,14 +18,13 @@ export default function HomeRoot({
   const [routes] = useState([
     { key: "Categories", title: "categories" },
     { key: "Fav", title: "favoris" },
-    
   ]);
   const layout = useWindowDimensions();
   const renderScene = SceneMap({
     Categories: () => <Categories navigation={navigation} />,
     Fav: () => <Fav navigation={navigation} />,
   });
-  const { state, authContext } = useAuth();
+  // const { state, authContext } = useAuth();
 
   return (
     <SafeAreaView className="flex-1">
@@ -37,7 +35,7 @@ export default function HomeRoot({
               authContext?.signOut();
             }}
           > */}
-            <TopImage width={114} height={114} />
+          <TopImage width={114} height={114} />
           {/* </Button> */}
           <View style={{ flexShrink: 1 }}>
             <Text>Bonjour, nom d'utilisateur</Text>

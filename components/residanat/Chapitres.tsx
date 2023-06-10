@@ -14,7 +14,7 @@ export default function Chapitres(props: HomeStackScreenProps<"Residanat">) {
           title={title}
           onPress={() => {
             // console.log(title, getChapterModules(title));
-            navigation.navigate("ChapterList", {
+            navigation.navigate("ModulesList", {
               title,
               modules: getChapterModules(title),
               navArr: ["Courses"],

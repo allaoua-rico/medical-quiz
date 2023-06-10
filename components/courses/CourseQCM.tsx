@@ -11,11 +11,11 @@ import {
   isSelected,
   useFetchUserAnswers,
 } from "./functionsAndHooks";
-import { Answer, UserAnswer } from "./types";
+import { UserAnswer } from "./types";
 import { isEmptyArray } from "formik";
 import CourseQCMHeader from "../headers/CourseQCMHeader";
 import CustomCheckbox, { answerColor } from "./CustomCheckbox";
-import { addOrRemoveAns, addOrRemoveAnswer } from "../SimulateurFunctions";
+import { addOrRemoveAnswer } from "../SimulateurFunctions";
 
 export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   const { route } = props;
@@ -25,10 +25,10 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
   const [questions, setQuestions] = useState<UserAnswer[]>([]);
   useEffect(() => {
-    isEmptyArray(questions)
-    // &&
-    // !isEmptyArray(userAnswers)
-    && setQuestions(userAnswers);
+    isEmptyArray(questions) &&
+      // &&
+      // !isEmptyArray(userAnswers)
+      setQuestions(userAnswers);
   }, [userAnswers]);
   const [activeQuestion, setActiveQuestion] = useState<number>(questionIndex);
   const aq = questions[activeQuestion];
@@ -67,6 +67,7 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
             {aq?.quiz_answers.map((answer) => (
               <Pressable
                 style={{ elevation: 3 }}
+                disabled={aq.verify}
                 className={
                   "rounded-[30px] p-5 w-full flex-row items-center border-[3px] bg-white " +
                   (answerVerifier(aq, answer) == "right"
@@ -77,8 +78,7 @@ export default function CourseQCM(props: HomeStackScreenProps<"CourseQCM">) {
                 }
                 key={answer.answer_id}
                 onPress={() =>
-                  !aq.verify &&
-                  addOrRemoveAnswer(aq, answer, questions, setQuestions)
+                  setQuestions(addOrRemoveAnswer(aq, answer, questions))
                 }
               >
                 <Text className="text-sm font-medium flex-wrap flex-1">
