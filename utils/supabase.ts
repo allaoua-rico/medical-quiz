@@ -8,13 +8,13 @@ const supabaseUrl = "https://tgimpuabfxibhxqldwvy.supabase.co";
 // console.log("SUPABASE_KEY", SUPABASE_KEY);
 const options = {
   auth: {
-    localStorage: AsyncStorage,
+    storage: AsyncStorage,
     autoRefreshToken: true,
     persistSession: true,
-    detectSessionInUrl: true,
+    detectSessionInUrl: false,
   },
 };
 
-const supabase = createClient<Database>(supabaseUrl, SUPABASE_KEY, );
+const supabase = createClient<Database>(supabaseUrl, SUPABASE_KEY, options);
 
 export default supabase;

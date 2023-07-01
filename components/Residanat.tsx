@@ -3,7 +3,7 @@ import React from "react";
 import { HomeStackParamList, HomeStackScreenProps } from "../types";
 import { ScrollView } from "native-base";
 import Button1 from "./shared/buttons/Button1";
-import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import { TabView, SceneMap } from "react-native-tab-view";
 import Chapitres from "./residanat/Chapitres";
 import CustomTabBar from "./shared/Tabview/CustomTabBar";
 import SimulateurVector from "../assets/images/simulateur_vector.svg";

@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { isEmptyArray } from "formik";
 import * as SecureStore from "expo-secure-store";
 import useSWRImmutable from "swr/immutable";
+import useAlert from "../shared/Alert/useAlert";
 
 export const isSelected = (
   aq: UserAnswer | Simulateur_question,
@@ -49,6 +50,49 @@ export async function getUserId(): Promise<string> {
   const user_id = await SecureStore.getItemAsync("user_id");
   if (!user_id) throw new Error("user_id not found");
   return user_id;
+}
+
+export function useGetProfile() {
+  const { setAlert } = useAlert();
+  async function fetcher() {
+    try {
+      const user_id = await getUserId();
+      let { data, error, status } = await supabase
+        .from("profiles")
+        .select(
+          `full_name,username,
+        subscription(
+          plan(plan_name),id
+          )`
+        )
+        .eq("id", user_id)
+        .single();
+
+      let subscription_id;
+      if (
+        isArray(data?.subscription) &&
+        !isArray(data?.subscription?.[0]?.plan)
+      )
+        subscription_id = data?.subscription?.[0].id;
+      let {
+        data: options,
+        error: optionsError,
+        status: optionsStatus,
+      } = await supabase
+        .from("option_included")
+        .select(`option(*)`)
+        .eq("subsription_id", subscription_id);
+
+      if ((error && status !== 406) || (optionsError && optionsStatus !== 406))
+        throw error;
+      if (data && options)
+        return { ...data, options: options?.map(({ option }) => option) };
+    } catch (error: any) {
+      setAlert(error?.message || "Erreur serveur", "error");
+    }
+  }
+  const { data, error, isLoading, mutate } = useSWRImmutable("1", fetcher);
+  return { data, error, isLoading, mutate };
 }
 
 export const useFetchQuestions = (course: Course | null) => {
@@ -107,7 +151,6 @@ export const useFetchUserAnswers = (course: Course | null) => {
       )
       .ilike("course", course_title)
       .eq("user_answers.user_id", user_id);
-
     if (error) throw error;
     return data;
   }
@@ -115,7 +158,6 @@ export const useFetchUserAnswers = (course: Course | null) => {
     course && course.title,
     fetcher
   );
-  // console.log("useFetchUserAnswersdata", data);
   const userAnswers: UserAnswer[] =
     data?.map(({ user_answers, quiz_answers, ...rest }) => {
       const newUser_answers = isArray(user_answers)
@@ -253,3 +295,21 @@ export type Simulateur_question = {
 //   const { data, error, isLoading, mutate } = useSWR(course.title, fetcher);
 //   return { takes: data, isLoading, error, mutate };
 // };
+
+export function hexToRgba(hex: string, alpha: number): string {
+  // Remove the # symbol if present
+  hex = hex.replace("#", "");
+
+  // Check if the hex code is valid
+  const validHexRegExp = /^[0-9A-Fa-f]{6}$/;
+  if (!validHexRegExp.test(hex)) return "#0C4E8C";
+
+  // Parse the hexadecimal values for red, green, and blue
+  const red = parseInt(hex.substring(0, 2), 16);
+  const green = parseInt(hex.substring(2, 4), 16);
+  const blue = parseInt(hex.substring(4, 6), 16);
+
+  // Create the RGBA string
+  const rgba = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  return rgba;
+}

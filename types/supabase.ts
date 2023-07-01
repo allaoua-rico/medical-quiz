@@ -25,6 +25,77 @@ export interface Database {
           id?: number
           title?: string
         }
+        Relationships: []
+      }
+      option: {
+        Row: {
+          id: number
+          option_name: string | null
+        }
+        Insert: {
+          id?: number
+          option_name?: string | null
+        }
+        Update: {
+          id?: number
+          option_name?: string | null
+        }
+        Relationships: []
+      }
+      option_included: {
+        Row: {
+          created_at: string | null
+          id: number
+          option_id: number | null
+          plan_id: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          option_id?: number | null
+          plan_id?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          option_id?: number | null
+          plan_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "option_included_option_id_fkey"
+            columns: ["option_id"]
+            referencedRelation: "option"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "option_included_plan_id_fkey"
+            columns: ["plan_id"]
+            referencedRelation: "plan"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      plan: {
+        Row: {
+          created_at: string | null
+          current_price: number | null
+          id: number
+          plan_name: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          current_price?: number | null
+          id?: number
+          plan_name?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          current_price?: number | null
+          id?: number
+          plan_name?: string | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -32,7 +103,6 @@ export interface Database {
           full_name: string | null
           id: string
           updated_at: string | null
-          user_id: string | null
           username: string | null
           website: string | null
         }
@@ -41,7 +111,6 @@ export interface Database {
           full_name?: string | null
           id: string
           updated_at?: string | null
-          user_id?: string | null
           username?: string | null
           website?: string | null
         }
@@ -50,10 +119,17 @@ export interface Database {
           full_name?: string | null
           id?: string
           updated_at?: string | null
-          user_id?: string | null
           username?: string | null
           website?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       quiz_answers: {
         Row: {
@@ -74,6 +150,20 @@ export interface Database {
           Correct?: boolean | null
           question_id?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_answers_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "quiz_questions"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "quiz_answers_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "random_questions"
+            referencedColumns: ["question_id"]
+          }
+        ]
       }
       quiz_questions: {
         Row: {
@@ -94,6 +184,54 @@ export interface Database {
           Question?: string | null
           question_id?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_course_fkey"
+            columns: ["course"]
+            referencedRelation: "courses"
+            referencedColumns: ["title"]
+          },
+          {
+            foreignKeyName: "quiz_questions_course_id_fkey"
+            columns: ["course_id"]
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      subscription: {
+        Row: {
+          created_at: string | null
+          current_plan_id: number | null
+          id: number
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          current_plan_id?: number | null
+          id?: number
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          current_plan_id?: number | null
+          id?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscription_current_plan_id_fkey"
+            columns: ["current_plan_id"]
+            referencedRelation: "plan"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subscription_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       takes: {
         Row: {
@@ -123,6 +261,26 @@ export interface Database {
           updated_at?: string | null
           user_id?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "takes_course_id_fkey"
+            columns: ["course_id"]
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "takes_course_title_fkey"
+            columns: ["course_title"]
+            referencedRelation: "courses"
+            referencedColumns: ["title"]
+          },
+          {
+            foreignKeyName: "takes_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       user_answers: {
         Row: {
@@ -146,6 +304,32 @@ export interface Database {
           question_id?: string | null
           user_id?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "user_answers_answer_id_fkey"
+            columns: ["answer_id"]
+            referencedRelation: "quiz_answers"
+            referencedColumns: ["answer_id"]
+          },
+          {
+            foreignKeyName: "user_answers_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "quiz_questions"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "user_answers_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "random_questions"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "user_answers_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       user_favorites: {
         Row: {
@@ -166,10 +350,63 @@ export interface Database {
           question_id?: string | null
           user_id?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "user_favorites_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "quiz_questions"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "user_favorites_question_id_fkey"
+            columns: ["question_id"]
+            referencedRelation: "random_questions"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "user_favorites_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
-      [_ in never]: never
+      random_questions: {
+        Row: {
+          course: string | null
+          course_id: number | null
+          Question: string | null
+          question_id: string | null
+        }
+        Insert: {
+          course?: string | null
+          course_id?: number | null
+          Question?: string | null
+          question_id?: string | null
+        }
+        Update: {
+          course?: string | null
+          course_id?: number | null
+          Question?: string | null
+          question_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_course_fkey"
+            columns: ["course"]
+            referencedRelation: "courses"
+            referencedColumns: ["title"]
+          },
+          {
+            foreignKeyName: "quiz_questions_course_id_fkey"
+            columns: ["course_id"]
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Functions: {
       [_ in never]: never

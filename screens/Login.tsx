@@ -184,9 +184,10 @@ const PasswordInput = (props: InputProps) => {
 };
 
 const initialValues: FormValues = {
-  email: "allaoua.boudriou@gmail.com",
+  email: "externat_1@gmail.com",
   password: "password",
 };
+
 export type FormValues = {
   email: string;
   password: string;
@@ -198,7 +199,7 @@ const validationSchema = yup.object({
   email: yup
     .string()
     .email("Entrer un email valide")
-    .required("Un Email is requis"),
+    .required("Un email is requis"),
   password: yup
     .string()
     .min(8, "Le mot de passe doit contenir au moins 8 caractères")

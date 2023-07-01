@@ -84,7 +84,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               type: ActionKind.SET_ERROR,
               error: ErrorKind.CREDENTIALS,
             });
-          console.log(error);
+          // console.log(error);
           if (error?.message == "Network request failed")
             setAlert("Erreur serveur", "error");
         } finally {

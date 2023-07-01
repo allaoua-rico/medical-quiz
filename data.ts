@@ -107,8 +107,6 @@ export const yearsModules: Year[] = [
   // { year: getVariableName(() => annee1), modules: annee1 },
 ];
 
-// yearsModules;
-
 export const chapters: { title: string; years: string[] }[] = [
   {
     title: "Biologie",
