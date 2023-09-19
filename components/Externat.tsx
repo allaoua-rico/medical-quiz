@@ -16,7 +16,6 @@ export default function Externat({
         !isArray(option) && option ? option : null
       )
     : [];
-  // console.log(nnOptions);
   return (
     <SafeAreaView className="min-h-full bg-white">
       <ScrollView className="w-full mx-auto px-8">

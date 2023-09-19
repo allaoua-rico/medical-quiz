@@ -172,7 +172,7 @@ function useFetchAllChaptersQuestion() {
   const error = BiologieError || MedicalError || ChirurgieError;
   const simulateurQuestions: Simulateur_Chapter_Question[] = [
     { chapter_title: "Biologie", chapter_questions: BiologieQuestions },
-    //   when adding other chapters uncomment thiese lines
+    //  when adding other chapters uncomment thiese lines
     // { chapter_title: "Medical", chapter_questions: MedicalQuestions },
     // { chapter_title: "Chirurgie", chapter_questions: ChirurgieQuestions },
   ];

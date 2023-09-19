@@ -48,19 +48,15 @@ function CourseButton({
   backgroundColor: string;
   navArr: string[];
 }) {
-  // make a simple "questions" fetcher with swr
+  // todo: make a simple "questions" fetcher with swr
+  // console.log(course)
   const { questions } = useFetchQuestions(
     navArr.includes("CoursDownload") ? null : course
   );
-  // const { takes, isLoading: loadingTake } = useFetchUserTakes(course);
   const { userAnswers, isLoading: isLoadingUserAnswers } = useFetchUserAnswers(
     navArr.includes("CoursDownload") ? null : course
   );
-  // useEffect(() => {
-  //   console.log("takes",takes?.[0]);
-  // }, [takes]);
-  // console.log(navArr.includes("CoursDownload"));
-  // console.log(navArr.includes("CoursDownload"));
+
   return (
     <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">

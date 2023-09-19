@@ -1,0 +1,2711 @@
+[
+  {
+    "title": "2éme année",
+    "modules": [
+      {
+        "title": "Biochimie",
+        "courses": [
+          {
+            "title": "Aspects Biochimiques de la Cancérogénèse"
+          },
+          {
+            "title": "Biochimie de l'Homme Sain"
+          },
+          {
+            "title": "Biomarqueurs Cardiaques"
+          },
+          {
+            "title": "Enzymes Tissulaires et Plasmatiques"
+          },
+          {
+            "title": "Etapes de l'Analyse Biochimique"
+          },
+          {
+            "title": "Etude biochimique du LCR"
+          },
+          {
+            "title": "Exploration Biochimique d'une Protéinurie"
+          },
+          {
+            "title": "Exploration Biochimique des Endocrinopathies"
+          },
+          {
+            "title": "Exploration biochimique des Liquides de Ponction"
+          },
+          {
+            "title": "Exploration Biochimique du Métabolisme des Lipoprotéines et Athérosclérose"
+          },
+          {
+            "title": "Exploration Biochimique du Stress Oxydant"
+          },
+          {
+            "title": "Exploration des Anomalies Hydro-Electrolytiques"
+          },
+          {
+            "title": "Exploration des Protéines Sériques"
+          },
+          {
+            "title": "Exploration du Métabolisme Glucidique"
+          },
+          {
+            "title": "Exploration du Métabolisme Phosphocalcique"
+          },
+          {
+            "title": "Explorations Biochimiques des Fonctions Hépatiques"
+          },
+          {
+            "title": "Fonction Rénale"
+          }
+        ]
+      },
+      {
+        "title": "Biochimie Métabolique",
+        "courses": [
+          {
+            "title": "Catécholamines"
+          },
+          {
+            "title": "Eléments de Nutrition"
+          },
+          {
+            "title": "Equilibre Acido-Basique"
+          },
+          {
+            "title": "Généralités sur les Hormones"
+          },
+          {
+            "title": "Hormones Hypothalamo-Hypophysaires"
+          },
+          {
+            "title": "Hormones Stéroïdes"
+          },
+          {
+            "title": "Hormones Thyroïdiennes"
+          },
+          {
+            "title": "Remodelage Osseux"
+          },
+          {
+            "title": "Vitamines Hydrosolubles"
+          },
+          {
+            "title": "Vitamines Liposolubles"
+          }
+        ]
+      },
+      {
+        "title": "Histolologie",
+        "courses": [
+          {
+            "title": "Cortex cérébelleux"
+          },
+          {
+            "title": "Cortex Cérébral"
+          },
+          {
+            "title": "Embryologie de l'Appareil Urinaire"
+          },
+          {
+            "title": "Embryologie de l'Estomac"
+          },
+          {
+            "title": "Embryologie de l'Intestin Grêle"
+          },
+          {
+            "title": "Foie et Voies Biliaires"
+          },
+          {
+            "title": "Glande Mammaire"
+          },
+          {
+            "title": "Glande Pinéale"
+          },
+          {
+            "title": "Glandes Annexes"
+          },
+          {
+            "title": "L'appareil cardio-vasculaire"
+          },
+          {
+            "title": "L'immunité"
+          },
+          {
+            "title": "L'Intestin Grêle"
+          },
+          {
+            "title": "L'Oreille"
+          },
+          {
+            "title": "L'Œsophage"
+          },
+          {
+            "title": "La Cavité Buccale"
+          },
+          {
+            "title": "La Moelle Epinière"
+          },
+          {
+            "title": "La Moelle Osseuse"
+          },
+          {
+            "title": "La Muqueuse Olfactive"
+          },
+          {
+            "title": "La Paroi Gastrique"
+          },
+          {
+            "title": "La peau"
+          },
+          {
+            "title": "La Rate"
+          },
+          {
+            "title": "La Rétine"
+          },
+          {
+            "title": "La Surrénale"
+          },
+          {
+            "title": "La Thyroïde"
+          },
+          {
+            "title": "La Trachée"
+          },
+          {
+            "title": "Le Colon"
+          },
+          {
+            "title": "Le Complexe Hypothalamo-Hypophysaire"
+          },
+          {
+            "title": "Le Ganglion Lymphatique"
+          },
+          {
+            "title": "Le Ganglion Rachidien"
+          },
+          {
+            "title": "Le Pancréas Exocrine"
+          },
+          {
+            "title": "Le Rein"
+          },
+          {
+            "title": "Le Testicule"
+          },
+          {
+            "title": "Le Thymus"
+          },
+          {
+            "title": "Le Vagin"
+          },
+          {
+            "title": "Les Artères"
+          },
+          {
+            "title": "Les Bourgeons du Goût"
+          },
+          {
+            "title": "Les Capillaires"
+          },
+          {
+            "title": "Les Cellules Souches"
+          },
+          {
+            "title": "Les formations Lymphoïdes Associées aux Muqueuses"
+          },
+          {
+            "title": "Les Glandes Salivaires"
+          },
+          {
+            "title": "Les Ovaires"
+          },
+          {
+            "title": "Les Parathyroïdes"
+          },
+          {
+            "title": "Les Trompes"
+          },
+          {
+            "title": "Les Vaisseaux Lymphatiques"
+          },
+          {
+            "title": "Les Veines"
+          },
+          {
+            "title": "Les Voies Aeriennes Supérieures"
+          },
+          {
+            "title": "Les Voies Aériennes Profondes"
+          },
+          {
+            "title": "Les Voies Génitales Masculines"
+          },
+          {
+            "title": "Les Voies Urinaires"
+          },
+          {
+            "title": "Pancréas Endocrine"
+          },
+          {
+            "title": "Plèvres"
+          },
+          {
+            "title": "Spermogramme"
+          },
+          {
+            "title": "Utérus"
+          }
+        ]
+      },
+      {
+        "title": "Physiologie",
+        "courses": [
+          {
+            "title": "Absorption Intestinale"
+          },
+          {
+            "title": "Anatomie Fonctionnelle de l'Appareil Respiratoire"
+          },
+          {
+            "title": "Anatomie Fonctionnelle du Rein"
+          },
+          {
+            "title": "Anatomie Fonctionnelle du Système Cardio-Vasculaire"
+          },
+          {
+            "title": "Anatomie Fonctionnelle du Système Nerveux"
+          },
+          {
+            "title": "Automatisme et controle Nerveux de la Motricité digestive"
+          },
+          {
+            "title": "Biophysique de l'Audition"
+          },
+          {
+            "title": "Biophysique de la Circulation"
+          },
+          {
+            "title": "Biophysique de la Vision"
+          },
+          {
+            "title": "Circulation Pulmonaire"
+          },
+          {
+            "title": "Circulation veineuse"
+          },
+          {
+            "title": "Circulations Capillaire et Coronaire"
+          },
+          {
+            "title": "Cycle cardiaque"
+          },
+          {
+            "title": "Débit cardiaque"
+          },
+          {
+            "title": "Débit Sanguin Rénal"
+          },
+          {
+            "title": "Echanges Alvéolo-Capillaires"
+          },
+          {
+            "title": "Electrophysiologie cardiaque"
+          },
+          {
+            "title": "Excrétion Tubulaire"
+          },
+          {
+            "title": "Filtration Glomérulaire"
+          },
+          {
+            "title": "fonction respiratoir du sang"
+          },
+          {
+            "title": "Grossesse et Lactation"
+          },
+          {
+            "title": "L'audition"
+          },
+          {
+            "title": "La Douleur"
+          },
+          {
+            "title": "La Motricité Volontaire"
+          },
+          {
+            "title": "La Somesthésie"
+          },
+          {
+            "title": "La Vision"
+          },
+          {
+            "title": "Le Système Vestibulaire"
+          },
+          {
+            "title": "Les Rénexes Médullaires"
+          },
+          {
+            "title": "Mécanique ventilatoire"
+          },
+          {
+            "title": "Métabolisme Phosphocalcique"
+          },
+          {
+            "title": "Phase Bucco-Œsophagienne de la Digestion"
+          },
+          {
+            "title": "Phase Gastrique de la Digestion"
+          },
+          {
+            "title": "Phase Intestinale de la Digestion"
+          },
+          {
+            "title": "Physiologie de l'axe Hypothalamo-Hypophysaire"
+          },
+          {
+            "title": "Physiologie de la Corticosurrénale"
+          },
+          {
+            "title": "Physiologie de la glande Thyroïde"
+          },
+          {
+            "title": "Physiologie de la Médullosurrénale"
+          },
+          {
+            "title": "Physiologie des Glandes Endocrines"
+          },
+          {
+            "title": "Physiologie des Gonades"
+          },
+          {
+            "title": "Physiologie du Pancréas Endocrine"
+          },
+          {
+            "title": "Pouvoir de Concentration - Dilution des Urines"
+          },
+          {
+            "title": "Pression artérielle et Régulation"
+          },
+          {
+            "title": "Réabsorption tubulaire ( métabolisme du sodium)"
+          },
+          {
+            "title": "Réabsorption tubulaire (Autres Molécules)"
+          },
+          {
+            "title": "Régulation de la Ventilation"
+          },
+          {
+            "title": "Rôle des Noyaux Gris de la Base dans la Motricité"
+          },
+          {
+            "title": "Rôle du cervelet dans la Motricité"
+          },
+          {
+            "title": "Rôle du Rein dans l'Equilibre Acido-basique"
+          },
+          {
+            "title": "Sang et Hémostase"
+          },
+          {
+            "title": "Sommeil et Vigilance"
+          },
+          {
+            "title": "Ventilation Alvéolaire"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3éme année",
+    "modules": [
+      {
+        "title": "Anatomie Pathologique",
+        "courses": [
+          {
+            "title": "Aspects Anatomopathologiques des Affections Immunitaires"
+          },
+          {
+            "title": "Bases de Classification des Tumeurs"
+          },
+          {
+            "title": "Cellule Cancéreuse"
+          },
+          {
+            "title": "Etiopathogénie des Cancers"
+          },
+          {
+            "title": "Formes de l'Inflammation Banale"
+          },
+          {
+            "title": "Inflammation Spécifique"
+          },
+          {
+            "title": "L'athérosclérose"
+          },
+          {
+            "title": "Lymphomes"
+          },
+          {
+            "title": "Lésions Cellulaires et Tissulaires"
+          },
+          {
+            "title": "Mécanismes de la Carcinogénèse"
+          },
+          {
+            "title": "Métastases"
+          },
+          {
+            "title": "Pathologie Tumorale"
+          },
+          {
+            "title": "Pathologies de la Matrice Extracellulaire"
+          },
+          {
+            "title": "Pathologies Vasculaires et Troubles circulatoires"
+          },
+          {
+            "title": "Place de l'Anatomie Pathologique en Médecine"
+          },
+          {
+            "title": "Processus Inflammatoire Banal"
+          },
+          {
+            "title": "Stroma Tumoral"
+          },
+          {
+            "title": "Troubles du Métabolisme Cellulaire"
+          },
+          {
+            "title": "Tumeurs Conjonctives"
+          },
+          {
+            "title": "Tumeurs Embryonnaires"
+          },
+          {
+            "title": "Tumeurs Epithéliales"
+          },
+          {
+            "title": "Tumeurs Glandulaires"
+          },
+          {
+            "title": "Tumeurs Mélanocytaires"
+          },
+          {
+            "title": "Tumeurs Nerveuses"
+          },
+          {
+            "title": "Tumeurs Urothéliales"
+          }
+        ]
+      },
+      {
+        "title": "Immunologie",
+        "courses": [
+          {
+            "title": "Déficits Immunitaires"
+          },
+          {
+            "title": "Gammapathies Monoclonales"
+          },
+          {
+            "title": "Hypersensibilité Type I"
+          },
+          {
+            "title": "Hypersensibilité Type II"
+          },
+          {
+            "title": "Hypersensibilité Type III"
+          },
+          {
+            "title": "Hypersensibilité Type IV"
+          },
+          {
+            "title": "Immunité Anti-Infectieuses"
+          },
+          {
+            "title": "Maladies Auto-Immunes"
+          },
+          {
+            "title": "Mécanismes de l’Allergie"
+          },
+          {
+            "title": "Profils Protéiques Sériques"
+          },
+          {
+            "title": "Système HLA"
+          },
+          {
+            "title": "Tests Immunologiques"
+          },
+          {
+            "title": "Thérapeutiques Immunologiques"
+          }
+        ]
+      },
+      {
+        "title": "Microbiologie",
+        "courses": [
+          {
+            "title": "Actinomyces et Mycobactéries"
+          },
+          {
+            "title": "Anaérobies"
+          },
+          {
+            "title": "Bacilles Gram Négatif"
+          },
+          {
+            "title": "Bacilles Gram Positif"
+          },
+          {
+            "title": "Bactéries Intracellulaires"
+          },
+          {
+            "title": "Cocci Gram Négatif"
+          },
+          {
+            "title": "Cocci Gram Positif"
+          },
+          {
+            "title": "Diagnostic Biologique"
+          },
+          {
+            "title": "Désinfection - Stérilisation"
+          },
+          {
+            "title": "Génétique Bactérienne"
+          },
+          {
+            "title": "Infections Nosocomiales"
+          },
+          {
+            "title": "les  antibiotiques"
+          },
+          {
+            "title": "Microbiote Humain"
+          },
+          {
+            "title": "Monde Microbien et Structure"
+          },
+          {
+            "title": "Multiplication Virale"
+          },
+          {
+            "title": "Mycoplasnia et Ureaplasma"
+          },
+          {
+            "title": "Physiologie et Croissance Bactérienne"
+          },
+          {
+            "title": "Pouvoir pathogène"
+          },
+          {
+            "title": "Structure Virale"
+          },
+          {
+            "title": "Sérums et Vaccins"
+          }
+        ]
+      },
+      {
+        "title": "Parasitologie",
+        "courses": [
+          {
+            "title": "Amibes et Anioeboses"
+          },
+          {
+            "title": "Aspergilloses"
+          },
+          {
+            "title": "Babésioses"
+          },
+          {
+            "title": "Bilharzioses ou Schistosomoses"
+          },
+          {
+            "title": "Candidoses"
+          },
+          {
+            "title": "cestodes Parasites de l'Homme à l'état Adulte"
+          },
+          {
+            "title": "Cestodes Parasites de l'Homme à l'état Larvaire"
+          },
+          {
+            "title": "Coccidies"
+          },
+          {
+            "title": "Cryptococcoses"
+          },
+          {
+            "title": "Dermatophytes et Dermatophytoses"
+          },
+          {
+            "title": "Douves et Distomatoses"
+          },
+          {
+            "title": "Giardiose - Trichomonase"
+          },
+          {
+            "title": "Introduction à la Mycologie Médicale"
+          },
+          {
+            "title": "Introduction à la Parasitologie"
+          },
+          {
+            "title": "Leishmaniose"
+          },
+          {
+            "title": "Mycoses Profondes"
+          },
+          {
+            "title": "Notion d'Entomologie Médicale"
+          },
+          {
+            "title": "Nématodes Per os"
+          },
+          {
+            "title": "Nématodes Transcutanés"
+          },
+          {
+            "title": "Paludisme"
+          },
+          {
+            "title": "Pneumocystose"
+          },
+          {
+            "title": "Pouvoir pathogène"
+          },
+          {
+            "title": "SIDA"
+          },
+          {
+            "title": "Sporotrichoses et Mycétomes"
+          },
+          {
+            "title": "Toxoplasmose"
+          }
+        ]
+      },
+      {
+        "title": "Pharmacologie",
+        "courses": [
+          {
+            "title": "Absorption des médicaments"
+          },
+          {
+            "title": "AINS et AIS"
+          },
+          {
+            "title": "Antibiothérapie"
+          },
+          {
+            "title": "Bioéquivalence"
+          },
+          {
+            "title": "Distribution des Médicaments"
+          },
+          {
+            "title": "Effets Indésirables"
+          },
+          {
+            "title": "Elimination des Médicaments"
+          },
+          {
+            "title": "Essais cliniques"
+          },
+          {
+            "title": "Facteurs Modifiant la pharmacocinétique des médicaments"
+          },
+          {
+            "title": "Interactions Médicamenteuses"
+          },
+          {
+            "title": "Introduction à la Pharmacologie"
+          },
+          {
+            "title": "Mécanismes d'Action des médicaments"
+          },
+          {
+            "title": "Médicaments Analgésiques"
+          },
+          {
+            "title": "Médicaments Antihypertenseurs"
+          },
+          {
+            "title": "Médicaments du Système Nerveux Autonome"
+          },
+          {
+            "title": "Métabolisme des Médicaments"
+          },
+          {
+            "title": "Pharmacovigilance"
+          },
+          {
+            "title": "Toxicologie"
+          },
+          {
+            "title": "Voies d'administration des Médicaments"
+          }
+        ]
+      },
+      {
+        "title": "Physiopathologie",
+        "courses": [
+          {
+            "title": "Acidocétose Diabétique"
+          },
+          {
+            "title": "Allergie"
+          },
+          {
+            "title": "Dyskaliémies"
+          },
+          {
+            "title": "Dysmagnesémies"
+          },
+          {
+            "title": "Dénutrition"
+          },
+          {
+            "title": "Déséquilibre Hydrosodé"
+          },
+          {
+            "title": "Hypertension Intracrânienne"
+          },
+          {
+            "title": "Insuffisance Cardiaque"
+          },
+          {
+            "title": "Insuffisance Respiratoire Aigue"
+          },
+          {
+            "title": "Insuffisance Rénale Aigue"
+          },
+          {
+            "title": "La Douleur"
+          },
+          {
+            "title": "Maladie Thrombo-Embolique"
+          },
+          {
+            "title": "Occlusion Intestinale Aigue"
+          },
+          {
+            "title": "Physiopathologie de l'Hypertension Artérielle (HTA)"
+          },
+          {
+            "title": "Physiopathologie de l'Hypertension Portale"
+          },
+          {
+            "title": "Physiopathologie des Hémorragies Digestives"
+          },
+          {
+            "title": "Physiopathologie des Ictères"
+          },
+          {
+            "title": "Physiopathologie des Troubles de la Thermorégulation"
+          },
+          {
+            "title": "Troubles de l'Hématose"
+          },
+          {
+            "title": "Troubles de l'Hémostase"
+          },
+          {
+            "title": "Équilibre Acido-basique"
+          },
+          {
+            "title": "Équilibre Phosphocalcique"
+          },
+          {
+            "title": "État de choc"
+          },
+          {
+            "title": "Œdème Aigu du Poumon"
+          },
+          {
+            "title": "Œdèmes Périphériques"
+          }
+        ]
+      },
+      {
+        "title": "Radiologie",
+        "courses": [
+          {
+            "title": "Abdomen Sans Préparation (ASP)"
+          },
+          {
+            "title": "Bases de Formation des Rayon X"
+          },
+          {
+            "title": "Echographie de la Thyroïde"
+          },
+          {
+            "title": "Foie et Voies Biliaires"
+          },
+          {
+            "title": "Formation de l'image Radiologique"
+          },
+          {
+            "title": "Imagerie des Surrénale"
+          },
+          {
+            "title": "Imagerie des Urgences Digestives"
+          },
+          {
+            "title": "imagerie du pancréas"
+          },
+          {
+            "title": "Imagerie du Tube Digestif Haut"
+          },
+          {
+            "title": "Imagerie par Résonnance Magnétique (IRM)"
+          },
+          {
+            "title": "Intestin Grêle et Colon"
+          },
+          {
+            "title": "Poumon et Plèvre"
+          },
+          {
+            "title": "Radiologie du thorax"
+          },
+          {
+            "title": "Radiologie Gynécologique"
+          },
+          {
+            "title": "Radiologie Neurologique"
+          },
+          {
+            "title": "Radiologie Ostéo-Articulaire"
+          },
+          {
+            "title": "Radiologie Urinaire"
+          },
+          {
+            "title": "Tomodensitométrie (TDM)"
+          },
+          {
+            "title": "échographie"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "4éme année",
+    "modules": [
+      {
+        "title": "Cardiologie",
+        "courses": [
+          {
+            "title": "Antiarythmiques"
+          },
+          {
+            "title": "Antithrombosants"
+          },
+          {
+            "title": "Artériopathie Oblitérante des membres Inférieurs (AOMI)"
+          },
+          {
+            "title": "Bloc Auriculo-Ventriculaire (BAV)"
+          },
+          {
+            "title": "Béta Bloquants"
+          },
+          {
+            "title": "Cardiomyopathie Dilatée"
+          },
+          {
+            "title": "Cardiomyopathie Hypertrophique"
+          },
+          {
+            "title": "Cardiopathie Gravidique"
+          },
+          {
+            "title": "Cardiopathies Congénitales"
+          },
+          {
+            "title": "Diurétiques"
+          },
+          {
+            "title": "Embolie Pulmonaire"
+          },
+          {
+            "title": "Etats de Choc"
+          },
+          {
+            "title": "Hypertension Artérielle Pulmonaire (HTAP)"
+          },
+          {
+            "title": "Insuffisance Aortique"
+          },
+          {
+            "title": "Insuffisance Cardiaque"
+          },
+          {
+            "title": "Insuffisance Mitrale"
+          },
+          {
+            "title": "Pathologies de l’Aorte"
+          },
+          {
+            "title": "Rhumatisme Articulaire Aigu ( RAA)"
+          },
+          {
+            "title": "Rétrécissement Aortique"
+          },
+          {
+            "title": "Rétrécissement Mitrale"
+          },
+          {
+            "title": "Surveillance des Porteurs de Prothèses"
+          },
+          {
+            "title": "Syndrome Coronarien Aigu AVEC Sus-décalage ST (SCA)"
+          },
+          {
+            "title": "Syndrome Coronarien Aigu SANS Sus-décalage ST (SCA)"
+          },
+          {
+            "title": "Syndrome Coronarien chronique"
+          },
+          {
+            "title": "Thrombose Veineuse Profonde"
+          },
+          {
+            "title": "Tonicardiaques"
+          },
+          {
+            "title": "Troubles du Rythme"
+          },
+          {
+            "title": "Vasodilatateurs"
+          },
+          {
+            "title": "Œdème Aigu du Poumon"
+          }
+        ]
+      },
+      {
+        "title": "Chirurgie Générale",
+        "courses": [
+          {
+            "title": "Appendicite Aigue"
+          },
+          {
+            "title": "Cancer de l'Estomac"
+          },
+          {
+            "title": "Cancer de Pancréas"
+          },
+          {
+            "title": "Hernies Pariétales"
+          },
+          {
+            "title": "Hémorragie digestive"
+          },
+          {
+            "title": "Infarctus  Entéro-Mésentérique"
+          },
+          {
+            "title": "Kyste Hydatique du Foie"
+          },
+          {
+            "title": "Lithiase Biliaire"
+          },
+          {
+            "title": "Occlusions Intestinale Aigüe"
+          },
+          {
+            "title": "Pancréatite Aigue"
+          },
+          {
+            "title": "Traumatisme Abdominal"
+          }
+        ]
+      },
+      {
+        "title": "GASTRO-ENTEROLOGIE",
+        "courses": [
+          {
+            "title": "Cancer de l'Estomac"
+          },
+          {
+            "title": "Cirrhose"
+          },
+          {
+            "title": "Diarrhée Chronique"
+          },
+          {
+            "title": "Dyspepsies Fonctionnelles"
+          },
+          {
+            "title": "Endoscopie Digestive"
+          },
+          {
+            "title": "Foie et Médicaments"
+          },
+          {
+            "title": "Gastrites"
+          },
+          {
+            "title": "Hernie Hiatale"
+          },
+          {
+            "title": "Hypertension Portale"
+          },
+          {
+            "title": "Hépatites"
+          },
+          {
+            "title": "Ictères"
+          },
+          {
+            "title": "Maladie Cœliaque"
+          },
+          {
+            "title": "Maladie de Crohn"
+          },
+          {
+            "title": "Maladies Inflammatoires Chroniques de L'intestin"
+          },
+          {
+            "title": "Pathologies Anales Bénignes"
+          },
+          {
+            "title": "Polypes et Polyposes"
+          },
+          {
+            "title": "Rectocolite Hémorragique"
+          },
+          {
+            "title": "Reflux Gastro-œsophagien"
+          },
+          {
+            "title": "Syndrome de l'Intestin Irritable"
+          },
+          {
+            "title": "tuberculose Intestinale"
+          },
+          {
+            "title": "Tumeurs Bénignes du Foie"
+          },
+          {
+            "title": "Tumeurs Malignes du Foie"
+          },
+          {
+            "title": "Ulcère Gastro duodénal"
+          },
+          {
+            "title": "œsophagite Caustique"
+          },
+          {
+            "title": "Œsophagite Peptique"
+          }
+        ]
+      },
+      {
+        "title": "Hématologie",
+        "courses": [
+          {
+            "title": "Anémie Ferriprive"
+          },
+          {
+            "title": "Anémie mégaloblastique"
+          },
+          {
+            "title": "Anémies Hémolytique Auto-immunes"
+          },
+          {
+            "title": "Aplasie Médullaire"
+          },
+          {
+            "title": "CAT devant une Adénopathie"
+          },
+          {
+            "title": "CAT devant une Anémie"
+          },
+          {
+            "title": "Drépanocytose"
+          },
+          {
+            "title": "Groupages Sanguins"
+          },
+          {
+            "title": "Hématimétrie et Hématopoïèse"
+          },
+          {
+            "title": "Hémophilie"
+          },
+          {
+            "title": "Leucémie Aigüe"
+          },
+          {
+            "title": "Lymphomes"
+          },
+          {
+            "title": "Microsphérocytose Héréditaire"
+          },
+          {
+            "title": "Myélomes Multiples"
+          },
+          {
+            "title": "Purpuras"
+          },
+          {
+            "title": "Syndromes Lymphoprolifératifs"
+          },
+          {
+            "title": "Syndromes Myéloprolifératifs"
+          },
+          {
+            "title": "Transfusion Sanguine"
+          },
+          {
+            "title": "β-Thalassémie"
+          }
+        ]
+      },
+      {
+        "title": "Maladies infectieuses",
+        "courses": [
+          {
+            "title": "Amibiase"
+          },
+          {
+            "title": "Brucellose"
+          },
+          {
+            "title": "Choc Septique"
+          },
+          {
+            "title": "Choléra"
+          },
+          {
+            "title": "Diarrhées Aigües Infectieuses"
+          },
+          {
+            "title": "Diphtérie"
+          },
+          {
+            "title": "Fièvre Boutonneuse"
+          },
+          {
+            "title": "Fièvre Typhoïde"
+          },
+          {
+            "title": "Grippe"
+          },
+          {
+            "title": "Herpès viroses"
+          },
+          {
+            "title": "Infection à VIH"
+          },
+          {
+            "title": "Infections Nosocomiales"
+          },
+          {
+            "title": "La Rage"
+          },
+          {
+            "title": "Leptospirose"
+          },
+          {
+            "title": "Méningites purulentes"
+          },
+          {
+            "title": "Méningites à LCR Clair"
+          },
+          {
+            "title": "Paludisme"
+          },
+          {
+            "title": "Rubéole"
+          },
+          {
+            "title": "Septicémie streptococcique"
+          },
+          {
+            "title": "Septicémie à BGN"
+          },
+          {
+            "title": "Septicémie à Staphylocoque"
+          },
+          {
+            "title": "Tétanos"
+          }
+        ]
+      },
+      {
+        "title": "Neurologie",
+        "courses": [
+          {
+            "title": "Accident Vasculaire Cérébral Hémorragique"
+          },
+          {
+            "title": "Accident Vasculaire Cérébral Ischémiques"
+          },
+          {
+            "title": "Algies Crânio-Faciales"
+          },
+          {
+            "title": "Ataxies Cérébelleuses"
+          },
+          {
+            "title": "Comas"
+          },
+          {
+            "title": "Dystrophies Musculaires Progressives"
+          },
+          {
+            "title": "Encéphalites Virales"
+          },
+          {
+            "title": "Epilepsies Généralisées et Partielles"
+          },
+          {
+            "title": "Infections et Parasitoses du SNC"
+          },
+          {
+            "title": "la maladie d'Alzheimer"
+          },
+          {
+            "title": "Maladie de Parkinson"
+          },
+          {
+            "title": "Manifestations Neurologiques au cours des Maladies Générales"
+          },
+          {
+            "title": "Myasthénie"
+          },
+          {
+            "title": "Myopathies Inflammatoires"
+          },
+          {
+            "title": "Neuropathies Périphériques et Syndrome de Guillain Barré"
+          },
+          {
+            "title": "Pathologies Médullaires"
+          },
+          {
+            "title": "Sclérose en Plaques"
+          },
+          {
+            "title": "Sclérose Latérale Amyotrophique"
+          },
+          {
+            "title": "Thrombose Veineuse Cérébrale"
+          }
+        ]
+      },
+      {
+        "title": "Neurologie chirurgicale",
+        "courses": [
+          {
+            "title": "compressions Médullaires"
+          },
+          {
+            "title": "Craniosténoses"
+          },
+          {
+            "title": "Dysraphies"
+          },
+          {
+            "title": "Hernies Discales"
+          },
+          {
+            "title": "Hydrocéphalie"
+          },
+          {
+            "title": "Hémorragies Méningées"
+          },
+          {
+            "title": "Malformation de la charnière Cervico-occipitale"
+          },
+          {
+            "title": "syndrome d'Hypertension Intracrânienne (HIC)"
+          },
+          {
+            "title": "Syringomyélie"
+          },
+          {
+            "title": "Traumatisme Crânien"
+          },
+          {
+            "title": "Tumeurs cérébrales"
+          }
+        ]
+      },
+      {
+        "title": "Oncologie",
+        "courses": [
+          {
+            "title": "Epidémiologie et Cancérogénèse"
+          },
+          {
+            "title": "Méthodes Diagnostic du Cancer"
+          },
+          {
+            "title": "Principes du traitement des Cancers"
+          },
+          {
+            "title": "Prévention et Dépistage des Cancers"
+          }
+        ]
+      },
+      {
+        "title": "Pneumologie",
+        "courses": [
+          {
+            "title": "Apnées Obstructives du Sommeil"
+          },
+          {
+            "title": "Asthme Bronchique"
+          },
+          {
+            "title": "broncho-pneumopathie chronique Obstructive (BPCO)"
+          },
+          {
+            "title": "Bronchopneumopathies Virale - Grippe"
+          },
+          {
+            "title": "Cancer Broncho-pulmonaire"
+          },
+          {
+            "title": "Dilatations des Bronches"
+          },
+          {
+            "title": "Emphyséme pulmonaire"
+          },
+          {
+            "title": "Histoire Naturelle de là Tuberculeuse"
+          },
+          {
+            "title": "Kyste Hydatique du Poumon"
+          },
+          {
+            "title": "les Suppurations pulmonaires"
+          },
+          {
+            "title": "Pneumoconioses"
+          },
+          {
+            "title": "Pneumopathies Aigues Communautaires"
+          },
+          {
+            "title": "PNEUMOPATHIES INTERSTITIELLES DIFFUSES"
+          },
+          {
+            "title": "Pneumothorax Spontané"
+          },
+          {
+            "title": "Programme National de Lutte anti-Tuberculeuse (PNAT)"
+          },
+          {
+            "title": "Sarcoïdose"
+          },
+          {
+            "title": "Suppurations Pleurales"
+          },
+          {
+            "title": "Traitement Antituberculeux"
+          },
+          {
+            "title": "Tuberculose Extra-pulmonaire"
+          },
+          {
+            "title": "Tuberculose Pulmonaire"
+          },
+          {
+            "title": "Tumeurs Médiastinales"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "5éme année",
+    "modules": [
+      {
+        "title": "Endocrinologie",
+        "courses": [
+          {
+            "title": "Cancer de la Thyroïde"
+          },
+          {
+            "title": "Complications Aigues du Diabète"
+          },
+          {
+            "title": "Complications chroniques du Diabète"
+          },
+          {
+            "title": "Diabète Insipide"
+          },
+          {
+            "title": "Diabète Sucré"
+          },
+          {
+            "title": "Dyslipidémies"
+          },
+          {
+            "title": "Exploration Antéhypophysaire"
+          },
+          {
+            "title": "Exploration de la Surrénale"
+          },
+          {
+            "title": "Exploration de la Thyroïde"
+          },
+          {
+            "title": "Exploration des Parathyroïdes"
+          },
+          {
+            "title": "Goitre simple"
+          },
+          {
+            "title": "HTA Endocrinienne"
+          },
+          {
+            "title": "Hyperparathyroïdie"
+          },
+          {
+            "title": "Hyperthyroïdie"
+          },
+          {
+            "title": "Hypoparathyroïdie"
+          },
+          {
+            "title": "Hypothyroïdie"
+          },
+          {
+            "title": "Insuffisance Antéhypophysaire"
+          },
+          {
+            "title": "Insuffisance Surrénalienne"
+          },
+          {
+            "title": "Obésité"
+          },
+          {
+            "title": "Syndrome de Cushing"
+          },
+          {
+            "title": "Thyroïdite"
+          },
+          {
+            "title": "Traitement du Diabète Sucré"
+          },
+          {
+            "title": "Tumeurs Hypophysaires"
+          }
+        ]
+      },
+      {
+        "title": "Gynécologie",
+        "courses": [
+          {
+            "title": "Algies Pelviennes"
+          },
+          {
+            "title": "Aménorrhées Iaire et Ilaire"
+          },
+          {
+            "title": "Cancer de l'Endomètre"
+          },
+          {
+            "title": "Cancer du Col"
+          },
+          {
+            "title": "Cancer du Sein"
+          },
+          {
+            "title": "Choriocarcinome"
+          },
+          {
+            "title": "Contraception"
+          },
+          {
+            "title": "Couple Stérile"
+          },
+          {
+            "title": "Cycle menstruel - Ovulation"
+          },
+          {
+            "title": "Diabète et Grossesse"
+          },
+          {
+            "title": "Délivrance Normale et Pathologique"
+          },
+          {
+            "title": "Dépassement de Terme"
+          },
+          {
+            "title": "Eclampsie"
+          },
+          {
+            "title": "Endométriose"
+          },
+          {
+            "title": "Fibrome Utérin"
+          },
+          {
+            "title": "Frottis Cervico-Vaginal"
+          },
+          {
+            "title": "Grossesse Extra Utérine"
+          },
+          {
+            "title": "Grossesse Gémellaire"
+          },
+          {
+            "title": "HTA et Grossesse"
+          },
+          {
+            "title": "Hémorragies du 1er Trimestre"
+          },
+          {
+            "title": "Hémorragies du 3éme Trimestre"
+          },
+          {
+            "title": "Infection et Grossesse"
+          },
+          {
+            "title": "Infection Génitale Haute (Salpingite)"
+          },
+          {
+            "title": "Iso-immunisation Rhésus"
+          },
+          {
+            "title": "Les Avortements"
+          },
+          {
+            "title": "Leucorrhée"
+          },
+          {
+            "title": "Masses Pelviennes"
+          },
+          {
+            "title": "Menace D'Accouchement Prématuré"
+          },
+          {
+            "title": "Mort In-Utéro"
+          },
+          {
+            "title": "Mécanisme Général de l'Accouchement"
+          },
+          {
+            "title": "Ménopause"
+          },
+          {
+            "title": "Pathologie des Suites de Couche"
+          },
+          {
+            "title": "Présentation du Sommet"
+          },
+          {
+            "title": "Présentation Transversale"
+          },
+          {
+            "title": "Présentations du Siège"
+          },
+          {
+            "title": "Présentations Défléchies (Front - Face)"
+          },
+          {
+            "title": "Souffrance Fœtale Aigue et Chronique"
+          },
+          {
+            "title": "Surveillance de la Grossesse"
+          },
+          {
+            "title": "Tuberculose"
+          },
+          {
+            "title": "tumeurs de l'ovaire"
+          }
+        ]
+      },
+      {
+        "title": "Néphrologie",
+        "courses": [
+          {
+            "title": "Infections Urinaires"
+          },
+          {
+            "title": "Insuffisance Rénale Aigüe"
+          },
+          {
+            "title": "Maladie Rénale Chronique"
+          },
+          {
+            "title": "Néphropathies Glomérulaires"
+          },
+          {
+            "title": "Néphropathies Héréditaires"
+          },
+          {
+            "title": "Néphropathies Interstitielles"
+          },
+          {
+            "title": "Rein et Grossesse"
+          },
+          {
+            "title": "Rein et HTA"
+          },
+          {
+            "title": "Rein et Médicaments"
+          }
+        ]
+      },
+      {
+        "title": "Orthopédie",
+        "courses": [
+          {
+            "title": "Examen Orthopédique du Nouveau-Né"
+          },
+          {
+            "title": "Fracture de l'Astragale -Talus-"
+          },
+          {
+            "title": "Fracture de l'Extrémité Inférieure de l'Humérus"
+          },
+          {
+            "title": "Fracture de l'Extrémité Inférieure du Fémur"
+          },
+          {
+            "title": "Fracture de l'Extrémité Inférieure du Radius"
+          },
+          {
+            "title": "Fracture de l'Extrémité Supérieure de l'Humérus"
+          },
+          {
+            "title": "Fracture de l'Extrémité Supérieure des Deux os de l'Avant-Bras"
+          },
+          {
+            "title": "Fracture de l'Extrémité Supérieure du Fémur"
+          },
+          {
+            "title": "Fracture de la Diaphyse Fémorale"
+          },
+          {
+            "title": "Fracture de la Diaphyse Humérale"
+          },
+          {
+            "title": "Fracture de la Rotule"
+          },
+          {
+            "title": "Fracture des deux os de l'Avant-Bras"
+          },
+          {
+            "title": "Fracture du Bassin"
+          },
+          {
+            "title": "Fracture du Calcanéum"
+          },
+          {
+            "title": "Fracture du Cotyle"
+          },
+          {
+            "title": "Fracture du Pilon Tibial"
+          },
+          {
+            "title": "Fracture du Scaphoïde Carpien"
+          },
+          {
+            "title": "Fractures de la Jambe chez l'adulte"
+          },
+          {
+            "title": "Fractures Malléolaires"
+          },
+          {
+            "title": "Généralités en Orthopédie Traumatologie"
+          },
+          {
+            "title": "Hanche Douloureuse de l'enfant"
+          },
+          {
+            "title": "Luxation Semi Lunaire"
+          },
+          {
+            "title": "Luxations Traumatique de l'articulation Scapulo-Humérale"
+          },
+          {
+            "title": "Objectifs de la Médecine Physique et Réadaptation"
+          },
+          {
+            "title": "Ostéomyélite de l'Enfant"
+          },
+          {
+            "title": "Scolioses"
+          },
+          {
+            "title": "Syndrome de Volkmann"
+          },
+          {
+            "title": "Traumatisme de la Ceinture Scapulaire"
+          },
+          {
+            "title": "Traumatisme de la Main"
+          },
+          {
+            "title": "Traumatisme du Pied"
+          },
+          {
+            "title": "Traumatisme du Rachis Cervical"
+          },
+          {
+            "title": "Traumatisme du Rachis Dorso-Lombaire"
+          },
+          {
+            "title": "Tumeurs osseuses"
+          }
+        ]
+      },
+      {
+        "title": "Psychiatrie",
+        "courses": [
+          {
+            "title": "Arriérations Mentales"
+          },
+          {
+            "title": "CAT devant un état Suicidaire"
+          },
+          {
+            "title": "Confusion mentale"
+          },
+          {
+            "title": "Délire chronique"
+          },
+          {
+            "title": "Etats d'Agitation"
+          },
+          {
+            "title": "Etats démentiels"
+          },
+          {
+            "title": "Généralités sur les Névroses"
+          },
+          {
+            "title": "Introduction à la Psychiatrie"
+          },
+          {
+            "title": "Personnalités Pathologiques"
+          },
+          {
+            "title": "Psychiatrie de l’Enfant et de l’Adolescent"
+          },
+          {
+            "title": "Psychoses Délirantes Aigues"
+          },
+          {
+            "title": "Psychotropes"
+          },
+          {
+            "title": "Schizophrénies"
+          },
+          {
+            "title": "Thérapeutiques en psychiatrie"
+          },
+          {
+            "title": "Toxicomanie"
+          },
+          {
+            "title": "Troubles Anxieux"
+          },
+          {
+            "title": "Troubles de l'Humeur"
+          },
+          {
+            "title": "Troubles du Comportement Alimentaire"
+          },
+          {
+            "title": "Troubles du Langage"
+          },
+          {
+            "title": "Troubles du Sommeil"
+          }
+        ]
+      },
+      {
+        "title": "Pédiatrie",
+        "courses": [
+          {
+            "title": "Anémies carentielles"
+          },
+          {
+            "title": "Anémies Hémolytiques"
+          },
+          {
+            "title": "Arthrite Juvénile Idiopathique (AJI)"
+          },
+          {
+            "title": "Asthme de l'Enfant"
+          },
+          {
+            "title": "Cardiopathies Congénitales"
+          },
+          {
+            "title": "Convulsions - Epilepsie"
+          },
+          {
+            "title": "Coqueluche"
+          },
+          {
+            "title": "Croissance et Développement"
+          },
+          {
+            "title": "Dermatoses du Nourrisson"
+          },
+          {
+            "title": "Diabète Type 1"
+          },
+          {
+            "title": "Diarrhée Aigue"
+          },
+          {
+            "title": "Diarrhées Chroniques"
+          },
+          {
+            "title": "Diététique du Nourrisson"
+          },
+          {
+            "title": "Déshydratation Aiguë"
+          },
+          {
+            "title": "Détresse Respiratoire du Nouveau-né"
+          },
+          {
+            "title": "Développement Psychomoteur"
+          },
+          {
+            "title": "Glomérulonéphrite Aigue (GNA)"
+          },
+          {
+            "title": "Hypothyroïdie"
+          },
+          {
+            "title": "Ictère Néonatal"
+          },
+          {
+            "title": "Infections Néonatales"
+          },
+          {
+            "title": "Infections Respiratoires Aigue - Bronchiolite"
+          },
+          {
+            "title": "Infections Urinaires"
+          },
+          {
+            "title": "Insuffisance Cardiaque"
+          },
+          {
+            "title": "Leishmaniose Kala-Azar"
+          },
+          {
+            "title": "Les Masses Abdominales"
+          },
+          {
+            "title": "Malnutrition Protéino-Energétique"
+          },
+          {
+            "title": "Méningites"
+          },
+          {
+            "title": "Nouveau-né Normal et à Risque"
+          },
+          {
+            "title": "Pneumopathies Communautaires"
+          },
+          {
+            "title": "Rachitisme Carentielle"
+          },
+          {
+            "title": "Rhumatisme Articulaire Aigu (RAA)"
+          },
+          {
+            "title": "Syndrome Néphrotique"
+          },
+          {
+            "title": "Syndromes Hémorragiques"
+          },
+          {
+            "title": "Tuberculose"
+          },
+          {
+            "title": "Urgence Chirurgicales Néonatales"
+          },
+          {
+            "title": "Vaccinations"
+          },
+          {
+            "title": "Vomissements"
+          }
+        ]
+      },
+      {
+        "title": "Rhumatologie",
+        "courses": [
+          {
+            "title": "Algodystrophie"
+          },
+          {
+            "title": "Arthrose"
+          },
+          {
+            "title": "Connectivités"
+          },
+          {
+            "title": "Goutte"
+          },
+          {
+            "title": "Généralités en Rhumatologie"
+          },
+          {
+            "title": "Lombosciatique"
+          },
+          {
+            "title": "Ostéomalacie"
+          },
+          {
+            "title": "Ostéoporose"
+          },
+          {
+            "title": "Polyarthrite Rhumatoïde"
+          },
+          {
+            "title": "Rhumatisme Infectieux Aseptique"
+          },
+          {
+            "title": "Rhumatisme Infectieux Septique"
+          },
+          {
+            "title": "Spondylarthropathies"
+          },
+          {
+            "title": "Traitement de Polyarthrite Rhumatoïde"
+          },
+          {
+            "title": "Épaule Douloureuse"
+          }
+        ]
+      },
+      {
+        "title": "Urologie",
+        "courses": [
+          {
+            "title": "Affections Kystiques du Rein"
+          },
+          {
+            "title": "Cancer de la Prostate"
+          },
+          {
+            "title": "Cancer du Rein"
+          },
+          {
+            "title": "CAT devant un Gros Rein"
+          },
+          {
+            "title": "CAT devant une Grosse Bourse"
+          },
+          {
+            "title": "CAT devant une Hématurie"
+          },
+          {
+            "title": "Colique Néphrétique"
+          },
+          {
+            "title": "Explorations Paracliniques en Urologie"
+          },
+          {
+            "title": "Hypertrophie Bénigne de la Prostate"
+          },
+          {
+            "title": "Imagerie des Masses Rénales"
+          },
+          {
+            "title": "Incontinence Urinaire"
+          },
+          {
+            "title": "Lithiase Urinaire"
+          },
+          {
+            "title": "Rétention Aigue d'Urines"
+          },
+          {
+            "title": "Traitements oncologiques en urologie"
+          },
+          {
+            "title": "Traumatisme du Rein"
+          },
+          {
+            "title": "Traumatismes du Bas Appareil Urinaire"
+          },
+          {
+            "title": "Tuberculose Uro-génitale"
+          },
+          {
+            "title": "Tumeurs de la vessie"
+          },
+          {
+            "title": "Tumeurs Germinales du Testicule"
+          },
+          {
+            "title": "Uropathies Malformatives"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "6éme année",
+    "modules": [
+      {
+        "title": "Dermatologie",
+        "courses": [
+          {
+            "title": "Acné"
+          },
+          {
+            "title": "Alopécies"
+          },
+          {
+            "title": "Antiseptiques"
+          },
+          {
+            "title": "Carcinomes"
+          },
+          {
+            "title": "CAT devant un Prurit"
+          },
+          {
+            "title": "Dermatite Séborrhéique"
+          },
+          {
+            "title": "Dermatoses Bulleuses Auto-Immunes"
+          },
+          {
+            "title": "Dermocorticoïdes"
+          },
+          {
+            "title": "Eczéma - Dermatite Atopique"
+          },
+          {
+            "title": "Erythème Noueux"
+          },
+          {
+            "title": "Gale"
+          },
+          {
+            "title": "Infections Sexuellement Transmissibles"
+          },
+          {
+            "title": "Leishmaniose Cutanée"
+          },
+          {
+            "title": "Lichen Plan"
+          },
+          {
+            "title": "Lymphomes"
+          },
+          {
+            "title": "Lésions Elémentaires"
+          },
+          {
+            "title": "Mycoses Cutanées Superficielles"
+          },
+          {
+            "title": "Mélanomes"
+          },
+          {
+            "title": "Pityriasis"
+          },
+          {
+            "title": "Psoriasis"
+          },
+          {
+            "title": "Sarcoïdose"
+          },
+          {
+            "title": "Thérapeutique"
+          },
+          {
+            "title": "Tuberculose Cutanée"
+          },
+          {
+            "title": "Ulcère de Jambe"
+          },
+          {
+            "title": "Urticaire"
+          },
+          {
+            "title": "Viroses à Expression Cutanée"
+          }
+        ]
+      },
+      {
+        "title": "Droit Médical",
+        "courses": [
+          {
+            "title": "L'Acte Médical"
+          },
+          {
+            "title": "L'Assistance Médicale à la Procréation (PMA)"
+          },
+          {
+            "title": "L'Euthanasie"
+          },
+          {
+            "title": "L'Examen d'un Prévenu en Garde à Vue"
+          },
+          {
+            "title": "La Loi sanitaire"
+          },
+          {
+            "title": "La Responsabilité Médicale source d'indemnisation"
+          },
+          {
+            "title": "La Responsabilité Médicale source de sanction"
+          },
+          {
+            "title": "La Réquisition"
+          },
+          {
+            "title": "Le Code de Déontologie Médicale"
+          },
+          {
+            "title": "Le Placement des Malades Mentaux"
+          },
+          {
+            "title": "Le Secret Professionnel"
+          },
+          {
+            "title": "Les Aspects médico-légaux de la Grève de la Faim"
+          },
+          {
+            "title": "Les Certificats Médicaux"
+          },
+          {
+            "title": "Les Prélèvements et Transplantations d’Organes"
+          },
+          {
+            "title": "Les Règles de Prescription"
+          }
+        ]
+      },
+      {
+        "title": "Médecine du travail",
+        "courses": [
+          {
+            "title": "Accidents du Travail et Maladies Professionnelles"
+          },
+          {
+            "title": "Intoxication par les Pesticides"
+          },
+          {
+            "title": "Introduction à la Médecine de Travail"
+          },
+          {
+            "title": "Introduction à la Toxicologie Industrielle"
+          },
+          {
+            "title": "Introduction à l’Hygiène Industrielle"
+          },
+          {
+            "title": "L'Asthme Professionnel"
+          },
+          {
+            "title": "Le Risque Biologique en Milieu Professionnel"
+          },
+          {
+            "title": "Le Travail en Horaires Atypique"
+          },
+          {
+            "title": "Les Cancers Professionnels"
+          },
+          {
+            "title": "Les Intoxications par les métaux lourds ( Mercure )"
+          },
+          {
+            "title": "Les Intoxications par les métaux lourds (Plomb)"
+          },
+          {
+            "title": "Les Pathologies liées à l'Amiante"
+          },
+          {
+            "title": "Les Rayonnements Ionisants"
+          },
+          {
+            "title": "Les Solvants"
+          },
+          {
+            "title": "Les Troubles Musculo-squelettiques"
+          },
+          {
+            "title": "Silicose"
+          },
+          {
+            "title": "Surdité Professionnelle"
+          }
+        ]
+      },
+      {
+        "title": "Médecine légal",
+        "courses": [
+          {
+            "title": "Blessures par Armes Blanches"
+          },
+          {
+            "title": "Blessures par Armes à Feu"
+          },
+          {
+            "title": "Généralités sur le Syndrome Asphyxique"
+          },
+          {
+            "title": "Généralités sur les Blessures"
+          },
+          {
+            "title": "L'Avortement Illégal"
+          },
+          {
+            "title": "L'Infanticide"
+          },
+          {
+            "title": "La Mort Diagnostic, Datation et Législation"
+          },
+          {
+            "title": "La Pendaison"
+          },
+          {
+            "title": "La Submersion"
+          },
+          {
+            "title": "Les Intoxications en Médecine Légale"
+          },
+          {
+            "title": "Les Maltraitances à Enfants"
+          },
+          {
+            "title": "Les Violences Sexuelles"
+          },
+          {
+            "title": "Mort Subite-Mort Suspecte"
+          },
+          {
+            "title": "Suffocation Strangulation"
+          }
+        ]
+      },
+      {
+        "title": "Ophtalmologie",
+        "courses": [
+          {
+            "title": "Anatomie de l'œil"
+          },
+          {
+            "title": "Cataractes"
+          },
+          {
+            "title": "Causes de Cécité"
+          },
+          {
+            "title": "Glaucomes"
+          },
+          {
+            "title": "Médication en Ophtalmologie"
+          },
+          {
+            "title": "Trachome"
+          },
+          {
+            "title": "Traumatisme Oculaire"
+          },
+          {
+            "title": "Troubles de la Motilité Oculaire"
+          },
+          {
+            "title": "Troubles de la Réfraction"
+          },
+          {
+            "title": "Tumeurs Oculaires"
+          },
+          {
+            "title": "Œil et Pathologies Générales"
+          },
+          {
+            "title": "Œil Rouge Douloureux"
+          },
+          {
+            "title": "Œil Rouge Non Douloureux"
+          }
+        ]
+      },
+      {
+        "title": "ORL",
+        "courses": [
+          {
+            "title": "Adénopathies Cervicales Chroniques"
+          },
+          {
+            "title": "Amygdalites Chroniques"
+          },
+          {
+            "title": "Angines Aigues"
+          },
+          {
+            "title": "Cancer de l'Amygdale"
+          },
+          {
+            "title": "Cancer de la Langue"
+          },
+          {
+            "title": "Cancer du Cavum"
+          },
+          {
+            "title": "Cancer du Larynx"
+          },
+          {
+            "title": "Corps Etrangers"
+          },
+          {
+            "title": "Dysphagies"
+          },
+          {
+            "title": "Dysphonie"
+          },
+          {
+            "title": "Dyspnées laryngées"
+          },
+          {
+            "title": "Epistaxis"
+          },
+          {
+            "title": "Généralités sur les cancers des VADS"
+          },
+          {
+            "title": "Mastoïdite"
+          },
+          {
+            "title": "Otalgies"
+          },
+          {
+            "title": "Otite Externe"
+          },
+          {
+            "title": "Otite Moyenne Aigue"
+          },
+          {
+            "title": "Otite Moyenne Chronique Cholestéatomateuse"
+          },
+          {
+            "title": "Otite Moyenne Chronique Simple"
+          },
+          {
+            "title": "Otite Moyenne Chronique Séromuqueuse"
+          },
+          {
+            "title": "Pathologies du Septum Nasal"
+          },
+          {
+            "title": "Phlegmon Périamygdalien"
+          },
+          {
+            "title": "Rhinopharyngites"
+          },
+          {
+            "title": "Rhinosinusites"
+          },
+          {
+            "title": "Surdité"
+          },
+          {
+            "title": "Traumatismes de la Face"
+          },
+          {
+            "title": "Vertige"
+          }
+        ]
+      },
+      {
+        "title": "Psychologie",
+        "courses": [
+          {
+            "title": "Développement de la Personnalité"
+          },
+          {
+            "title": "Effet Placébo"
+          },
+          {
+            "title": "Fonctionnement Mental"
+          },
+          {
+            "title": "Les Grandes Etapes de la Vie"
+          },
+          {
+            "title": "Principes Psychosomatiques"
+          },
+          {
+            "title": "Psycho-Gériatrie"
+          },
+          {
+            "title": "Psychologie de l'Enfant"
+          },
+          {
+            "title": "Psychologie Objectifs et Méthodes"
+          },
+          {
+            "title": "Reaction Face au Cancer"
+          },
+          {
+            "title": "Relation Médecin Malade"
+          },
+          {
+            "title": "Réaction Face au Stress"
+          },
+          {
+            "title": "Réactions Face à la Maladie Aigue et Chronique"
+          },
+          {
+            "title": "Sens et Fonction de la Maladie"
+          }
+        ]
+      },
+      {
+        "title": "Thérapeutique",
+        "courses": [
+          {
+            "title": "Atelier Anticoagulant"
+          },
+          {
+            "title": "Atelier Antihypertenseurs"
+          },
+          {
+            "title": "Atelier Diurétique et Digitaliques"
+          },
+          {
+            "title": "Base du Traitement de la Douleur"
+          },
+          {
+            "title": "Education thérapeutique"
+          },
+          {
+            "title": "Essais thérapeutiques"
+          },
+          {
+            "title": "Interactions Médicamenteuses"
+          },
+          {
+            "title": "Méthodes Thérapeutiques Non Médicamenteuses"
+          },
+          {
+            "title": "Neuroleptiques et des Tranquillisants"
+          },
+          {
+            "title": "Pharmacodynamique"
+          },
+          {
+            "title": "Pharmacovigilance - Effets Indésirables des Médicaments"
+          },
+          {
+            "title": "Prescription des Anti-Inflammatoires Non Stéroïdiens"
+          },
+          {
+            "title": "Prescription des Antidiabétiques"
+          },
+          {
+            "title": "Prescription en chimiothérapie Anti-Infectieuse"
+          },
+          {
+            "title": "Régles de prescription en Corticothérapie"
+          },
+          {
+            "title": "Thérapeutiques au cours de l'Insuffisance Hépatique"
+          },
+          {
+            "title": "Thérapeutiques au cours de l'Insuffisance Rénale"
+          },
+          {
+            "title": "Thérapeutiques au cours de la Grossesse et de l'Allaitement"
+          },
+          {
+            "title": "Thérapeutiques chez le Sujet Agé"
+          },
+          {
+            "title": "Vaccination en dehors du Programme National Vaccinal"
+          }
+        ]
+      },
+      {
+        "title": "Urgences-Chirurgicales",
+        "courses": [
+          {
+            "title": "Appendicite Aigue"
+          },
+          {
+            "title": "Brulure Cutanée"
+          },
+          {
+            "title": "CAT Devant un Polytraumatisé"
+          },
+          {
+            "title": "Hémorragie Digestive Graves"
+          },
+          {
+            "title": "Pancréatite Aigue"
+          },
+          {
+            "title": "Péritonite Aigue"
+          },
+          {
+            "title": "Syndrome Occlusif"
+          },
+          {
+            "title": "Traumatisme Thoracique"
+          },
+          {
+            "title": "Urgences Chirurgicales Néonatales"
+          }
+        ]
+      },
+      {
+        "title": "Urgences-Médicales",
+        "courses": [
+          {
+            "title": "Agitations aiguës"
+          },
+          {
+            "title": "Anurie - Rétention Vésicale Aigue (RVA)"
+          },
+          {
+            "title": "Comas et Pertes de Connaissance"
+          },
+          {
+            "title": "Convulsions"
+          },
+          {
+            "title": "Douleurs abdominales"
+          },
+          {
+            "title": "Douleurs Thoraciques"
+          },
+          {
+            "title": "Dyspnées aiguës"
+          },
+          {
+            "title": "Déshydratations"
+          },
+          {
+            "title": "Etats de Choc"
+          },
+          {
+            "title": "Généralités sur les Urgences"
+          },
+          {
+            "title": "Hypo-Hyperthermies"
+          },
+          {
+            "title": "Intoxications Aiguës"
+          },
+          {
+            "title": "Morsures et Envenimations"
+          },
+          {
+            "title": "Ressuscitation Cardiorespiratoire"
+          },
+          {
+            "title": "Urgences Hypertensives"
+          },
+          {
+            "title": "Urgences Néonatales"
+          }
+        ]
+      },
+      {
+        "title": "Économie",
+        "courses": [
+          {
+            "title": "Besoins de Soins d'une Population"
+          },
+          {
+            "title": "Croissance des Dépenses de Santé"
+          },
+          {
+            "title": "Evaluation de la Qualité des Soins"
+          },
+          {
+            "title": "Financement de la Santé"
+          },
+          {
+            "title": "Initiation à l'Economie de Santé"
+          },
+          {
+            "title": "Moyens pour maîtriser les Dépenses de Santé"
+          },
+          {
+            "title": "Organisation des Systèmes de Santé"
+          },
+          {
+            "title": "Réforme du Système de Santé en Algérie"
+          },
+          {
+            "title": "Systèmes de Santé dans le Monde"
+          },
+          {
+            "title": "Sécurité Sociale"
+          },
+          {
+            "title": "Travail par Programme"
+          }
+        ]
+      },
+      {
+        "title": "Épidimiologie",
+        "courses": [
+          {
+            "title": "Associations et Causalité"
+          },
+          {
+            "title": "Epidémiologie Analytiques"
+          },
+          {
+            "title": "Epidémiologie des Maladies non Transmissibles"
+          },
+          {
+            "title": "Epidémiologie des Maladies Transmissibles"
+          },
+          {
+            "title": "Epidémiologie Descriptives"
+          },
+          {
+            "title": "Introduction à l'Epidémiologie"
+          },
+          {
+            "title": "Investigation d'une Epidémie"
+          },
+          {
+            "title": "Les Enquêtes Epidémiologiques"
+          },
+          {
+            "title": "Les Essais Thérapeutiques"
+          },
+          {
+            "title": "Les Programmes de Santé"
+          },
+          {
+            "title": "Les Tests de Dépistage et de Diagnostic"
+          },
+          {
+            "title": "Prévention des Infections liées aux Soins"
+          },
+          {
+            "title": "Surveillance Epidémiologique"
+          }
+        ]
+      }
+    ]
+  }
+]

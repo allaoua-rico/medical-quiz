@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
@@ -27,6 +27,37 @@ export interface Database {
         }
         Relationships: []
       }
+      devices: {
+        Row: {
+          device_id: string | null
+          device_name: string | null
+          id: number
+          last_login: string | null
+          user_id: string | null
+        }
+        Insert: {
+          device_id?: string | null
+          device_name?: string | null
+          id?: number
+          last_login?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          device_id?: string | null
+          device_name?: string | null
+          id?: number
+          last_login?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "devices_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       option: {
         Row: {
           id: number
@@ -47,19 +78,19 @@ export interface Database {
           created_at: string | null
           id: number
           option_id: number | null
-          plan_id: number | null
+          subsription_id: number | null
         }
         Insert: {
           created_at?: string | null
           id?: number
           option_id?: number | null
-          plan_id?: number | null
+          subsription_id?: number | null
         }
         Update: {
           created_at?: string | null
           id?: number
           option_id?: number | null
-          plan_id?: number | null
+          subsription_id?: number | null
         }
         Relationships: [
           {
@@ -69,9 +100,9 @@ export interface Database {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "option_included_plan_id_fkey"
-            columns: ["plan_id"]
-            referencedRelation: "plan"
+            foreignKeyName: "option_included_subsription_id_fkey"
+            columns: ["subsription_id"]
+            referencedRelation: "subscription"
             referencedColumns: ["id"]
           }
         ]
@@ -204,19 +235,19 @@ export interface Database {
           created_at: string | null
           current_plan_id: number | null
           id: number
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string | null
           current_plan_id?: number | null
           id?: number
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string | null
           current_plan_id?: number | null
           id?: number
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {

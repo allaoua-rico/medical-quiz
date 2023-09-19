@@ -29,6 +29,7 @@ export default function HomeRoot({
   });
   const { authContext } = useAuth();
   const { data } = useGetProfile();
+  // console.log(data)
   return (
     <SafeAreaView className="flex-1">
       <View className="flex-1 px-2">
@@ -65,7 +66,6 @@ function Categories({ navigation }: { navigation: any }) {
   let userPlan: string = "";
   if (isArray(data?.subscription) && !isArray(data?.subscription?.[0]?.plan))
     userPlan = data?.subscription?.[0]?.plan?.plan_name || "";
-  console.log(userPlan);
   const [routes] = useState([
     { key: "Categories", title: "categories" },
     { key: "Fav", title: "favoris" },
@@ -97,7 +97,13 @@ function Categories({ navigation }: { navigation: any }) {
       </View>
     );
   return (
-    <ScrollView className="px-4 py-12" contentContainerStyle={{ rowGap: 24 }}>
+    <ScrollView
+      contentContainerStyle={{
+        rowGap: 24,
+        paddingVertical: 20,
+        paddingHorizontal: 16,
+      }}
+    >
       {[
         {
           title: "RESIDANAT",

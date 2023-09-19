@@ -8,6 +8,7 @@ import {
   Image,
   Input,
   Pressable,
+  ScrollView,
   Spinner,
   VStack,
   WarningOutlineIcon,
@@ -21,6 +22,7 @@ import { Text } from "../components/Themed";
 
 const Login = () => {
   const { state, authContext } = useAuth();
+  // console.log(state?.isLoading)
   return (
     <ImageBackground
       source={require("../assets/images/login.png")}
@@ -28,74 +30,81 @@ const Login = () => {
       alt="loginImg"
     >
       <View className="bg-[#327BE9] opacity-50 absolute top-0 bottom-0 left-0 right-0"></View>
-      <SafeAreaView className="flex-1 justify-center space-y-[70px]">
-        <View className="items-center space-y-4">
-          <Text className="text-white text-4xl">Bienvenue à</Text>
-          <Text className="text-[#0C4E8C] text-5xl font-extrabold">MEDICS</Text>
-        </View>
-        <View>
-          <Formik
-            initialValues={initialValues}
-            onSubmit={(data) => {
-              authContext?.signIn(data);
-            }}
-            validationSchema={validationSchema}
-          >
-            {(props) => (
-              <VStack
-                width="80%"
-                space={8}
-                className="mx-auto my-auto items-center"
-              >
-                <View className="bg-white w-full py-9 items-center rounded-[20px]">
-                  <View className="bg-primary p-4 rounded-full absolute -top-7">
-                    <Image
-                      alt="personlogo"
-                      source={require("../assets/images/person.png")}
-                    />
-                  </View>
-                  <View className="opacity-80 items-center w-full">
-                    <EmailInput {...props} />
-                    <PasswordInput {...props} />
-                  </View>
-                </View>
-                {state?.error == "CREDENTIALS" && (
-                  <View className="flex items-center">
-                    <WarningOutlineIcon
-                      size="xs"
-                      style={{ fontSize: 20, color: "#FF9999" }}
-                    />
-                    <Text className="text-red-300 font-semibold text-sm">
-                      Les informations fournies sont incorrectes
-                    </Text>
-                  </View>
-                )}
-                <Button
-                  onPress={(e) => {
-                    props.handleSubmit();
-                  }}
-                  colorScheme="#0C4E8C"
-                  className="w-4/5 bg-primary"
-                  disabled={state?.isLoading}
+      <SafeAreaView className="">
+        <ScrollView
+          className="space-y-[60px]"
+          contentContainerStyle={{ paddingBottom: 12 }}
+        >
+          <View className="items-center space-y-4">
+            <Text className="text-white text-4xl">Bienvenue à</Text>
+            <Text className="text-[#0C4E8C] text-5xl font-extrabold">
+              MEDICS
+            </Text>
+          </View>
+          <View>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={(data) => {
+                authContext?.signIn(data);
+              }}
+              validationSchema={validationSchema}
+            >
+              {(props) => (
+                <VStack
+                  width="80%"
+                  space={8}
+                  className="mx-auto my-auto items-center"
                 >
-                  {state?.isLoading ? (
-                    <View className="py-4 font-bold text-white text-lg">
-                      <Spinner
-                        accessibilityLabel="Login"
-                        color="white"
-                        size="sm"
+                  <View className="bg-white w-full py-9 items-center rounded-[20px]">
+                    <View className="bg-primary p-4 rounded-full absolute -top-7">
+                      <Image
+                        alt="personlogo"
+                        source={require("../assets/images/person.png")}
                       />
                     </View>
-                  ) : (
-                    <Text className="py-4 font-bold text-white text-lg">
-                      CONNEXION
-                    </Text>
+                    <View className="opacity-80 items-center w-full">
+                      <EmailInput {...props} />
+                      <PasswordInput {...props} />
+                    </View>
+                  </View>
+                  {state?.error == "CREDENTIALS" && (
+                    <View className="flex items-center">
+                      <WarningOutlineIcon
+                        size="xs"
+                        style={{ fontSize: 20, color: "#FF9999" }}
+                      />
+                      <Text className="text-red-300 font-semibold text-sm">
+                        Les informations fournies sont incorrectes
+                      </Text>
+                    </View>
                   )}
-                </Button>
-              </VStack>
-            )}
-          </Formik>
-        </View>
+                  <Button
+                    onPress={(e) => {
+                      props.handleSubmit();
+                    }}
+                    colorScheme="#0C4E8C"
+                    className="w-4/5 bg-primary"
+                    disabled={state?.isLoading}
+                  >
+                    {state?.isLoading ? (
+                      <View className="py-4 font-bold text-white text-lg">
+                        <Spinner
+                          accessibilityLabel="Login"
+                          color="white"
+                          size="sm"
+                        />
+                      </View>
+                    ) : (
+                      <Text className="py-4 font-bold text-white text-lg">
+                        CONNEXION
+                      </Text>
+                    )}
+                  </Button>
+                </VStack>
+              )}
+            </Formik>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -184,7 +193,7 @@ const PasswordInput = (props: InputProps) => {
 };
 
 const initialValues: FormValues = {
-  email: "externat_1@gmail.com",
+  email: "allaoua.boudriou@gmail.com",
   password: "password",
 };
 

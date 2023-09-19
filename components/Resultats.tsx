@@ -1,7 +1,6 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { HomeStackScreenProps } from "../types";
-import { chapters } from "../data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Spinner } from "native-base";
 import { Simulateur_Chapter_Question } from "../screens/Simulateur";

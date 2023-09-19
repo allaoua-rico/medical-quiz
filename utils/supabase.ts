@@ -5,7 +5,7 @@ import { Database } from "../types/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const supabaseUrl = "https://tgimpuabfxibhxqldwvy.supabase.co";
-// console.log("SUPABASE_KEY", SUPABASE_KEY);
+
 const options = {
   auth: {
     storage: AsyncStorage,

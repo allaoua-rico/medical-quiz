@@ -38,6 +38,7 @@ export default function Navigation() {
       </SafeAreaView>
     );
   }
+  // console.log(state?.refreshToken)
   return (
     <NavigationContainer
       initialState={initialState}

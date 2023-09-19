@@ -6,8 +6,8 @@ import _, { isArray } from "lodash";
 import useSWR from "swr";
 import { isEmptyArray } from "formik";
 import * as SecureStore from "expo-secure-store";
-import useSWRImmutable from "swr/immutable";
 import useAlert from "../shared/Alert/useAlert";
+import modulesByChapters from "../../modulesByChapters.json";
 
 export const isSelected = (
   aq: UserAnswer | Simulateur_question,
@@ -86,12 +86,17 @@ export function useGetProfile() {
       if ((error && status !== 406) || (optionsError && optionsStatus !== 406))
         throw error;
       if (data && options)
-        return { ...data, options: options?.map(({ option }) => option) };
+        return {
+          ...data,
+          user_id,
+          options: options?.map(({ option }) => option),
+        };
     } catch (error: any) {
       setAlert(error?.message || "Erreur serveur", "error");
     }
   }
-  const { data, error, isLoading, mutate } = useSWRImmutable("1", fetcher);
+  // const { data, error, isLoading, mutate } = useSWRImmutable("1", fetcher);
+  const { data, error, isLoading, mutate } = useSWR("1", fetcher);
   return { data, error, isLoading, mutate };
 }
 
@@ -139,8 +144,8 @@ export const useFetchQuestions = (course: Course | null) => {
 export const useFetchUserAnswers = (course: Course | null) => {
   async function fetcher(...args: string[]) {
     const user_id = await getUserId();
-    // console.log(user_id);
     const [course_title] = args;
+    // console.log("course_title", course_title);
     let { data, error } = await supabase
       .from("quiz_questions")
       .select(
@@ -151,6 +156,7 @@ export const useFetchUserAnswers = (course: Course | null) => {
       )
       .ilike("course", course_title)
       .eq("user_answers.user_id", user_id);
+    // console.log("useFetchUserAnswers", data);
     if (error) throw error;
     return data;
   }
@@ -203,9 +209,7 @@ export const useFetchUserAnswers = (course: Course | null) => {
 
 export const useFavoritStatus = (question_id: string) => {
   async function fetcher(question_id: string) {
-    // console.log("question_id", question_id);
     const user_id = await getUserId();
-    // console.log(user_id);
     let { data, error } = await supabase
       .from("user_favorites")
       .select(`*`)
@@ -213,7 +217,6 @@ export const useFavoritStatus = (question_id: string) => {
       .eq("user_id", user_id)
       .maybeSingle();
 
-    // console.log("data", data);
     if (error) console.log("error", error);
     return data;
   }
@@ -240,19 +243,14 @@ export const useFetchChapterRandomQuestions = (chapter_title: string) => {
          quiz_answers(Answer,Correct,answer_id)`
       )
       .in("course", coursesArray)
+      .is("for_simulator", true)
       .limit(120);
-    // console.log("error", error);
-    // console.log(
-    //   "data",
-    //   data?.map(({ Question }) => Question)
-    // );
+    console.log("coursesArray", coursesArray);
+    console.log("useFetchChapterRandomQuestions", data);
     if (error) throw error;
     return data;
   }
-  const { data, error, isLoading, mutate } = useSWRImmutable(
-    chapterCourses,
-    fetcher
-  );
+  const { data, error, isLoading, mutate } = useSWR(chapterCourses, fetcher);
   const simulateurQuestions: Simulateur_question[] = isArray(data)
     ? data?.map(({ quiz_answers, ...rest }) => {
         const newQuiz_answers: Answer[] = isArray(quiz_answers)
