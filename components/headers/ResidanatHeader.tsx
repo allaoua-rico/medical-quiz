@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

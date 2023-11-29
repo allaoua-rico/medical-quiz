@@ -55,11 +55,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             error: ErrorKind.NULL,
           });
           let { data, error } = await supabase.auth.signInWithPassword(creds);
-          // console.log("data", data);
+          // console.log("signInWithPassword",data)
           let authorized = false;
           const userDevices = await getUserDevices();
           // No device registered for user ( new Login )
           if (userDevices.length == 0) {
+            // console.log("registerDevice");
             registerDevice();
             authorized = true;
           } else {
@@ -130,11 +131,10 @@ const getUserDevices = async () => {
       .from("devices")
       .select("*")
       .eq("user_id", user_id);
-    // console.log("getUserDevices", data);
     if (error) throw error;
     return data;
   } catch (error) {
-    console.error("Error retrieving user devices:", error);
+    // console.error("Error retrieving user devices:", error);
     return [];
   }
 };
@@ -152,8 +152,8 @@ const registerDevice = async () => {
       }
     );
     if (error) throw error;
-    console.log("Device registered successfully!");
+    // console.log("Device registered successfully!");
   } catch (error) {
-    console.error("Error registering device:", error);
+    // console.error("Error registering device:", error);
   }
 };

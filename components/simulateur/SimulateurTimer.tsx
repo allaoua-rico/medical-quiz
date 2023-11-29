@@ -7,8 +7,8 @@ type Duree = { seconds: number; minutes: number };
 
 export default function SimulateurTimer({ endTest }: { endTest: () => any }) {
   const duree: Duree = {
-    seconds: 4,
-    minutes: 1,
+    seconds: 0,
+    minutes: 10,
   };
   const [timer] = useTimer({
     countdown: true,

@@ -8,13 +8,11 @@ import { Answer } from "../components/courses/types";
 
 export default function Courses({
   route: {
-    params: { course, },
+    params: { course },
   },
   navigation,
 }: HomeStackScreenProps<"Courses">) {
   const { userAnswers, isLoading } = useFetchUserAnswers(course);
-  // console.log(course)
-  // console.log("userAnswers", userAnswers?.[21]);
   return (
     <ScrollView className="flex-1 px-4" contentContainerStyle={{ flexGrow: 1 }}>
       <Text className="text-dark_text font-medium text-xl pb-3">
@@ -73,11 +71,13 @@ export function questionVerifier(
   user_answers: Answer[]
 ) {
   let correct = true;
-  quiz_answers.find((answer) => {
+  if (user_answers.length == 0) return false;
+  quiz_answers.forEach((answer) => {
     // Verify if the correct answers are selected
     const isSelected = user_answers.find(
       (selected_a) => selected_a.answer_id == answer.answer_id
     );
+    if (typeof isSelected == "undefined") correct = false;
     if (!answer.Correct && isSelected) correct = false;
     if (answer.Correct && !isSelected) correct = false;
   });

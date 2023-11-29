@@ -10,7 +10,6 @@ import SimulateurVector from "../assets/images/simulateur_vector.svg";
 import QuestionmarkSVG from "../assets/images/questionmark.svg";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Resultats from "./Resultats";
-// import HomeWrapperImg from "./layout/HomeWrapperImg";
 
 export default function Residanat(props: HomeStackScreenProps<"Residanat">) {
   const { navigation } = props;

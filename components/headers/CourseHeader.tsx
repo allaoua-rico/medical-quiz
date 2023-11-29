@@ -16,7 +16,7 @@ export default function CourseHeader({
   return (
     <View className="pt-20 pb-11 relative rounded-b-[20px] bg-primary pl-3">
       <View className="flex flex-row items-center">
-        <BackButton navigation={navigation} />
+        <BackButton navigation={navigation}  />
         <View style={{ flexShrink: 1 }}>
           <Text className="text-2xl text-white">{course.title}</Text>
         </View>

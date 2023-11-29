@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View } from "react-native";
 import WrongSVG from "../../assets/images/wrong.svg";
 import RightSVG from "../../assets/images/right.svg";
 
@@ -17,9 +16,9 @@ export default function CustomCheckbox({
       className={
         "border-[3px] rounded-full w-[30px] h-[30px] justify-center items-center border-primary " +
         (status == "right"
-          ? `bg-[${answerColor.right}] border-[${answerColor.right}]`
+          ? `bg-green-500 border-green-500`
           : status == "wrong"
-          ? `bg-[${answerColor.wrong}] border-[${answerColor.wrong}]`
+          ? `bg-red-500 border-red-500`
           : theme == "light"
           ? "bg-primary"
           : "bg-[#0C81E4] border-[#0C81E4]")
@@ -38,6 +37,6 @@ export default function CustomCheckbox({
 }
 
 export const answerColor = {
-  right: "#00FF00",
-  wrong: "#FF0000",
+  right: "#00ff00",
+  wrong: "#ff0000",
 };

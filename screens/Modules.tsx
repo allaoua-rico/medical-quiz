@@ -49,14 +49,12 @@ function CourseButton({
   navArr: string[];
 }) {
   // todo: make a simple "questions" fetcher with swr
-  // console.log(course)
   const { questions } = useFetchQuestions(
     navArr.includes("CoursDownload") ? null : course
   );
   const { userAnswers, isLoading: isLoadingUserAnswers } = useFetchUserAnswers(
     navArr.includes("CoursDownload") ? null : course
   );
-
   return (
     <View className="my-4">
       <Shadow stretch distance={5} offset={[0, 4]} startColor="#00000008">

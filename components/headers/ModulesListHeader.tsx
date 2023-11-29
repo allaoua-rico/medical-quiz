@@ -8,7 +8,7 @@ const ModulesListHeader = ({
   navigation,
 }: HomeStackScreenProps<"ModulesList">) => {
   return (
-    <View className="pt-20 pb-16 relative rounded-b-[20px] flex flex-row items-center bg-primary pl-3">
+    <View className="pt-12 pb-8 pl-3 relative rounded-b-[20px] flex flex-row items-center bg-primary">
       <BackButton navigation={navigation} />
       <Text className="text-3xl text-white">{route?.params?.title}</Text>
     </View>

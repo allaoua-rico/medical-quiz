@@ -3,7 +3,6 @@ import React from "react";
 import { HomeStackScreenProps } from "../../types";
 import ExitSVG from "../../assets/images/qcm_exit.svg";
 import FavoritSVG from "../../assets/images/qcm_favorit.svg";
-import QuestionMarkSVG from "../../assets/images/qcm_question_mark.svg";
 import { useFavoritStatus } from "../courses/functionsAndHooks";
 import useAlert from "../shared/Alert/useAlert";
 import { addQuestionToFav } from "../SimulateurFunctions";
@@ -25,9 +24,9 @@ export default function SimulateurHeader({
         <ExitSVG fill="white" style={{ opacity: 81 }} />
       </TouchableOpacity>
       <View className="flex-row space-x-3">
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <QuestionMarkSVG fill="white" style={{ opacity: 81 }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View>
           <TouchableOpacity
             className={"rounded-full " + (favStatus ? "bg-yellow-300" : "")}

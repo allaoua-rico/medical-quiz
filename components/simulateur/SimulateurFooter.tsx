@@ -26,9 +26,9 @@ const SimulateurFooter: ForwardRefRenderFunction<
   const {
     activeQuestion,
     setActiveQuestion,
-    aq,
     chapterQuestions,
     setActiveChapter,
+    questionsPerChapter,
     simulateurQuestions,
     activeChapter,
     setQuestions,
@@ -69,15 +69,18 @@ const SimulateurFooter: ForwardRefRenderFunction<
     },
   }));
   useEffect(() => {
-    console.log(timeExpiredModalVisible)
     timeExpiredModalVisible && saveResults();
   }, [timeExpiredModalVisible]);
-
   return (
-    <View className="mt-auto px-2 py-4 mb-5 flex flex-row">
+    <View className="mt-auto px-2 py-3 flex flex-row">
       <TouchableOpacity
         disabled={activeQuestion == 0 && activeChapter == 0}
-        onPress={() => setActiveQuestion((prev) => prev - 1)}
+        onPress={() => {
+          if (activeChapter != 0) {
+            setActiveChapter((prev) => prev - 1);
+            setActiveQuestion(() => questionsPerChapter - 1);
+          } else setActiveQuestion((prev) => prev - 1);
+        }}
         className={
           "p-4 mr-2 rounded-[30px] " +
           (activeQuestion == 0 && activeChapter == 0
@@ -102,11 +105,12 @@ const SimulateurFooter: ForwardRefRenderFunction<
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            onPress={() =>
-              activeQuestion == chapterQuestions.length - 1
-                ? setActiveChapter((prev) => prev + 1)
-                : setActiveQuestion((prev) => prev + 1)
-            }
+            onPress={() => {
+              if (activeQuestion == chapterQuestions.length - 1) {
+                setActiveChapter((prev) => prev + 1);
+                setActiveQuestion(0);
+              } else setActiveQuestion((prev) => prev + 1);
+            }}
             className="p-4 px-5 rounded-[30px] bg-[#1068BB]"
             style={{ elevation: 3 }}
           >
@@ -154,7 +158,7 @@ const getScore = (questions: Simulateur_question[]) => {
 export type SimulateurFooterProps = {
   activeQuestion: number;
   setActiveQuestion: React.Dispatch<React.SetStateAction<number>>;
-  aq: any;
+  questionsPerChapter: number;
   chapterQuestions: UserAnswer[];
   setActiveChapter: React.Dispatch<React.SetStateAction<number>>;
   simulateurQuestions: Simulateur_Chapter_Question[];

@@ -17,13 +17,8 @@ import { isEmptyArray } from "formik";
 import { addOrRemoveAnswer } from "../components/SimulateurFunctions";
 import SimulateurFooter from "../components/simulateur/SimulateurFooter";
 import SimulateurTimer from "../components/simulateur/SimulateurTimer";
+import modulesByChapters from "../modulesByChapters.json";
 // import { addOrRemoveAnswer } from "../components/SimulateurFunctions";
-
-export type Simulateur_Chapter_Question = {
-  chapter_title: string;
-  chapter_questions: Simulateur_question[];
-};
-type CountdownHandle = React.ElementRef<typeof SimulateurFooter>;
 
 export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
   const { simulateurQuestions, isLoading, error } =
@@ -63,7 +58,7 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
                 endTest={() => simulateurFooterRef?.current?.saveResults()}
               />
               {/* QUESTION  */}
-              <Text className="pb-3 pt-6 text-2xl text-white font-medium border-b border-b-white">
+              <Text className="pb-3 pt-4 text-2xl text-white font-medium border-b border-b-white">
                 Question{" "}
                 {`${activeQuestion + 1}/${aChap?.chapter_questions?.length}`}
               </Text>
@@ -138,7 +133,7 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
                 activeQuestion={activeQuestion}
                 setActiveQuestion={setActiveQuestion}
                 setActiveChapter={setActiveChapter}
-                aq={aq}
+                questionsPerChapter={questionsPerChapter}
                 chapterQuestions={aChap?.chapter_questions}
                 simulateurQuestions={questions}
                 activeChapter={activeChapter}
@@ -153,38 +148,49 @@ export default function Simulateur(props: HomeStackScreenProps<"Simulateur">) {
 }
 
 function useFetchAllChaptersQuestion() {
+  const chapters_titles = modulesByChapters.map(({ title }) => title);
   const {
-    simulateurQuestions: BiologieQuestions,
-    isLoading: BiologieIsLoading,
-    error: BiologieError,
-  } = useFetchChapterRandomQuestions("Biologie");
+    simulateurQuestions: Questions0,
+    isLoading: IsLoading0,
+    error: Error0,
+  } = useFetchChapterRandomQuestions(chapters_titles[0], questionsPerChapter);
   const {
-    simulateurQuestions: MedicalQuestions,
-    isLoading: MedicalIsLoading,
-    error: MedicalError,
-  } = useFetchChapterRandomQuestions("Medical");
+    simulateurQuestions: Questions1,
+    isLoading: IsLoading1,
+    error: Error1,
+  } = useFetchChapterRandomQuestions(chapters_titles[1], questionsPerChapter);
   const {
-    simulateurQuestions: ChirurgieQuestions,
-    isLoading: ChirurgieIsLoading,
-    error: ChirurgieError,
-  } = useFetchChapterRandomQuestions("Chirurgie");
-  const isLoading = BiologieIsLoading || MedicalIsLoading || ChirurgieIsLoading;
-  const error = BiologieError || MedicalError || ChirurgieError;
+    simulateurQuestions: Questions2,
+    isLoading: IsLoading2,
+    error: Error2,
+  } = useFetchChapterRandomQuestions(chapters_titles[2], questionsPerChapter);
+
+  const isLoading = IsLoading0 || IsLoading1 || IsLoading2;
+  const error = Error0 || Error1 || Error2;
   const simulateurQuestions: Simulateur_Chapter_Question[] = [
-    { chapter_title: "Biologie", chapter_questions: BiologieQuestions },
-    //  when adding other chapters uncomment thiese lines
-    // { chapter_title: "Medical", chapter_questions: MedicalQuestions },
-    // { chapter_title: "Chirurgie", chapter_questions: ChirurgieQuestions },
+    { chapter_title: chapters_titles[0], chapter_questions: Questions0 },
+    { chapter_title: chapters_titles[1], chapter_questions: Questions1 },
+    {
+      chapter_title: chapters_titles[2],
+      chapter_questions: Questions2,
+    },
   ];
   return {
-    simulateurQuestions: !isEmptyArray(BiologieQuestions)
-      ? //   when adding other chapters uncomment thiese lines
-        //   &&
-        //   !isEmptyArray(MedicalQuestions) &&
-        //   !isEmptyArray(ChirurgieQuestions)
-        simulateurQuestions
-      : [],
+    simulateurQuestions:
+      !isEmptyArray(Questions0) &&
+      !isEmptyArray(Questions1) &&
+      !isEmptyArray(Questions2)
+        ? simulateurQuestions
+        : [],
     isLoading,
     error,
   };
 }
+
+export type Simulateur_Chapter_Question = {
+  chapter_title: string;
+  chapter_questions: Simulateur_question[];
+};
+type CountdownHandle = React.ElementRef<typeof SimulateurFooter>;
+
+const questionsPerChapter = 120;

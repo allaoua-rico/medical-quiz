@@ -29,21 +29,21 @@ export interface Database {
       }
       devices: {
         Row: {
-          device_id: string | null
+          device_id: string
           device_name: string | null
           id: number
           last_login: string | null
           user_id: string | null
         }
         Insert: {
-          device_id?: string | null
+          device_id: string
           device_name?: string | null
           id?: number
           last_login?: string | null
           user_id?: string | null
         }
         Update: {
-          device_id?: string | null
+          device_id?: string
           device_name?: string | null
           id?: number
           last_login?: string | null
@@ -53,6 +53,7 @@ export interface Database {
           {
             foreignKeyName: "devices_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
@@ -96,12 +97,14 @@ export interface Database {
           {
             foreignKeyName: "option_included_option_id_fkey"
             columns: ["option_id"]
+            isOneToOne: false
             referencedRelation: "option"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "option_included_subsription_id_fkey"
             columns: ["subsription_id"]
+            isOneToOne: false
             referencedRelation: "subscription"
             referencedColumns: ["id"]
           }
@@ -157,6 +160,7 @@ export interface Database {
           {
             foreignKeyName: "profiles_id_fkey"
             columns: ["id"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -185,12 +189,14 @@ export interface Database {
           {
             foreignKeyName: "quiz_answers_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "quiz_questions"
             referencedColumns: ["question_id"]
           },
           {
             foreignKeyName: "quiz_answers_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "random_questions"
             referencedColumns: ["question_id"]
           }
@@ -199,66 +205,58 @@ export interface Database {
       quiz_questions: {
         Row: {
           course: string | null
-          course_id: number | null
+          for_simulator: boolean | null
           Question: string | null
           question_id: string
         }
         Insert: {
           course?: string | null
-          course_id?: number | null
+          for_simulator?: boolean | null
           Question?: string | null
           question_id: string
         }
         Update: {
           course?: string | null
-          course_id?: number | null
+          for_simulator?: boolean | null
           Question?: string | null
           question_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "quiz_questions_course_fkey"
-            columns: ["course"]
-            referencedRelation: "courses"
-            referencedColumns: ["title"]
-          },
-          {
-            foreignKeyName: "quiz_questions_course_id_fkey"
-            columns: ["course_id"]
-            referencedRelation: "courses"
-            referencedColumns: ["id"]
-          }
-        ]
+        Relationships: []
       }
       subscription: {
         Row: {
           created_at: string | null
           current_plan_id: number | null
           id: number
+          sub_expiration: string | null
           user_id: string
         }
         Insert: {
           created_at?: string | null
           current_plan_id?: number | null
           id?: number
+          sub_expiration?: string | null
           user_id: string
         }
         Update: {
           created_at?: string | null
           current_plan_id?: number | null
           id?: number
+          sub_expiration?: string | null
           user_id?: string
         }
         Relationships: [
           {
             foreignKeyName: "subscription_current_plan_id_fkey"
             columns: ["current_plan_id"]
+            isOneToOne: false
             referencedRelation: "plan"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "subscription_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
@@ -296,18 +294,21 @@ export interface Database {
           {
             foreignKeyName: "takes_course_id_fkey"
             columns: ["course_id"]
+            isOneToOne: true
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "takes_course_title_fkey"
             columns: ["course_title"]
+            isOneToOne: true
             referencedRelation: "courses"
             referencedColumns: ["title"]
           },
           {
             foreignKeyName: "takes_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -339,24 +340,28 @@ export interface Database {
           {
             foreignKeyName: "user_answers_answer_id_fkey"
             columns: ["answer_id"]
+            isOneToOne: true
             referencedRelation: "quiz_answers"
             referencedColumns: ["answer_id"]
           },
           {
             foreignKeyName: "user_answers_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "quiz_questions"
             referencedColumns: ["question_id"]
           },
           {
             foreignKeyName: "user_answers_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "random_questions"
             referencedColumns: ["question_id"]
           },
           {
             foreignKeyName: "user_answers_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -385,18 +390,21 @@ export interface Database {
           {
             foreignKeyName: "user_favorites_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "quiz_questions"
             referencedColumns: ["question_id"]
           },
           {
             foreignKeyName: "user_favorites_question_id_fkey"
             columns: ["question_id"]
+            isOneToOne: false
             referencedRelation: "random_questions"
             referencedColumns: ["question_id"]
           },
           {
             foreignKeyName: "user_favorites_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
@@ -407,36 +415,23 @@ export interface Database {
       random_questions: {
         Row: {
           course: string | null
-          course_id: number | null
+          for_simulator: boolean | null
           Question: string | null
           question_id: string | null
         }
         Insert: {
           course?: string | null
-          course_id?: number | null
+          for_simulator?: boolean | null
           Question?: string | null
           question_id?: string | null
         }
         Update: {
           course?: string | null
-          course_id?: number | null
+          for_simulator?: boolean | null
           Question?: string | null
           question_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "quiz_questions_course_fkey"
-            columns: ["course"]
-            referencedRelation: "courses"
-            referencedColumns: ["title"]
-          },
-          {
-            foreignKeyName: "quiz_questions_course_id_fkey"
-            columns: ["course_id"]
-            referencedRelation: "courses"
-            referencedColumns: ["id"]
-          }
-        ]
+        Relationships: []
       }
     }
     Functions: {

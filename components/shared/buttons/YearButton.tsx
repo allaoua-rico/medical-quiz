@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import LockSvg from "../../../assets/images/material-symbols_lock-outline_gray.svg";
-import { hexToRgba } from "../../courses/functionsAndHooks";
 
 export default function YearButton({
   text,
@@ -10,7 +9,7 @@ export default function YearButton({
   isLocked = false,
 }: YearButtonProps) {
   return (
-    <TouchableOpacity onPress={onPress} disabled={isLocked}>
+    <TouchableOpacity onPress={onPress} disabled={isLocked} className="my-2">
       <View className="px-4 py-2 flex flex-row justify-between items-center border-b border-[#053F5C]">
         <View className="bg-white shadow-2xl">
           <Text
@@ -21,7 +20,7 @@ export default function YearButton({
           </Text>
         </View>
         {isLocked ? (
-          <LockSvg color={"black"}/>
+          <LockSvg color={"black"} />
         ) : (
           <SimpleLineIcons name="arrow-right" size={24} color="#053F5C" />
         )}

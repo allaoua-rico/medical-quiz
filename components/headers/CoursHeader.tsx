@@ -8,7 +8,7 @@ export default function CoursHeader({
   navigation,
 }: HomeStackScreenProps<"MainCours">) {
   return (
-    <View className="pt-20 pb-16 relative rounded-b-[20px] flex flex-row items-center bg-primary pl-3">
+    <View className="pt-12 pb-8 relative rounded-b-[20px] flex flex-row items-center bg-primary pl-3">
       <BackButton navigation={navigation} />
       <Text className="text-3xl text-white">Cours</Text>
     </View>

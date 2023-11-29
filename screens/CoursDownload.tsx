@@ -1,37 +1,41 @@
 import { StyleSheet, Dimensions } from "react-native";
 import React, { useEffect, useState } from "react";
-import MainSvg from "../images/undraw_note_list_re_r4u9.svg";
-import AdobeSvg from "../images/Adobe.svg";
-import TopMainSvg from "../images/coursMainTopSvg.svg";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeStackScreenProps } from "../types";
 import { View } from "../components/Themed";
 import supabase from "../utils/supabase";
 import Pdf from "react-native-pdf";
 import * as FileSystem from "expo-file-system";
+import useAlert from "../components/shared/Alert/useAlert";
+import { Spinner } from "native-base";
+import MainSvg from "../images/undraw_note_list_re_r4u9.svg";
+import AdobeSvg from "../images/Adobe.svg";
+import TopMainSvg from "../images/coursMainTopSvg.svg";
+import { SafeAreaView } from "react-native-safe-area-context";
 // import { encode } from "react-native-base64";
 
 export default function CoursDownload(
   props: HomeStackScreenProps<"CoursDownload">
 ) {
+  const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<string>("");
-  const { title } = props.route.params.course;
-  const fileUri = `${FileSystem.documentDirectory}PROGRAMME_DES_COURS_RESIDANAT_2022_SOURCES_CONSEILS.pdf`;
+  const { title, file_server_name } = props.route.params.course;
+  const fileUri = FileSystem.documentDirectory + file_server_name;
+  const { setAlert } = useAlert();
+
   useEffect(() => {
     async function getCoursePdf() {
+      setLoading(true);
       try {
-        // Read file as string from storage
-        const file = await FileSystem.readAsStringAsync(fileUri);
-        if (file) {
-          // if file exist display it
+        const fileInfo = await FileSystem.getInfoAsync(fileUri);
+        if (fileInfo.exists) {
+          console.log("exists")
+          const file = await FileSystem.readAsStringAsync(fileUri);
           setFile(file);
         } else {
-          // else Download it
+          console.log("Download")
           const { data, error } = await supabase.storage
             .from("courses")
-            .download(
-              "PROGRAMME_DES_COURS_RESIDANAT_2022_SOURCES_CONSEILS.pdf"
-            );
+            .download(file_server_name);
           if (error) throw { ...error, msg: "Error downloading the file" };
           if (data) {
             // Save it from blob as string
@@ -44,47 +48,60 @@ export default function CoursDownload(
               }
             };
             fr.readAsDataURL(data);
+            console.log("File saved successfully!");
           }
         }
         setFile(file);
-        console.log("File saved successfully!");
       } catch (error: any) {
-        console.log(error?.msg, error);
+        // console.log(error?.msg, error);
+        setAlert("Erreur", "error");
+      } finally {
+        setLoading(false);
       }
     }
     getCoursePdf();
   }, [title]);
 
   useEffect(() => {
-    console.log("file", file.slice(0, 50));
-    console.log(title);
+    // console.log("file", file.slice(0, 50));
   }, [file]);
 
   return (
     <View className="items-center relative pt-12" style={styles.container}>
-      <Pdf
-        trustAllCerts={false}
-        source={{ uri: file }}
-        onLoadComplete={(numberOfPages, filePath) => {
-          console.log(`Number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page, numberOfPages) => {
-          console.log(`Current page: ${page}`);
-        }}
-        onError={(error) => {
-          console.log("error", error);
-        }}
-        onPressLink={(uri) => {
-          console.log(`Link pressed: ${uri}`);
-        }}
-        style={styles.pdf}
-      />
+      {loading ? (
+        <View className="flex-1 justify-center items-center">
+          <Spinner
+            accessibilityLabel="Loading results"
+            color="black"
+            size="lg"
+            className="my-auto"
+          />
+        </View>
+      ) : (
+        <Pdf
+          trustAllCerts={false}
+          source={{ uri: file }}
+          style={styles.pdf}
+          // onLoadComplete={(numberOfPages, filePath) => {
+          //   console.log(`Number of pages: ${numberOfPages}`);
+          // }}
+          // onPageChanged={(page, numberOfPages) => {
+          //   console.log(`Current page: ${page}`);
+          // }}
+          // onError={(error) => {
+          //   console.log("error", error);
+          // }}
+          // onPressLink={(uri) => {
+          //   console.log(`Link pressed: ${uri}`);
+          // }}
+        />
+      )}
+
       {/* <TopMainSvg
         preserveAspectRatio="xMinYMin slice"
         style={{ position: "absolute", top: -20 }}
         width="100%"
       />
-
       <MainSvg />
       <Text className="text-[#1275D2] font-bold text-3xl text-center mt-9 px-5">
         {course.title}

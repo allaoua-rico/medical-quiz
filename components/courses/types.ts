@@ -10,6 +10,7 @@ export type Questions = [
   Database["public"]["Tables"]["quiz_questions"]["Row"]?
 ];
 
+
 export type Question = {
   Question: string | null;
   question_id: string;

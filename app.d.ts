@@ -10,3 +10,4 @@ declare module "*.svg" {
 declare module "react-native-dotenv" {
   export const SUPABASE_KEY: string;
 }
+

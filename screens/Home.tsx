@@ -16,8 +16,7 @@ import CoursHeader from "../components/headers/CoursHeader";
 import MainCours from "./MainCours";
 import CoursDownload from "./CoursDownload";
 import Simulateur from "./Simulateur";
-// import HomeWrapperImg from "../components/layout/HomeWrapperImg";
-// import Résidanat from "../assets/images/residanatHeader.png"
+import UserModal from "./UserModal";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -28,16 +27,28 @@ export default function Home() {
       screenOptions={{
         contentStyle: {
           backgroundColor: "#ffffff",
-          // paddingTop: 20,
-          // paddingBottom: 20,
         },
       }}
     >
-      <Stack.Screen
-        name="HomeRoot"
-        component={HomeRoot}
-        options={{ headerShown: false }}
-      />
+      <Stack.Group>
+        <Stack.Screen
+          name="HomeRoot"
+          component={HomeRoot}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserModal"
+          component={UserModal}
+          options={{
+            headerShown: false,
+            presentation: "transparentModal",
+            animation: "slide_from_bottom",
+            contentStyle: {
+              backgroundColor: "transparent",
+            },
+          }}
+        />
+      </Stack.Group>
       <Stack.Group>
         <Stack.Screen
           name="Residanat"
@@ -68,14 +79,6 @@ export default function Home() {
           headerShown: false,
         })}
       />
-      {/* ResidanatSimulator */}
-      {/* <Stack.Group>
-        <Stack.Screen
-          name="ResidanatSimulator"
-          component={ResidanatSimulator}
-          options={{ title: "Chapitres" }}
-        />
-      </Stack.Group> */}
       <Stack.Screen
         name="ModulesList"
         component={ModulesList}

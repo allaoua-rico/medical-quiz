@@ -41,6 +41,7 @@ export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =
 
 export type HomeStackParamList = {
   HomeRoot: NavigatorScreenParams<RootTabParamList> | undefined;
+  UserModal: undefined;
   Externat: {
     // title: string;
   };
@@ -61,12 +62,16 @@ export type HomeStackParamList = {
     navArr: string[];
   };
   Courses: { course: Course };
-  CourseQCM: { course: Course; questionIndex: number };
+  CourseQCM: {
+    course: Course;
+    questionIndex: number;
+    FavQuestion?: string | null;
+  };
   Simulateur: {};
   Resultats: {};
   CoursDownload: { course: Course };
 };
 
-export type ModulesListParamList = {
-  title: string;
-};
+// export type ModulesListParamList = {
+//   title: string;
+// };

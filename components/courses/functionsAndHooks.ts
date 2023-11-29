@@ -1,5 +1,5 @@
 import { Course, getChapterModules } from "../../data";
-import { Answer, Question, UserAnswer } from "./types";
+import { Answer,  UserAnswer } from "./types";
 import { useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
 import _, { isArray } from "lodash";
@@ -7,7 +7,7 @@ import useSWR from "swr";
 import { isEmptyArray } from "formik";
 import * as SecureStore from "expo-secure-store";
 import useAlert from "../shared/Alert/useAlert";
-import modulesByChapters from "../../modulesByChapters.json";
+import useSWRImmutable from "swr/immutable";
 
 export const isSelected = (
   aq: UserAnswer | Simulateur_question,
@@ -59,21 +59,20 @@ export function useGetProfile() {
       const user_id = await getUserId();
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(
-          `full_name,username,
-        subscription(
-          plan(plan_name),id
-          )`
-        )
+        .select(`full_name, username, subscription(plan(plan_name), *)`)
         .eq("id", user_id)
         .single();
-
       let subscription_id;
+      // if (
+      //   isArray(data?.subscription) &&
+      //   !isArray(data?.subscription?.[0]?.plan)
+      // ) subscription_id = data?.subscription?.[0].id;
       if (
-        isArray(data?.subscription) &&
-        !isArray(data?.subscription?.[0]?.plan)
+        data?.subscription &&
+        !isArray(data?.subscription) &&
+        data?.subscription.plan
       )
-        subscription_id = data?.subscription?.[0].id;
+        subscription_id = data?.subscription?.id;
       let {
         data: options,
         error: optionsError,
@@ -82,7 +81,6 @@ export function useGetProfile() {
         .from("option_included")
         .select(`option(*)`)
         .eq("subsription_id", subscription_id);
-
       if ((error && status !== 406) || (optionsError && optionsStatus !== 406))
         throw error;
       if (data && options)
@@ -96,7 +94,7 @@ export function useGetProfile() {
     }
   }
   // const { data, error, isLoading, mutate } = useSWRImmutable("1", fetcher);
-  const { data, error, isLoading, mutate } = useSWR("1", fetcher);
+  const { data, error, isLoading, mutate } = useSWR("useGetProfile", fetcher);
   return { data, error, isLoading, mutate };
 }
 
@@ -151,8 +149,7 @@ export const useFetchUserAnswers = (course: Course | null) => {
       .select(
         `Question,question_id,
         user_answers(quiz_answers(*)),
-        quiz_answers (Answer,Correct,answer_id)
-        `
+        quiz_answers (Answer,Correct,answer_id)`
       )
       .ilike("course", course_title)
       .eq("user_answers.user_id", user_id);
@@ -230,11 +227,34 @@ export const useFavoritStatus = (question_id: string) => {
   };
 };
 
-export const useFetchChapterRandomQuestions = (chapter_title: string) => {
-  const chapterCourses = getChapterModules(chapter_title)
-    .map(({ courses }) => courses)
-    .flat()
-    .map(({ title }) => title);
+export const useFavoritQuestions = () => {
+  async function fetcher() {
+    const user_id = await getUserId();
+    let { data, error } = await supabase
+      .from("user_favorites")
+      .select(`*,quiz_questions(Question,course)`)
+      .eq("user_id", user_id);
+    if (error) throw error;
+    return data;
+  }
+  const { data, error, isLoading, mutate } = useSWR(
+    "user_favorites",
+    fetcher,
+    {}
+  );
+  return {
+    favs: data,
+    isLoading,
+    error,
+    mutate,
+  };
+};
+
+export const useFetchChapterRandomQuestions = (
+  chapter_title: string,
+  limit: number
+) => {
+  const chapterCourses = getChapterModules(chapter_title);
   async function fetcher(coursesArray: string[]) {
     let { data, error } = await supabase
       .from("random_questions")
@@ -244,9 +264,7 @@ export const useFetchChapterRandomQuestions = (chapter_title: string) => {
       )
       .in("course", coursesArray)
       .is("for_simulator", true)
-      .limit(120);
-    console.log("coursesArray", coursesArray);
-    console.log("useFetchChapterRandomQuestions", data);
+      .limit(limit);
     if (error) throw error;
     return data;
   }
